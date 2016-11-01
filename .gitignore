@@ -38,8 +38,11 @@ jspm_packages
 
 # NIT project specific
 .idea
-node_modules
 *.bak
+node_modules
+config/appconfig-NIT*.json
+config/appconfig.json
+config/pmdinvestigationguide-NIT*.*
 images/dl*.*
 images/ul*.*
 
