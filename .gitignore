@@ -40,8 +40,8 @@ jspm_packages
 .idea
 *.bak
 node_modules
-config/appconfig-NIT*.json
-config/appconfig.json
+config/appconfig-NIT*.*
+config/appconfig.*
 config/pmdinvestigationguide-NIT*.*
 images/dl*.*
 images/ul*.*
