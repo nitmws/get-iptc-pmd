@@ -1,0 +1,124 @@
+extends layout_bs
+
+mixin tablerows(rowL1)
+    tr
+        - var singlevalueL1 = rowL1.ptype == "plain";
+        td=rowL1.pname
+        if singlevalueL1
+            td=rowL1.pvalue
+        else
+            - var rowsL2 = rowL1.pvalue
+            td: table(class='pmd1 table-bordered table-striped')
+                tbody
+                    each rowL2 in rowsL2
+                        - var singlevalueL2 = rowL2.ptype == "plain";
+                        tr
+                            td=rowL2.pname
+                            if singlevalueL2
+                                td=rowL2.pvalue
+                            else
+                                - var rowsL3 = rowL2.pvalue;
+                                td: table(class='pmd1 table-bordered table-striped')
+                                    tbody
+                                        each rowL3 in rowsL3
+                                            tr
+                                                td=rowL3.pname
+                                                td=rowL3.pvalue
+
+
+block content
+    div(class='container')
+        h1 Get IPTC Photo Metadata
+        div(class="row")
+            div(class="col-md-8") ... as retrieved from the image file: <strong>#{imageTitle}</strong>
+        div(class="row")
+            div(class="col-md-8") The tables below show the IPTC Field Names in alphabetical order.<br>The grouping of fields is the same as in the <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/howtoeditmetadatafor1.htm' target='_blank'>IPTC Photo Metadata User Guide</a> - click on the headings of the sections.
+        div(class="row topspace1")
+            div(class="col-md-8") <a href="/">Back to Request Form</a>
+
+        h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/generalimagecontent.htm' target='_blank'>Fields About Image Content in General</a>
+        table(class='pmd1 table-bordered table-striped table-curved')
+            thead
+                tr
+                    th Field Name
+                    th Field Value
+            tbody
+                each rowL1a in gimgcontOutObj
+                    +tablerows(rowL1a)
+
+        h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/personsdepictedintheimage.htm' target='_blank'>Fields About Persons</a>
+        table(class='pmd1 table-bordered table-striped table-curved')
+            thead
+                tr
+                    th Field Name
+                    th Field Value
+            tbody
+                each rowL1a in personOutObj
+                    +tablerows(rowL1a)
+
+        h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/locations.htm' target='_blank'>Fields About Locations</a>
+        table(class='pmd1 table-bordered table-striped table-curved')
+            thead
+                tr
+                    th Field Name
+                    th Field Value
+            tbody
+                each rowL1a in locationOutObj
+                    +tablerows(rowL1a)
+
+        h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/otherthingsshownintheimage.htm' target='_blank'>Fields About Other Things in the Image</a>
+        table(class='pmd1 table-bordered table-striped table-curved')
+            thead
+                tr
+                    th Field Name
+                    th Field Value
+            tbody
+                each rowL1a in othingsOutObj
+                    +tablerows(rowL1a)
+
+
+        h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/rightsinformation.htm' target='_blank'>Fields with Rights Information</a>
+        table(class='pmd1 table-bordered table-striped table-curved')
+            thead
+                tr
+                    th Field Name
+                    th Field Value
+            tbody
+                each rowL1a in rightsOutObj
+                    +tablerows(rowL1a)
+
+
+        h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/licensinguseoftheimage.htm' target='_blank'>Fields About Licensing</a>
+        table(class='pmd1 table-bordered table-striped table-curved')
+            thead
+                tr
+                    th Field Name
+                    th Field Value
+            tbody
+                each rowL1a in licOutObj
+                    +tablerows(rowL1a)
+
+        h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/administrationandcommissioningdetails.htm' target='_blank'>Fields About Administration and Commissioning</a>
+        table(class='pmd1 table-bordered table-striped table-curved')
+            thead
+                tr
+                    th Field Name
+                    th Field Value
+            tbody
+                each rowL1a in adminOutObj
+                    +tablerows(rowL1a)
+
+        h2 Any other data
+        table(class='pmd1 table-bordered table-striped table-curved')
+            thead
+                tr
+                    th Field Name
+                    th Field Value
+            tbody
+                each anyprop in anyOutObjTopic
+                    tr
+                        td=anyprop.pname
+                        td=anyprop.pvalue
+
+        div(class="row topspace2")
+            div(class="col-md-6") <a href="/">Back to Request Form</a>

@@ -1,0 +1,251 @@
+# IPTC PMD Std 2014 / ExifTool Tags / PMD Investigation Guide - YAML format
+# Test Guide below refers to the JSON structure exported by ExifTool
+# HELP: only two types of keys:
+# 1/ the ExifTool field name (the ":" is replaced by a "_" for YAML reasons!!)
+# 2/ the "output": a sequence of target object for the output, separated by commas
+# Field structures have to follow the YAML syntax: they have to be indented by at least 2 spaces
+# BE AWARE: this Guide lists only the field names in structures but now how they are held,
+# as single, plain value or in an array. This is derived from the ExifTool JSON retrieved from the image.
+# Status: 2016-10-22, mws
+EXIF_Artist : 
+  output: exif,person
+EXIF_Copyright: 
+  output: exif,rights
+EXIF_DateTimeOriginal: 
+  output: exif,admin
+EXIF_ImageDescription: 
+  output: exif,admin
+ExifTool_ExifToolVersion: 
+  output: any
+File_FileName: 
+  output: none
+IPTC_By-line: 
+  output: iim,rights
+IPTC_By-lineTitle: 
+  output: iim,rights
+IPTC_Caption-Abstract: 
+  output: iim,gimgcont
+IPTC_City: 
+  output: iim,location
+IPTC_CopyrightNotice: 
+  output: iim,rights
+IPTC_Country-PrimaryLocationName:
+  output: iim,locaction
+IPTC_Country-PrimaryLocationCode:
+  output: iim,location
+IPTC_Credit:
+  output: iim,rights
+IPTC_DateCreated: 
+  output: iim,admin
+IPTC_Headline: 
+  output: iim,gimgcont
+IPTC_Keywords: 
+  output: iim,gimgcont
+IPTC_ObjectAttributeReference: 
+  output: iim,gimgcont
+IPTC_ObjectName: 
+  output: iim,admin
+IPTC_OriginalTransmissionReference: 
+  output: iim,admin
+IPTC_Province-State: 
+  output: iim,location
+IPTC_Source: 
+  output: iim,rights
+IPTC_SpecialInstructions: 
+  output: iim,admin
+IPTC_Sub-location: 
+  output: iim,location
+IPTC_SubjectReference: 
+  output: iim,gimgcont
+IPTC_TimeCreated: 
+  output: iim,admin
+IPTC_Writer-Editor: 
+  output: iim,admin
+XMP_AboutCvTerm:
+  output: xmp,gimgcont
+  CvId: doit
+  CvTermId: doit
+  CvTermName: doit
+  CvTermRefinedAbout: doit
+XMP_AdditionalModelInformation: 
+  output: xmp,person
+XMP_ArtworkOrObject:
+  output: xmp,othings
+  AOCircaDateCreated: doit
+  AOContentDescription: doit
+  AOContributionDescription: doit 
+  AOCopyrightNotice: doit
+  AOCreator: doit
+  AOCreatorId: doit
+  AOCurrentCopyrightOwnerId: doit
+  AOCurrentCopyrightOwnerName: doit
+  AOCurrentLicensorId: doit
+  AOCurrentLicensorName: doit
+  AODateCreated: doit
+  AOPhysicalDescription: doit
+  AOSource: doit
+  AOSourceInvNo: doit
+  AOSourceInvURL: doit
+  AOStylePeriod: doit
+  AOTitle: doit
+XMP_AuthorsPosition: 
+  output: xmp,rights
+XMP_CaptionWriter: 
+  output: xmp,admin
+XMP_City: 
+  output: xmp,location
+XMP_CopyrightOwner: 
+  output: xmp,rights
+  CopyrightOwnerID: doit
+  CopyrightOwnerName: doit
+XMP_Country: 
+  output: xmp,location
+XMP_CountryCode: 
+  output: xmp,location
+XMP_Creator: 
+  output: xmp,rights
+XMP_CreatorContactInfo:
+  output: xmp,rights
+  CiAdrCity: doit
+  CiAdrCtry: doit
+  CiAdrExtadr: doit
+  CiAdrPcode: doit
+  CiAdrRegion: doit
+  CiEmailWork: doit
+  CiTelWork: doit
+  CiUrlWork: doit
+XMP_Credit: 
+  output: xmp,rights
+XMP_DateCreated: 
+  output: xmp,admin
+XMP_Description: 
+  output: xmp,gimgcont
+XMP_DigitalImageGUID: 
+  output: xmp,admin
+XMP_DigitalSourceType:
+  output: xmp,admin
+XMP_EmbdEncRightsExpr: 
+  output: xmp,rights
+  EncRightsExpr: doit
+  RightsExprEncType: doit
+  RightsExprLangId: doit
+XMP_Event: 
+  output: xmp,othings
+XMP_Headline: 
+  output: xmp,gimgcont
+XMP_ImageCreator:
+  output: xmp,rights
+  ImageCreatorID: doit
+  ImageCreatorName: doit
+XMP_ImageCreatorImageID: 
+  output: xmp,rights
+XMP_ImageSupplier:
+  output: xmp,lic
+  ImageSupplierID: doit
+  ImageSupplierName: doit
+XMP_ImageSupplierImageID: 
+  output: xmp,lic
+XMP_Instructions: 
+  output: xmp,admin
+XMP_IntellectualGenre: 
+  output: xmp,gimgcont
+XMP_Licensor:
+  output: xmp,lic
+  LicensorCity: doit
+  LicensorCountry: doit
+  LicensorEmail: doit
+  LicensorExtendedAddress: doit
+  LicensorID: doit
+  LicensorName: doit
+  LicensorPostalCode: doit
+  LicensorRegion: doit
+  LicensorStreetAddress: doit
+  LicensorTelephone1: doit
+  LicensorTelephone2: doit
+  LicensorURL: doit
+XMP_LinkedEncRightsExpr:
+  output: xmp,rights
+  LinkedRightsExpr: doit 
+  RightsExprEncType: doit
+  RightsExprLangId: doit
+XMP_Location: 
+  output: xmp,location
+XMP_LocationCreated:
+  output: xmp,location
+  City: doit
+  CountryCode: doit
+  CountryName: doit
+  LocationId: doit
+  ProvinceState: doit
+  Sublocation: doit
+  WorldRegion: doit
+XMP_LocationShown:
+  output: xmp,location
+  City: doit
+  CountryCode: doit
+  CountryName: doit
+  LocationId: doit
+  ProvinceState: doit
+  Sublocation: doit
+  WorldRegion: doit
+XMP_MaxAvailHeight: 
+  output: xmp,admin
+XMP_MaxAvailWidth: 
+  output: xmp,admin
+XMP_MinorModelAgeDisclosure: 
+  output: xmp,admin
+XMP_ModelAge: 
+  output: xmp,person
+XMP_ModelReleaseID: 
+  output: xmp,person
+XMP_ModelReleaseStatus: 
+  output: xmp,person
+XMP_OrganisationInImageCode: 
+  output: xmp,othings
+XMP_OrganisationInImageName: 
+  output: xmp,othings
+XMP_PersonInImage: 
+  output: xmp,person
+XMP_PersonInImageWDetails:
+  output: xmp,person
+  PersonCharacteristic:
+    CvId: doit
+    CvTermId: doit
+    CvTermName: doit
+    CvTermRefinedAbout: doit
+  PersonDescription: doit
+  PersonId: doit
+  PersonName: doit
+XMP_ProductInImage:
+  output: xmp,othings
+  ProductDescription: doit
+  ProductGTIN: doit
+  ProductName: doit
+XMP_PropertyReleaseID: 
+  output: xmp,rights
+XMP_PropertyReleaseStatus: 
+  output: xmp,rights
+XMP_RegistryID: 
+  output: xmp,admin
+  RegItemId: doit
+  RegOrgId: doit
+XMP_Rights: 
+  output: xmp,rights
+XMP_Scene: 
+  output: xmp,gimgcont
+XMP_Source: 
+  output: xmp,rights
+XMP_State: 
+  output: xmp,location
+XMP_Subject: 
+  output: xmp,gimgcont
+XMP_SubjectCode: 
+  output: xmp,gimgcont
+XMP_Title: 
+  output: xmp,admin
+XMP_TransmissionReference: 
+  output: xmp,admin
+XMP_UsageTerms: 
+  output: xmp,lic
+XMP_XMPToolkit: 
+  output: any

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Get IPTC PMD</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link  rel="stylesheet"  href="stylesheets/style_wbs.css">
+    <script  type="text/javascript">
+        function goToGetPMDdownload()
+        {
+            var getUrl = '/getpmd/html/';
+            getUrl += document.forms[0].design.value;
+            if (document.forms[0].tourl.value !== ''){
+                getUrl += '/?imgurl=' + document.forms[0].tourl.value;
+            }
+            window.location = getUrl;
+            return false;
+        }
+        function goToGetPMDupload()
+        {
+            var getUrl = '/upload/html/';
+            getUrl += document.forms[1].design.value;
+            window.location = getUrl;
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2 style='color:#cc3300; '>This is an experimental site</h2>
+        <h1>Get IPTC Photo Metadata Embedded into an Image</h1>
+        <h3>Option A: an image on the web</h3>
+        <form id="getpmdForm" action="#"  method="get"  onsubmit="return goToGetPMDdownload()">
+            <div class="form-group">
+                <div class="input-group">
+                    <label  for="tourl">Enter the URL of the image file:
+                        <input  name="tourl" size="80"  id="tourl"  type="text" class="form-control" placeholder="Image URL" aria-describedby="basic-addon2">
+                    </label>
+                </div>
+                (If this field is empty the metadata of the <a  href="https://www.iptc.org/std/photometadata/examples/IPTC-PhotometadataRef-Std2014_large.jpg" target="_blank">IPTC reference image of the Photo Metadata
+                Standard 2014</a> is shown. This image file comprises all metadata
+                fields defined by that standard.)
+            </div>
+            <div class="form-group">
+                <strong>Enter the design of the output:</strong><br>
+                <div class="radio">
+                    <label><input  name="design"  checked="checked"  value="stds"  type="radio">
+                        Grouped by technical format standards IIM, XMP and Exif</label>
+                </div>
+                <div class="radio">
+                    <label><input  name="design"  value="topics"  type="radio">
+                        Grouped by common topics of fields (General content, persons, locations, ..., rights, licence, administrative issues)
+                    </label>
+                 </div>
+            </div>
+            <input  value="Get Photo Metadata of Web Image"  type="submit" class="btn btn-success">
+        </form>
+
+
+        <h3>Option B: an image uploaded from your computer</h3>
+        <form  id="uploadForm"  enctype="multipart/form-data"  action="/upload"  method="post">
+            <label class="btn btn-default btn-file">
+                Select image file <input name="userPhoto"  type="file" style="display: none;">
+            </label>
+            <div class="form-group">
+                <strong>Enter the design of the output:</strong><br>
+                <div class="radio">
+                    <label><input  name="design"  checked="checked"  value="stds"  type="radio">
+                        Grouped by technical format standards IIM, XMP and Exif</label>
+                </div>
+                <div class="radio">
+                    <label><input  name="design"  value="topics"  type="radio">
+                        Grouped by common topics of fields (General content, persons, locations, ..., rights, licence, administrative issues)
+                    </label>
+                </div>
+            </div>
+            <input  value="Get Photo Metadata of Local Image"  type="submit" class="btn btn-success">
+        </form>
+        <div id="info1">
+            <p class="prelist">This service builds on the IPTC Photo Metadata Standard and its technical implementations IIM and XMP, and refers to Exif:</p>
+            <ul class="list1">
+                <li>An image file is searched for headers holding metadata in the Exif, IIM and XMP format.</li>
+                <li>Each of the headers is searched for metadata fields defined by the <a href="https://iptc.org/standards/photo-metadata/iptc-standard/" target="_blank">IPTC Photo Metadata Standard</a>.</li>
+                <li>What has been found is displayed in two different groupings, see above.</li>
+            </ul>
+            <p>A key element of this service is <a href="http://owl.phy.queensu.ca/~phil/exiftool/" target="_blank">ExifTool</a>, a software developed by Phil Harvey to retrieve a rich set of metadata fields in different technical formats or to embed such a set into image and video files.</p>
+            <p>This service is provided by <a href="http://www.newsit.biz" target="_blank">NewsIT-M.W.Steidl</a></p>
+        </div>
+    </div>
+</body></html>

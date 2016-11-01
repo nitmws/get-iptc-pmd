@@ -1,0 +1,7 @@
+{
+	"app" : {
+		"localImageDir" : "F:/SW_Devel/Projekte/NewsITpro/IPTC/PMDtools/IptcPmdByET01/images/",
+		"localLogFpath" : "F:/SW_Devel/Projekte/NewsITpro/IPTC/PMDtools/IptcPmdByET01/iptcPmdByEt.log",
+		"logLevel" : 2
+	}
+}

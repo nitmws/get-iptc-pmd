@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    h1= title
+    p Start of the List
+    ul
+    each val, index in theList
+        - var strarr = val.split("|");
+        li= strarr[0] + ': ' + strarr[1]
+

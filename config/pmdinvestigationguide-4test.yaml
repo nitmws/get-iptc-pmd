@@ -1,0 +1,49 @@
+# IPTC PMD Std 2014 / ExifTool Tags / PMD Test Guide YAML format
+# Test Guide below refers to the JSON structure exported by ExifTool
+# HELP: one = single plain value, multi = multiple plain values, ...struct = single or multiple structured values
+# Status: 2016-10-18, mws
+EXIF_Artist : 
+  output: exif,person
+EXIF_Copyright: 
+  output: exif,rights
+IPTC_Credit: 
+  output: iim,ANY
+IPTC_DateCreated: 
+  output: iim,ANY
+IPTC_Keywords: 
+  output: iim,ANY
+XMP_PersonInImageWDetails:
+  output: xmp,ANY
+  PersonCharacteristic:
+    CvId: doit
+    CvTermId: doit
+    CvTermName: doit
+    CvTermRefinedAbout: doit
+  PersonDescription: doit
+  PersonId: doit
+  PersonName: doit
+XMP_AboutCvTerm:
+  output: xmp,ANY
+  CvId: doit
+  CvTermId: doit
+  CvTermName: doit
+  CvTermRefinedAbout: doit
+XMP_AuthorsPosition: 
+  output: xmp,ANY
+XMP_CreatorContactInfo:
+  CiAdrCity: doit
+  CiAdrCtry: doit
+  CiAdrExtadr: doit
+  CiAdrPcode: doit
+  CiAdrRegion: doit
+  CiEmailWork: doit
+  CiTelWork: doit
+  CiUrlWork: doit
+XMP_Headline: 
+  output: xmp,ANY
+XMP_ImageCreator:
+  output: xmp,ANY
+  ImageCreatorID: doit
+  ImageCreatorName: doit
+XMP_XMPToolkit:
+  output: internal,ANY
