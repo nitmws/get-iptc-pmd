@@ -24,14 +24,15 @@ function matchPmdShowHtml (res, imgfpath, imgtitle) {
         return ep.readMetadata(imgfpath, ['j', 'G', 'struct' ]).then((pmdresult) => {
             // metadata has been retrieved and is available as pmdresult object
             // console.log(pmdmatchguide.data);
+            matchOutObj = [];
             let matchNames = getMatchNames(pmdmatchguide.data);
             for (let i_match = 0; i_match < matchNames.length; i_match++) {
                 let iimName = '';
-                let iimValue = '';
+                let iimValue = 'NA';
                 let xmpName = '';
-                let xmpValue = '';
+                let xmpValue = 'NA';
                 let exifName = '';
-                let exifValue = '';
+                let exifValue = 'NA';
                 let matchLabel = '';
                 let matchProps = [];
                 let matchName = matchNames[i_match];
@@ -44,15 +45,30 @@ function matchPmdShowHtml (res, imgfpath, imgtitle) {
                         let propname = matchProps[i_propname];
                         if (propname.substring(0,5) == 'IPTC_'){
                             iimName = propname.replace('_', ':'); // modify for ExifTool
-                            iimValue = pmdresult.data[0][iimName];
+                            if (pmdresult.data[0][iimName] !== undefined){
+                                iimValue = pmdresult.data[0][iimName];
+                            }
+                            else {
+                                iimValue = 'Not found!';
+                            }
                         }
                         if (propname.substring(0,4) == 'XMP_'){
                             xmpName = propname.replace('_', ':'); // modify for ExifTool
-                            xmpValue = pmdresult.data[0][xmpName];
+                            if (pmdresult.data[0][xmpName] !== undefined){
+                                xmpValue = pmdresult.data[0][xmpName];
+                            }
+                            else {
+                                xmpValue = 'Not found!';
+                            }
                         }
                         if (propname.substring(0,5) == 'EXIF_'){
                             exifName = propname.replace('_', ':'); // modify for ExifTool
-                            exifValue = pmdresult.data[0][exifName];
+                            if (pmdresult.data[0][exifName] !== undefined){
+                                exifValue = pmdresult.data[0][exifName];
+                            }
+                            else {
+                                exifValue = 'Not found';
+                            }
                         }
                     }
                     addCompObject(matchOutObj, matchLabel, iimValue, xmpValue, exifValue, '');

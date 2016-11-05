@@ -11,3 +11,66 @@ match02:
   props:
     - IPTC_By-lineTitle
     - XMP_AuthorsPosition
+match03:
+  label: "Description"
+  props:
+    - IPTC_Caption-Abstract
+    - XMP_Description
+    - EXIF_ImageDescription
+match04:
+  label: "Copyright Notice"
+  props:
+    - IPTC_CopyrightNotice
+    - XMP_Rights
+    - EXIF_Copyright
+match05:
+  label: "Credit"
+  props:
+    - IPTC_Credit
+    - XMP_Credit
+match06:
+  label: "Date Created"
+  props:
+    - IPTC_DateCreated
+    - XMP_DateCreated
+    - EXIF_DateTimeOriginal
+match14:
+  label: "Time part of Date Created (IIM only) "
+  props:
+    - IPTC_TimeCreated
+match07:
+  label: "Headline"
+  props:
+    - IPTC_Headline
+    - XMP_Headline
+match08:
+  label: "Keywords"
+  props:
+    - IPTC_Keywords
+    - XMP_Subject
+match09:
+  label: "Title"
+  props:
+    - IPTC_ObjectName
+    - XMP_Title
+match10:
+  label: "Job Id"
+  props:
+    - IPTC_OriginalTransmissionReference
+    - XMP_TransmissionReference
+match11:
+  label: "Source"
+  props:
+    - IPTC_Source
+    - XMP_Source
+match12:
+  label: "Instructions"
+  props:
+    - IPTC_SpecialInstructions
+    - XMP_Instructions
+match13:
+  label: "Description Writer"
+  props:
+    - IPTC_Writer-Editor
+    - XMP_CaptionWriter
+
