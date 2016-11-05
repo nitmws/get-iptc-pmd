@@ -1,0 +1,36 @@
+extends layout_bs
+
+block content
+    div(class='container')
+        h1 Get IPTC Photo Metadata and Compare
+        div(class="row")
+            div(class="col-md-6") ... as retrieved from the image file: <strong>#{imageTitle}</strong>
+        div(class="row")
+            div(class="col-md-6") The tables below show all embedded values of a field. For embedding values the IIM, the XMP or the Exif format can be used - but the values should be identical across these formats. Therefore please check if this is the case.
+        div(class="row topspace1")
+            div(class="col-md-6") <a href="/">Back to Request Form</a>
+
+        h2 Compared Photo Metadata Fields
+
+        each compdataset in matchOutObj
+            div(class="row topspace2")
+                div(class="col-md-6") Compared field:  <strong>#{compdataset.label}</strong>
+
+            table(class='pmd1 table-bordered table-striped table-curved')
+                tbody
+                    tr
+                        td IIM value
+                        td=compdataset.iimvalue
+                    tr
+                        td XMP value
+                        td=compdataset.xmpvalue
+                    tr
+                        td Exif value
+                        td=compdataset.exifvalue
+                    tr
+                        td Note
+                        td=compdataset.note
+
+
+        div(class="row topspace2")
+            div(class="col-md-6") <a href="/">Back to Request Form</a>

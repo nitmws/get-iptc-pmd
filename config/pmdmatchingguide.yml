@@ -1,0 +1,13 @@
+# IPTC PMD Std 2014 / ExifTool Tags / PMD Matching Guide - YAML format
+# Test Guide below refers to the JSON structure exported by ExifTool
+match01:
+  label: "Creator"
+  props:
+    - EXIF_Artist
+    - IPTC_By-line
+    - XMP_Creator
+match02:
+  label: "Creator's Jobtitle"
+  props:
+    - IPTC_By-lineTitle
+    - XMP_AuthorsPosition

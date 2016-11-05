@@ -4,12 +4,11 @@ let yaml = require('js-yaml');
 function loadData() {
     let pmdinvguide = null;
     try {
-        exports.data = yaml.safeLoad(fs.readFileSync('./config/pmdinvestigationguide.yml', 'utf8'));
+        exports.data = yaml.safeLoad(fs.readFileSync('./config/pmdmatchingguide.yml', 'utf8'));
         // console.log(pinvprops);
     } catch (e) {
         console.log(e);
     }
-// console.log(pmdinvguide);
     Object.freeze(exports.data);
 }
 exports.loadData = loadData;

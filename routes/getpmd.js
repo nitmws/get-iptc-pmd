@@ -11,6 +11,7 @@ var randomstring = require("randomstring");
 var http = require('http');
 var https = require('https');
 var imgproc1 = require('../services/processimage');
+var pmdmatcher = require('../services/matchpmd');
 var tools1 = require('../services/tools1');
 
 var downloadDir = appconfig.data.app.localImageDir;
@@ -67,7 +68,7 @@ function processRequest(req, res) {
         case 'topics':
             outputdesign = designTopics;
             break;
-        case 'compared':
+        case 'compare':
             outputdesign = designCompStds;
             break;
         default:
@@ -102,7 +103,15 @@ function processRequest(req, res) {
                     console.log('Download image file name: ' + downloadFilename);
                     downloadImageFile(imgurl, dlFilepath, function (data) {
                         console.log('Result of downloading a file: ' + data);
-                        imgproc1.processImageFileAsHtml(res, dlFilepath, imgurl, outputdesign);
+                        switch (outputdesign){
+                            case designStds:
+                            case designTopics:
+                                imgproc1.processImageFileAsHtml(res, dlFilepath, imgurl, outputdesign);
+                                break;
+                            case designCompStds:
+                                pmdmatcher.matchPmdShowHtml(res, dlFilepath, imgurl);
+                                break;
+                        }
                         tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + imgurl + '] -> ' + downloadFilename, req)
                     });
                 }
@@ -117,7 +126,15 @@ function processRequest(req, res) {
     }
     else { // image URL is undefined
         let processFilepath = downloadDir + 'testphoto1.jpg';
-        imgproc1.processImageFileAsHtml(res, processFilepath, 'default IPTC reference photo', outputdesign);
+        switch (outputdesign){
+            case designStds:
+            case designTopics:
+                imgproc1.processImageFileAsHtml(res, processFilepath, 'default IPTC reference photo', outputdesign);
+                break;
+            case designCompStds:
+                pmdmatcher.matchPmdShowHtml(res, processFilepath, 'default IPTC reference photo' );
+                break;
+        }
         tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> DEFAULTPHOTO', req)
     }
 }
