@@ -1,21 +1,27 @@
+"use strict";
+
 var express = require('express');
 var router = express.Router();
 var multer  = require('multer');
 var imgproc1 = require('../services/processimage');
+var pmdmatcher = require('../services/matchpmd');
 var tools1 = require('../services/tools1');
+
+var appconfig = require("../services/appconfig");
+appconfig.loadConfigData("");
+let ulDir =  appconfig.data.app.uploadDir;
+let webserverDir = appconfig.data.app.webserverImageDir;
 
 const uploadImgPrefix = 'ulimg-';
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, './images');
+        callback(null, ulDir);
     },
     filename: function (req, file, callback) {
-        callback(null, uploadImgPrefix + file.originalname); // + '-' + Date.now());
+        callback(null, uploadImgPrefix + file.originalname);
     }
 });
-
-var upload = multer({ storage : storage}).single('userPhoto');
 
 const designStds = 'perstandards';
 const designTopics = 'pertopics';
@@ -66,7 +72,7 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
             case 'topics':
                 outputdesign = designTopics;
                 break;
-            case 'compared':
+            case 'compare':
                 outputdesign = designCompStds;
                 break;
             default:
@@ -77,12 +83,22 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
         let checkFnextResult = tools1.checkForExtension(req.file.originalname);
         if (checkFnextResult !== 'NA') {
 
-            var ulFilename = uploadImgPrefix + req.file.originalname;
-            var ulFilepath = './images/' + ulFilename;
-            var imgTitle = 'Uploaded file ' + req.file.originalname;
+            let ulFilename = uploadImgPrefix + req.file.originalname;
+            let ulFilepath = ulDir + ulFilename;
+            let wsFilepath = webserverDir + ulFilename;
+            let imgTitle = 'Uploaded file ' + req.file.originalname;
 
             // html output
-            imgproc1.processImageFileAsHtml(res, ulFilepath, imgTitle, outputdesign);
+
+            switch (outputdesign){
+                case designStds:
+                case designTopics:
+                    imgproc1.processImageFileAsHtml(res, ulFilepath, wsFilepath, imgTitle, outputdesign);
+                    break;
+                case designCompStds:
+                    pmdmatcher.matchPmdShowHtml(res, ulFilepath, wsFilepath, 'default IPTC reference photo' );
+                    break;
+            }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + ulFilename + ']', req);
         }
         else { // file extension is not applicable

@@ -21,6 +21,9 @@ table.pmd1 th, td {
 	padding-top: 18px;
 }
 
+.imgright1 {
+	float: right;
+}
 .table-curved {
 	border-collapse: separate;
 }

@@ -46,4 +46,6 @@ config/appconfig.json
 config/pmdinvestigationguide-NIT*.*
 images/dl*.*
 images/ul*.*
+public/testimages/dl*.*
+public/testimages/ul*.*
 

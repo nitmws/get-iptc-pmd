@@ -1,6 +1,7 @@
 {
 	"app" : {
-		"localImageDir" : "C:/localPath/images/",
+		"localImageDir" : "C:/localPath/public/testimages/",
+		"webserverImageDir" : "/testimages/",
 		"localLogFpath" : "C:/localPath/getIptcPmd.log",
 		"logLevel" : 2
 	}

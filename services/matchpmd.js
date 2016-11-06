@@ -17,7 +17,7 @@ module.exports = { matchPmdShowHtml };
 // Object holding the output for the PugJs template
 let matchOutObj = [];
 
-function matchPmdShowHtml (res, imgfpath, imgtitle) {
+function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle) {
     // An ExifTool process is started to retrieve the metadata
     ep.open().then((pid) => {
         console.log('Started exiftool process %s', pid);
@@ -35,21 +35,26 @@ function matchPmdShowHtml (res, imgfpath, imgtitle) {
                 let exifValue = 'NA';
                 let matchLabel = '';
                 let matchProps = [];
+                let matchNote = 'NA';
                 let matchName = matchNames[i_match];
                 if (pmdmatchguide.data[matchName].label !== undefined){
                     matchLabel = pmdmatchguide.data[matchName].label;
                 }
+                let skipCreateNote = false;
                 if (pmdmatchguide.data[matchName].props !== undefined){
                     matchProps = pmdmatchguide.data[matchName].props;
                     for (let i_propname = 0; i_propname < matchProps.length; i_propname++){
                         let propname = matchProps[i_propname];
                         if (propname.substring(0,5) == 'IPTC_'){
+                            if (propname !== 'IPTC_TimeCreated') {
+                                skipCreateNote = true;
+                            }
                             iimName = propname.replace('_', ':'); // modify for ExifTool
                             if (pmdresult.data[0][iimName] !== undefined){
                                 iimValue = pmdresult.data[0][iimName];
                             }
                             else {
-                                iimValue = 'Not found!';
+                                iimValue = 'Not found';
                             }
                         }
                         if (propname.substring(0,4) == 'XMP_'){
@@ -58,7 +63,7 @@ function matchPmdShowHtml (res, imgfpath, imgtitle) {
                                 xmpValue = pmdresult.data[0][xmpName];
                             }
                             else {
-                                xmpValue = 'Not found!';
+                                xmpValue = 'Not found';
                             }
                         }
                         if (propname.substring(0,5) == 'EXIF_'){
@@ -71,10 +76,27 @@ function matchPmdShowHtml (res, imgfpath, imgtitle) {
                             }
                         }
                     }
-                    addCompObject(matchOutObj, matchLabel, iimValue, xmpValue, exifValue, '');
+                    // create a matchNote if values are not the same
+                    // exclude values which occur only in a single format
+                    if (!skipCreateNote) {
+                        if (iimValue !== xmpValue) {
+                            matchNote = 'IIM and XMP don\'t match';
+                            if (exifValue !== iimValue) {
+                                matchNote += ' and Exif doesn\'t match the IIM value';
+                            }
+                        }
+                        else {
+                            if (exifValue !== 'NA') {
+                                if (exifValue !== iimValue) {
+                                    matchNote = 'Exif doesn\'t match the IIM/XMP value';
+                                }
+                            }
+                        }
+                    }
+                    addCompObject(matchOutObj, matchLabel, iimValue, xmpValue, exifValue, matchNote);
                 }
             }
-            res.render('pmdresult_compare_bs', { imageTitle: imgtitle, matchOutObj });
+            res.render('pmdresult_compare_bs', { imageTitle: imgtitle, imgwsfpath, matchOutObj });
         });
     }).then(() => {
         return ep.close().then(() => {
@@ -83,6 +105,11 @@ function matchPmdShowHtml (res, imgfpath, imgtitle) {
     });
 }
 
+/**
+ * Returns an array of the names of the matching guideline objects
+ * @param obj
+ * @returns {Array}
+ */
 function getMatchNames (obj){
     var matchnames = [];
     if (!obj){
@@ -94,6 +121,15 @@ function getMatchNames (obj){
     return matchnames;
 }
 
+/**
+ * Adds an object with data about comparing metadata values to the output object
+ * @param modObjArr
+ * @param label
+ * @param iimValue
+ * @param xmpValue
+ * @param exifValue
+ * @param note
+ */
 function addCompObject (modObjArr, label, iimValue, xmpValue, exifValue, note){
     if (modObjArr === undefined){ return; }
     if (label === undefined){ return; }

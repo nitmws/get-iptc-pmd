@@ -6,7 +6,9 @@ block content
         div(class="row")
             div(class="col-md-6") ... as retrieved from the image file: <strong>#{imageTitle}</strong>
         div(class="row")
-            div(class="col-md-6") The tables below show all embedded values of a field. For embedding values the IIM, the XMP or the Exif format can be used - but the values should be identical across these formats. Therefore please check if this is the case.
+            div(class="col-md-6") <img src="#{imgwsfpath}" width="300">
+        div(class="row topspace2")
+            div(class="col-md-6") The tables below show all IPTC Photo Metadata fields which may have values in at least the IIM and XMP format, optionally also a related Exif value may exist. The values of these fields should be identical across the formats. Therefore please check if this is the case, a note helps.<br />The IPTC Photo Metadata User Guide provides an insight how metadata values exist in different formats, see <a href="https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/photometadataunderthehood.htm" target="_blank">Introduction -- Photo Metadata - Under the Hood</a>.
         div(class="row topspace1")
             div(class="col-md-6") <a href="/">Back to Request Form</a>
 
@@ -33,6 +35,11 @@ block content
                         tr
                             td Exif value
                             td=compdataset.exifvalue
+                    - var testnote = compdataset.note != "NA";
+                    if testnote
+                        tr
+                            td Note
+                            td=compdataset.note
 
 
         div(class="row topspace2")
