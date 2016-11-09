@@ -39,6 +39,7 @@ jspm_packages
 # NIT project specific
 .idea
 *.bak
+nittest*.html
 node_modules
 config/appconfig-NIT-FIX8.json
 config/appconfig-NIT-MOB6.json

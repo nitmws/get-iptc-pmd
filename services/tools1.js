@@ -26,6 +26,28 @@ function checkForExtension(imgUrl){
     if (lastdot > - 1 && lastdot + 1 < imgUrl.length){
         let fnameext = imgUrl.substring(lastdot + 1).toLowerCase();
         fnameextOk = false; // default result
+        if (fnameext.startsWith('jpg')){
+            return "jpg";
+        }
+        if (fnameext.startsWith('jpeg')){
+            return "jpeg";
+        }
+        if (fnameext.startsWith('dng')){
+            return "dng";
+        }
+        if (fnameext.startsWith('tif')){
+            return "tif";
+        }
+        if (fnameext.startsWith('tiff')){
+            return "tiff";
+        }
+        if (fnameext.startsWith('png')){
+            return "png";
+        }
+        if (fnameext.startsWith('gif')){
+            return "gif";
+        }
+        /*
         switch (fnameext){ // see http://www.file-extensions.org/filetype/extension/name/bitmap-image-files
             case 'dng':
             case 'tiff' :
@@ -36,12 +58,15 @@ function checkForExtension(imgUrl){
             case 'jpeg':
                 fnameextOk = true; // only known file extensions are accepted
         }
+
         if (fnameextOk){
             return fnameext;
         }
         else {
             return "NA";
         }
+        */
+        return "NA";
     }
     else {
         return "NONE";

@@ -22,7 +22,7 @@ const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
 
 // Version of the system
-const systemVersion = "2016-11-06";
+const systemVersion = "2016-11-09";
 
 // format of the URL: {hostname:port}/:outputformat?/:outputdesign?/?imgurl=...
 router.get('/:outputfmt?/:outputdesign?', function(req, res, next) {
@@ -78,8 +78,11 @@ function processRequest(req, res) {
     }
 
     // * Process query param in the request
-    let queryData = url.parse(req.url, true).query;
-    let imgurl = queryData.imgurl;
+    // let queryData = url.parse(req.url, true).query;
+    // let imgurl = queryData.imgurl;
+    // alternate retrieval of image url - as it may contain query strings
+    let imgurlPos = req.url.indexOf('imgurl=');
+    let imgurl = req.url.substring(imgurlPos + 7);
     let downloadFilename = 'dlimg-' + randomstring.generate(8);
     if (imgurl !== undefined) {
         if (imgurl.toLowerCase() == 'v') {
