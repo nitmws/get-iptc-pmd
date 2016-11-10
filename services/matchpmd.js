@@ -46,12 +46,15 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle) {
                     for (let i_propname = 0; i_propname < matchProps.length; i_propname++){
                         let propname = matchProps[i_propname];
                         if (propname.substring(0,5) == 'IPTC_'){
-                            if (propname !== 'IPTC_TimeCreated') {
-                                skipCreateNote = true;
+                            switch (propname){
+                                case 'IPTC_TimeCreated':
+                                case 'IPTC_DateCreated':
+                                    skipCreateNote = true;
+                                    break;
                             }
                             iimName = propname.replace('_', ':'); // modify for ExifTool
                             if (pmdresult.data[0][iimName] !== undefined){
-                                iimValue = pmdresult.data[0][iimName];
+                                iimValue = '{' + pmdresult.data[0][iimName] + '}';
                             }
                             else {
                                 iimValue = 'Not found';
@@ -60,7 +63,7 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle) {
                         if (propname.substring(0,4) == 'XMP_'){
                             xmpName = propname.replace('_', ':'); // modify for ExifTool
                             if (pmdresult.data[0][xmpName] !== undefined){
-                                xmpValue = pmdresult.data[0][xmpName];
+                                xmpValue = '{' + pmdresult.data[0][xmpName] + '}';
                             }
                             else {
                                 xmpValue = 'Not found';
@@ -69,7 +72,7 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle) {
                         if (propname.substring(0,5) == 'EXIF_'){
                             exifName = propname.replace('_', ':'); // modify for ExifTool
                             if (pmdresult.data[0][exifName] !== undefined){
-                                exifValue = pmdresult.data[0][exifName];
+                                exifValue = '{' + pmdresult.data[0][exifName] + '}';
                             }
                             else {
                                 exifValue = 'Not found';

@@ -29,7 +29,7 @@ match05:
     - IPTC_Credit
     - XMP_Credit
 match06:
-  label: "Date Created"
+  label: "Date Created (formats are different in IIM, XMP and Exif)"
   props:
     - IPTC_DateCreated
     - XMP_DateCreated
