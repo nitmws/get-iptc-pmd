@@ -84,7 +84,7 @@ function processRequest(req, res) {
     let imgurl = 'NA';
     let imgurlPos = req.url.indexOf('imgurl=');
     if (imgurlPos > -1) {
-        let imgurl = req.url.substring(imgurlPos + 7);
+        imgurl = req.url.substring(imgurlPos + 7);
     }
     let downloadFilename = 'dlimg-' + randomstring.generate(8);
     if (imgurl !== 'NA') {
