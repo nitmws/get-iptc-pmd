@@ -86,6 +86,7 @@ function processRequest(req, res) {
     if (imgurlPos > -1) {
         imgurl = req.url.substring(imgurlPos + 7);
     }
+    imgurl = decodeURIComponent(imgurl);
     let downloadFilename = 'dlimg-' + randomstring.generate(8);
     if (imgurl !== 'NA') {
         if (imgurl.toLowerCase() == 'v') {
