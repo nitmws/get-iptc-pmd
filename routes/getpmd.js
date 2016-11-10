@@ -164,24 +164,31 @@ function validateFormallyImageUrl(imgUrl) {
 }
 
 /**
- * Downloads the image file from a URL
+ * Downloads an image file from a URL
+ * @param imgUrl
+ * @param destFn
+ * @param callback
  */
 function downloadImageFile(imgUrl, destFn, callback) {
-    var portNr = 80;
-    var protType = 'http';
+    let portNr = 80;
+    let protType = 'http';
     if (imgUrl.indexOf('https') == 0)
     {
         portNr = 443;
         protType = 'https';
     }
-    var options = {
-            host: url.parse(imgUrl).host,
+    let hostname = url.parse(imgUrl).host;
+    let pos1 = imgUrl.indexOf(hostname);
+    // var path1 = url.parse(imgUrl).path; // core path only
+    let path1 = imgUrl.substring(pos1 + hostname.length); // including queries as this might be required by APIs
+    let options = {
+            host: hostname,
             port: portNr,
-            path: url.parse(imgUrl).pathname
-        },
-        file_name = url.parse(imgUrl).pathname.split('/').pop(),
+            path: path1
+        }
+        // file_name = url.parse(imgUrl).pathname.split('/').pop(),
         //Creating the file
-        file = fs.createWriteStream(destFn, {flags: 'w', encoding: 'binary'});
+    let file = fs.createWriteStream(destFn, {flags: 'w', encoding: 'binary'});
     console.log('Downloading file from ' + imgUrl);
     console.log('to ' + destFn);
     if (protType === 'http') {
@@ -191,8 +198,8 @@ function downloadImageFile(imgUrl, destFn, callback) {
             res.on('end', function () {
                 //Closing the file
                 file.end();
-                console.log('Downloaded ' + file_name);
-                callback(file_name);
+                console.log('Downloaded ' + destFn);
+                callback(destFn);
             });
         });
     }
@@ -203,8 +210,8 @@ function downloadImageFile(imgUrl, destFn, callback) {
             res.on('end', function () {
                 //Closing the file
                 file.end();
-                console.log('Downloaded ' + file_name);
-                callback(file_name);
+                console.log('Downloaded ' + destFn);
+                callback(destFn);
             });
         });
     }
