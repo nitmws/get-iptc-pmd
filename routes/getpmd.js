@@ -84,10 +84,17 @@ function processRequest(req, res) {
     // let queryData = url.parse(req.url, true).query;
     // let imgurl = queryData.imgurl;
     // alternate retrieval of image url - as it may contain query strings
-    let imgurl = 'NA'; // preset "Not Applicable"
+    let imglfn = 'NA'; // local file name of an image - preset to "Not Applicable"
+    let imgurl = 'NA'; // URL of a web image - preset "Not Applicable"
     let imgurlPos = req.url.indexOf('imgurl=');
     if (imgurlPos > -1) {
         imgurl = req.url.substring(imgurlPos + 7);
+    }
+    else {
+        let imglfnPos = req.url.indexOf('imglfn=');
+        if (imglfnPos > -1) {
+            imglfn = req.url.substring(imglfnPos + 7);
+        }
     }
     imgurl = decodeURIComponent(imgurl);
     let downloadFilename = 'dlimg-' + randomstring.generate(8);
@@ -106,6 +113,7 @@ function processRequest(req, res) {
                         fnext = 'img';
                     }
                     downloadFilename += '.' + fnext;
+                    imglfn = downloadFilename;
                     let dlFilepath = downloadDir + downloadFilename;
                     let wsFilepath = webserverDir + downloadFilename;
                     let options = {
@@ -118,10 +126,10 @@ function processRequest(req, res) {
                         switch (outputdesign){
                             case designStds:
                             case designTopics:
-                                imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, outputdesign);
+                                imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imglfn, outputdesign);
                                 break;
                             case designCompStds:
-                                pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imgurl);
+                                pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imglfn, imgurl);
                                 break;
                         }
                         tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + imgurl + '] -> ' + downloadFilename, req)
@@ -137,18 +145,42 @@ function processRequest(req, res) {
         }
     }
     else { // image URL is undefined
-        let processFilepath = downloadDir + 'testphoto1.jpg';
-        let wsFilepath = webserverDir + 'testphoto1.jpg';
-        switch (outputdesign){
-            case designStds:
-            case designTopics:
-                imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', outputdesign);
-                break;
-            case designCompStds:
-                pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo' );
-                break;
+        if (imglfn !== 'NA'){
+            // at this point imglfn may have appended the orginal image URL
+            let imglfnArr = imglfn.split('||');// split them
+            imglfn = imglfnArr[0];
+            let imgurl2 = ' -- ';
+            if (imglfnArr.length > 1){
+                imgurl2 = imglfnArr[1];
+            }
+            let processFilepath = downloadDir + imglfn;
+            let wsFilepath = webserverDir + imglfn;
+            switch (outputdesign) {
+                case designStds:
+                case designTopics:
+                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imglfn, outputdesign);
+                    break;
+                case designCompStds:
+                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imglfn);
+                    break;
+            }
+            tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> as local file:' + imglfnArr[1], req)
         }
-        tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> DEFAULTPHOTO', req)
+        else { // image URL and image local file name undefined: use the
+            imglfn = 'testphoto1.jpg';
+            let processFilepath = downloadDir + imglfn;
+            let wsFilepath = webserverDir + imglfn;
+            switch (outputdesign) {
+                case designStds:
+                case designTopics:
+                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', imglfn, outputdesign);
+                    break;
+                case designCompStds:
+                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', imglfn );
+                    break;
+            }
+            tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> DEFAULTPHOTO', req)
+        }
     }
 }
 

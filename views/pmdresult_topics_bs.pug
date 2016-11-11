@@ -30,13 +30,15 @@ block content
     div(class='container')
         h1 Get IPTC Photo Metadata
         div(class="row")
-            div(class="col-md-8") ... as retrieved from the image file: <strong>#{imageTitle}</strong>
+            div(class="col-md-6") ... as retrieved from the image file: <strong>#{imageTitle}</strong>
         div(class="row")
             div(class="col-md-6") <img src="#{imgwsfpath}" width="300">
         div(class="row topspace2")
             div(class="col-md-8") The tables below show the IPTC Field Names in alphabetical order.<br>The grouping of fields is the same as in the <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/howtoeditmetadatafor1.htm' target='_blank'>IPTC Photo Metadata User Guide</a> - click on the headings of the sections.
         div(class="row topspace1")
-            div(class="col-md-8") <a href="/">Back to Request Form</a>
+            - var ilfnstds = '/getpmd/html/stds/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfncompare = '/getpmd/html/compare/?imglfn=' + imglfn + '||' + imageTitle;
+            div(class="col-md-6") <a href="/">Back to Request Form</a> || <a href="#{ilfnstds}">See grouped by technical standards</a> || <a href="#{ilfncompare}">See compared fields</a>
 
         h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/generalimagecontent.htm' target='_blank'>Fields About Image Content in General</a>
         table(class='pmd1 table-bordered table-striped table-curved')
@@ -123,4 +125,7 @@ block content
                         td=anyprop.pvalue
 
         div(class="row topspace2")
-            div(class="col-md-6") <a href="/">Back to Request Form</a>
+            - var ilfnstds = '/getpmd/html/stds/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfncompare = '/getpmd/html/compare/?imglfn=' + imglfn + '||' + imageTitle;
+            div(class="col-md-6") <a href="/">Back to Request Form</a> || <a href="#{ilfnstds}">See grouped by technical standards</a> || <a href="#{ilfncompare}">See compared fields</a>
+

@@ -30,7 +30,7 @@ module.exports = { processImageFileAsHtml };
  * @param imgtitle - title of the HTML output
  * @param outputdesign - code of the output design
  */
-function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, outputdesign) {
+function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, outputdesign) {
 
     // Objects for output of the PMD in different sections of the HTML output
     // for the 'perstandard' design
@@ -246,10 +246,10 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, outputdesi
 
             switch(outputdesign) {
                 case designStds:
-                    res.render('pmdresult_stds_bs', { imageTitle: imgtitle, imgwsfpath, iimOutObj, xmpOutObj, exifOutObj, anyOutObjStd });
+                    res.render('pmdresult_stds_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, iimOutObj, xmpOutObj, exifOutObj, anyOutObjStd });
                     break;
                 case designTopics:
-                    res.render('pmdresult_topics_bs', { imageTitle: imgtitle, imgwsfpath, gimgcontOutObj, personOutObj, locationOutObj, othingsOutObj, rightsOutObj, licOutObj, adminOutObj, anyOutObjTopic });
+                    res.render('pmdresult_topics_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, gimgcontOutObj, personOutObj, locationOutObj, othingsOutObj, rightsOutObj, licOutObj, adminOutObj, anyOutObjTopic });
                     break;
                 case designCompStds:
                     break;
