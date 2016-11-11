@@ -1,15 +1,15 @@
 "use strict";
 
-var fs = require("fs");
-var appconfig = require("./appconfig");
+let fs = require("fs");
+let appconfig = require("./appconfig");
 appconfig.loadConfigData("");
 
 /**
  * Writes a line to the standard log file
  */
 function write2Log(logline, req) {
-    var now = new Date();
-    var ipaddr = req.ip;
+    let now = new Date();
+    let ipaddr = req.ip;
     fs.appendFile(appconfig.data.app.localLogFpath, now.toISOString() + "|" + ipaddr + "|" + req.headers['user-agent'] + "|" + logline + "\r\n", function (err) {
     });
 }
@@ -53,3 +53,22 @@ function checkForExtension(imgUrl){
     }
 }
 exports.checkForExtension = checkForExtension;
+
+/**
+ * collects technical metadata in an object
+ * @param etJson
+ * @returns {{}}
+ */
+function getTechMd(etJson){
+    let techObj = {};
+    techObj['filesize'] = etJson['File:FileSize'];
+    techObj['width'] = etJson['EXIF:ImageWidth'];
+    techObj['height'] = etJson['EXIF:ImageHeight'];
+    techObj['orientation'] = etJson['EXIF:Orientation'];
+    techObj['exifversion'] = etJson['EXIF:ExifVersion'];
+    techObj['colorspace'] = etJson['EXIF:ColorSpace'];
+    techObj['compression'] = etJson['EXIF:Compression'];
+
+    return techObj;
+}
+exports.getTechMd = getTechMd;

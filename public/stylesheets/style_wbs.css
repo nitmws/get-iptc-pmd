@@ -20,6 +20,12 @@ table.pmd1 th, td {
 .topspace3{
 	padding-top: 18px;
 }
+.techmdbox{
+	border: 1px black solid;
+	margin-top: 6px;
+	background-color: beige;
+	padding:3px;
+}
 
 .imgright1 {
 	float: right;

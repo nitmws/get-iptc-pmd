@@ -1,8 +1,10 @@
 "use strict";
 
-var fs = require("fs");
-var appconfig = require("./appconfig"); // configuration of this app
+let fs = require("fs");
+let appconfig = require("./appconfig"); // configuration of this app
 appconfig.loadConfigData("");
+
+let tools1 = require('../services/tools1');
 
 const exiftool = require('node-exiftool');
 const ep = new exiftool.ExiftoolProcess('exiftool');
@@ -244,12 +246,13 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
                 } // check if the L1 property exists in et-data
             }
 
+            let techMd = tools1.getTechMd(pmdresult.data[0]);
             switch(outputdesign) {
                 case designStds:
-                    res.render('pmdresult_stds_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, iimOutObj, xmpOutObj, exifOutObj, anyOutObjStd });
+                    res.render('pmdresult_stds_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, techMd, iimOutObj, xmpOutObj, exifOutObj, anyOutObjStd });
                     break;
                 case designTopics:
-                    res.render('pmdresult_topics_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, gimgcontOutObj, personOutObj, locationOutObj, othingsOutObj, rightsOutObj, licOutObj, adminOutObj, anyOutObjTopic });
+                    res.render('pmdresult_topics_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, techMd, gimgcontOutObj, personOutObj, locationOutObj, othingsOutObj, rightsOutObj, licOutObj, adminOutObj, anyOutObjTopic });
                     break;
                 case designCompStds:
                     break;

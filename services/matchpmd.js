@@ -1,8 +1,10 @@
 "use strict";
 
-var fs = require("fs");
-var appconfig = require("./appconfig"); // configuration of this app
+let fs = require("fs");
+let appconfig = require("./appconfig"); // configuration of this app
 appconfig.loadConfigData("");
+
+let tools1 = require('../services/tools1');
 
 const exiftool = require('node-exiftool');
 const ep = new exiftool.ExiftoolProcess('exiftool');
@@ -99,7 +101,8 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn) {
                     addCompObject(matchOutObj, matchLabel, iimValue, xmpValue, exifValue, matchNote);
                 }
             }
-            res.render('pmdresult_compare_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, matchOutObj });
+            let techMd = tools1.getTechMd(pmdresult.data[0]);
+            res.render('pmdresult_compare_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, techMd, matchOutObj });
         });
     }).then(() => {
         return ep.close().then(() => {
