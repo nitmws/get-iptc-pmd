@@ -62,8 +62,8 @@ exports.checkForExtension = checkForExtension;
 function getTechMd(etJson){
     let techObj = {};
     techObj['filesize'] = etJson['File:FileSize'];
-    techObj['width'] = etJson['EXIF:ImageWidth'];
-    techObj['height'] = etJson['EXIF:ImageHeight'];
+    techObj['width'] = etJson['File:ImageWidth'];
+    techObj['height'] = etJson['File:ImageHeight'];
     techObj['orientation'] = etJson['EXIF:Orientation'];
     techObj['exifversion'] = etJson['EXIF:ExifVersion'];
     techObj['colorspace'] = etJson['EXIF:ColorSpace'];
