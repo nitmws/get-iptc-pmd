@@ -9,7 +9,7 @@ appconfig.loadConfigData("");
  */
 function write2Log(logline, req) {
     var now = new Date();
-    var ipaddr = req.ip; // || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    var ipaddr = req.ip;
     fs.appendFile(appconfig.data.app.localLogFpath, now.toISOString() + "|" + ipaddr + "|" + req.headers['user-agent'] + "|" + logline + "\r\n", function (err) {
     });
 }
@@ -23,9 +23,8 @@ exports.write2Log = write2Log;
 function checkForExtension(imgUrl){
     let fnameextOk = false;
     let lastdot = imgUrl.lastIndexOf('.');
-    if (lastdot > - 1 && lastdot + 1 < imgUrl.length){
+    if (lastdot > - 1 && lastdot + 1 < imgUrl.length){ // there is a dot at a reasonable position in the URL
         let fnameext = imgUrl.substring(lastdot + 1).toLowerCase();
-        fnameextOk = false; // default result
         if (fnameext.startsWith('jpg')){
             return "jpg";
         }
@@ -47,29 +46,10 @@ function checkForExtension(imgUrl){
         if (fnameext.startsWith('gif')){
             return "gif";
         }
-        /*
-        switch (fnameext){ // see http://www.file-extensions.org/filetype/extension/name/bitmap-image-files
-            case 'dng':
-            case 'tiff' :
-            case 'gif':
-            case 'png':
-            case 'tif':
-            case 'jpg':
-            case 'jpeg':
-                fnameextOk = true; // only known file extensions are accepted
-        }
-
-        if (fnameextOk){
-            return fnameext;
-        }
-        else {
-            return "NA";
-        }
-        */
         return "NA";
     }
     else {
-        return "NONE";
+        return "NONE"; // this URL includes explicitly no file name extension
     }
 }
 exports.checkForExtension = checkForExtension;

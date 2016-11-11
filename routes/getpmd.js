@@ -22,15 +22,18 @@ const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
 
 // Version of the system
-const systemVersion = "2016-11-09";
+const systemVersion = "2016-11-10";
 
-// format of the URL: {hostname:port}/:outputformat?/:outputdesign?/?imgurl=...
+/**
+ * Main function of the getpmd router
+ * Parsed format of the request URL: {hostname:port}/:outputformat?/:outputdesign?/?imgurl=...
+ */
 router.get('/:outputfmt?/:outputdesign?', function(req, res, next) {
     processRequest(req, res);
 });
 
 /**
- * Main function of the router
+ * Main internal function of the router
  */
 function processRequest(req, res) {
 
@@ -81,7 +84,7 @@ function processRequest(req, res) {
     // let queryData = url.parse(req.url, true).query;
     // let imgurl = queryData.imgurl;
     // alternate retrieval of image url - as it may contain query strings
-    let imgurl = 'NA';
+    let imgurl = 'NA'; // preset "Not Applicable"
     let imgurlPos = req.url.indexOf('imgurl=');
     if (imgurlPos > -1) {
         imgurl = req.url.substring(imgurlPos + 7);
@@ -220,7 +223,7 @@ function downloadImageFile(imgUrl, destFn, callback) {
         });
     }
     process.on('uncaughtException', function(err) {
-        console.log('Can t download ' + imgUrl + '\t(' + err + ')');
+        console.log('Cannot download ' + imgUrl + ' (' + err + ')');
         callback(null);
     });
 }
