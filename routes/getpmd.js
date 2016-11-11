@@ -151,7 +151,7 @@ function processRequest(req, res) {
             imglfn = imglfnArr[0];
             let imgurl2 = ' -- ';
             if (imglfnArr.length > 1){
-                imgurl2 = imglfnArr[1];
+                imgurl2 = decodeURIComponent(imglfnArr[1]);
             }
             let processFilepath = downloadDir + imglfn;
             let wsFilepath = webserverDir + imglfn;

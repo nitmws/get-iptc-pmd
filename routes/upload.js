@@ -93,10 +93,10 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
             switch (outputdesign){
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, ulFilepath, wsFilepath, imgTitle, outputdesign);
+                    imgproc1.processImageFileAsHtml(res, ulFilepath, wsFilepath, imgTitle, ulFilename, outputdesign);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, ulFilepath, wsFilepath, 'default IPTC reference photo' );
+                    pmdmatcher.matchPmdShowHtml(res, ulFilepath, wsFilepath, 'default IPTC reference photo', ulFilename );
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + ulFilename + ']', req);
