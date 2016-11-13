@@ -24,7 +24,8 @@ table.pmd1 th, td {
 	border: 1px black solid;
 	margin-top: 6px;
 	background-color: beige;
-	padding:3px;
+	padding: 3px;
+	margin-left: 15px;
 }
 
 .imgright1 {
