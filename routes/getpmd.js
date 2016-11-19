@@ -22,13 +22,13 @@ const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
 
 // Version of the system
-const systemVersion = "2016-11-10";
+const systemVersion = "2016-11-19";
 
 /**
  * Main function of the getpmd router
- * Parsed format of the request URL: {hostname:port}/:outputformat?/:outputdesign?/?imgurl=...
+ * Parsed format of the request URL: {hostname:port}/:outputformat?/:outputdesign?/:labeltype?/?imgurl=...
  */
-router.get('/:outputfmt?/:outputdesign?', function(req, res, next) {
+router.get('/:outputfmt?/:outputdesign?/:labeltype?', function(req, res, next) {
     processRequest(req, res);
 });
 
@@ -39,8 +39,9 @@ function processRequest(req, res) {
 
     console.log('START: processRequest');
     // *** Process the parameters in the request URL
-    var outputformatparam = req.params.outputfmt;
-    var outputdesignparam = req.params.outputdesign;
+    let outputformatparam = req.params.outputfmt;
+    let outputdesignparam = req.params.outputdesign;
+    let outputlabeltype = req.params.labeltype;
 
     // * Parameter for Output Format
     var outputformat = '';
@@ -79,6 +80,10 @@ function processRequest(req, res) {
             outputdesign = designStds;
             break;
     }
+
+    // * Parameter for label type
+    if (outputlabeltype === undefined)
+        outputlabeltype = 'ipmd';
 
     // * Process query param in the request
     // let queryData = url.parse(req.url, true).query;
@@ -126,7 +131,7 @@ function processRequest(req, res) {
                         switch (outputdesign){
                             case designStds:
                             case designTopics:
-                                imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imglfn, outputdesign);
+                                imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imglfn, outputdesign, outputlabeltype);
                                 break;
                             case designCompStds:
                                 pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imglfn, imgurl);
@@ -158,7 +163,7 @@ function processRequest(req, res) {
             switch (outputdesign) {
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imglfn, outputdesign);
+                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
                     pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imglfn);
@@ -166,14 +171,14 @@ function processRequest(req, res) {
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> as local file:' + imglfnArr[1], req)
         }
-        else { // image URL and image local file name undefined: use the
+        else { // image URL and image local file name undefined: use the default image
             imglfn = 'testphoto1.jpg';
             let processFilepath = downloadDir + imglfn;
             let wsFilepath = webserverDir + imglfn;
             switch (outputdesign) {
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', imglfn, outputdesign);
+                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
                     pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', imglfn );

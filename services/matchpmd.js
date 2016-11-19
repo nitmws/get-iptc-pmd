@@ -23,7 +23,7 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn) {
     // An ExifTool process is started to retrieve the metadata
     ep.open().then((pid) => {
         console.log('Started exiftool process %s', pid);
-        return ep.readMetadata(imgfpath, ['j', 'G', 'struct' ]).then((pmdresult) => {
+        return ep.readMetadata(imgfpath, ['j', 'G1', 'struct' ]).then((pmdresult) => {
             // metadata has been retrieved and is available as pmdresult object
             // console.log(pmdmatchguide.data);
             matchOutObj = [];

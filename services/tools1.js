@@ -72,3 +72,17 @@ function getTechMd(etJson){
     return techObj;
 }
 exports.getTechMd = getTechMd;
+
+function getLabelPart(fullLabelStr, part){
+    let labelparts = fullLabelStr.split('|');
+    let returnLabel = '';
+    if (part > labelparts.length){
+        returnLabel = '--'
+    }
+    else {
+        returnLabel = labelparts[part];
+    }
+    return returnLabel;
+}
+exports.getLabelPart = getLabelPart;
+

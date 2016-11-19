@@ -32,7 +32,7 @@ module.exports = { processImageFileAsHtml };
  * @param imgtitle - title of the HTML output
  * @param outputdesign - code of the output design
  */
-function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, outputdesign) {
+function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, outputdesign, labeltype) {
 
     // Objects for output of the PMD in different sections of the HTML output
     // for the 'perstandard' design
@@ -56,10 +56,25 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
     let childpropsL1 = [];
     let childpropsL2 = [];
 
+    // let labeltype = 'ipmd'; // FOR TESTING ONLY
+
+    let labelId = -1;
+    switch (labeltype){
+        case 'et':
+            labelId = 0;
+            break;
+        case 'ipmd':
+            labelId = 1;
+            break;
+        case 'std':
+            labelId = 2;
+            break;
+    }
+
     // An ExifTool process is started to retrieve the metadata
     ep.open().then((pid) => {
         console.log('Started exiftool process %s', pid);
-        return ep.readMetadata(imgfpath, ['j', 'G', 'struct' ]).then((pmdresult) => {
+        return ep.readMetadata(imgfpath, ['j', 'G1', 'struct' ]).then((pmdresult) => {
             // metadata has been retrieved and are processed as pmdresult object
             console.log ('Image tested by ExifTool: ' + imgfpath);
 
@@ -86,6 +101,8 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
                     switch(propnameL2){
                         case 'output':
                             outputAll = pmdinvguide.data[pinvPropnameL1].output;
+                            break;
+                        case 'label':
                             break;
                         default:
                             pinvPropnamesL2.push(propnamesL2[i_pnameL2]);
@@ -151,8 +168,9 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
                         // if no child names exist the value of this property is a plain text
                         // BUT: multiple values (in an array) are merged into a single string!
                         let plainvalueL1 = pmdresult.data[0][etPropnameL1];
-                        addPropObject(targetObjStd, plainptype, etPropnameL1, plainvalueL1);
-                        addPropObject(targetObjTopics, plainptype, etPropnameL1, plainvalueL1);
+                        let pmdLabelL1 = tools1.getLabelPart(etPropnameL1+'|'+ pmdinvguide.data[pinvPropnameL1].label, labelId);
+                        addPropObject(targetObjStd, plainptype, pmdLabelL1, plainvalueL1);
+                        addPropObject(targetObjTopics, plainptype, pmdLabelL1, plainvalueL1);
                     }
                     else { // go below Level 1 names
                         let plainvalueL2 = null;
@@ -184,7 +202,8 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
                                     if (pmdresult.data[0][etPropnameL1][iobj2][etPropnameL2]){ // does it exist?
                                         if (!gobelowL2propnames) { // don't go below L2 names
                                             plainvalueL2 = pmdresult.data[0][etPropnameL1][iobj2][etPropnameL2];
-                                            let labelL2 = '[' + (iobj2 + 1).toString() + '] ' + etPropnameL2;
+                                            let pmdLabelL2 = tools1.getLabelPart(etPropnameL2+'|'+ pmdinvguide.data[pinvPropnameL1][pinvPropnameL2], labelId);
+                                            let labelL2 = '[' + (iobj2 + 1).toString() + '] ' + pmdLabelL2;
                                             addPropObject(childpropsL1, plainptype, labelL2, plainvalueL2);
                                         }
                                         else { // go below L2 names for sub-properties
@@ -201,7 +220,8 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
                                                         let etPropnameL3 = pinvPropnameL3.replace('_', ':'); // modify for ExifTool
                                                         if (pmdresult.data[0][etPropnameL1][iobj2][etPropnameL2][iobj3][etPropnameL3]){ // does it exist?
                                                             let plainvalueL3 = pmdresult.data[0][etPropnameL1][iobj2][etPropnameL2][iobj3][etPropnameL3];
-                                                            let labelL3 = '[' + (iobj3 + 1).toString() + '] ' + etPropnameL3;
+                                                            let pmdLabelL3 = tools1.getLabelPart(etPropnameL3+'|'+ pmdinvguide.data[pinvPropnameL1][pinvPropnameL2][pinvPropnameL3], labelId);
+                                                            let labelL3 = '[' + (iobj3 + 1).toString() + '] ' + pmdLabelL3;
                                                             addPropObject(childpropsL2, plainptype, labelL3, plainvalueL3);
                                                         }
                                                     }
@@ -216,7 +236,8 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
                                                     let etPropnameL3 = pinvPropnameL3.replace('_', ':'); // modify for ExifTool
                                                     if (pmdresult.data[0][etPropnameL1][iobj2][etPropnameL2][etPropnameL3]){ // does it exist?
                                                         let plainvalueL3 = pmdresult.data[0][etPropnameL1][iobj2][etPropnameL2][etPropnameL3];
-                                                        addPropObject(childpropsL2, plainptype, etPropnameL3, plainvalueL3);
+                                                        let pmdLabelL3 = tools1.getLabelPart(etPropnameL3+'|'+ pmdinvguide.data[pinvPropnameL1][pinvPropnameL2][pinvPropnameL3], labelId);
+                                                        addPropObject(childpropsL2, plainptype, pmdLabelL3, plainvalueL3);
                                                     }
                                                 }
                                                 addPropObject(childpropsL1, structptype, labelL2, childpropsL2);
@@ -225,8 +246,9 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
                                     }
                                 }
                             }
-                            addPropObject(targetObjStd, structptype, etPropnameL1, childpropsL1);
-                            addPropObject(targetObjTopics, structptype, etPropnameL1, childpropsL1);
+                            let pmdLabelL1 = tools1.getLabelPart(etPropnameL1+'|'+ pmdinvguide.data[pinvPropnameL1].label, labelId);
+                            addPropObject(targetObjStd, structptype, pmdLabelL1, childpropsL1);
+                            addPropObject(targetObjTopics, structptype, pmdLabelL1, childpropsL1);
                         }
                         else { // sub-properties of L1 property are NOT in an array
                             // iterate all property names at Level 2
@@ -236,11 +258,13 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
                                 etPropnameL2 = pinvPropnameL2.replace('_', ':'); // modify for ExifTool
                                 if (pmdresult.data[0][etPropnameL1][etPropnameL2]){ // does it exist?
                                     plainvalueL2 = pmdresult.data[0][etPropnameL1][etPropnameL2];
-                                    addPropObject(childpropsL1, plainptype, etPropnameL2, plainvalueL2);
+                                    let pmdLabelL2 = tools1.getLabelPart(etPropnameL2+'|'+ pmdinvguide.data[pinvPropnameL1][pinvPropnameL2], labelId);
+                                    addPropObject(childpropsL1, plainptype, pmdLabelL2, plainvalueL2);
                                 }
                             }
-                            addPropObject(targetObjStd, structptype, etPropnameL1, childpropsL1);
-                            addPropObject(targetObjTopics, structptype, etPropnameL1, childpropsL1);
+                            let pmdLabelL1 = tools1.getLabelPart(etPropnameL1+'|'+ pmdinvguide.data[pinvPropnameL1].label, labelId);
+                            addPropObject(targetObjStd, structptype, pmdLabelL1, childpropsL1);
+                            addPropObject(targetObjTopics, structptype, pmdLabelL1, childpropsL1);
                         } // sub-properties of L1 property are NOT in an array
                     } // go below L1
                 } // check if the L1 property exists in et-data

@@ -7,245 +7,326 @@
 # BE AWARE: this Guide lists only the field names in structures but now how they are held,
 # as single, plain value or in an array. This is derived from the ExifTool JSON retrieved from the image.
 # Status: 2016-10-22, mws
-EXIF_Artist : 
+IFD0_Artist :
+  label: Creator | Artist
   output: exif,person
-EXIF_Copyright: 
+IFD0_Copyright:
+  label: Copyright Notice|Copyright
   output: exif,rights
-EXIF_DateTimeOriginal: 
+ExifIFD_DateTimeOriginal:
+  label: Date Created|DateTimeOriginal
   output: exif,admin
-EXIF_ImageDescription: 
+IFD0_ImageDescription:
+  label: Description|NA
   output: exif,admin
 ExifTool_ExifToolVersion: 
+  label: Exiftool Version
   output: any
-File_FileName: 
+System_FileName:
+  label: File Name|NA
   output: none
 IPTC_By-line: 
+  label: Creator|NA
   output: iim,rights
 IPTC_By-lineTitle: 
+  label: Creator Jobtitle
   output: iim,rights
-IPTC_Caption-Abstract: 
-  output: iim,gimgcont
+IPTC_Caption-Abstract:
+   label: Description|NA
+   output: iim,gimgcont
 IPTC_City: 
+  label: City (legacy) |NA
   output: iim,location
 IPTC_CopyrightNotice: 
+  label: Copyright Notice |NA
   output: iim,rights
 IPTC_Country-PrimaryLocationName:
+  label: Country (legacy) |NA
   output: iim,locaction
 IPTC_Country-PrimaryLocationCode:
+  label: Country Code (legacy) |NA
   output: iim,location
 IPTC_Credit:
+  label: Credit |NA
   output: iim,rights
 IPTC_DateCreated: 
+  label: Date Created/Date |NA
   output: iim,admin
 IPTC_Headline: 
+  label: Headline |NA
   output: iim,gimgcont
 IPTC_Keywords: 
+  label: Keywords |NA
   output: iim,gimgcont
 IPTC_ObjectAttributeReference: 
+  label: Intellectual Genre |NA
   output: iim,gimgcont
 IPTC_ObjectName: 
+  label: Title |NA
   output: iim,admin
 IPTC_OriginalTransmissionReference: 
+  label: Job Id |NA
   output: iim,admin
 IPTC_Province-State: 
+  label: Province/State |NA
   output: iim,location
 IPTC_Source: 
+  label: Source |NA
   output: iim,rights
 IPTC_SpecialInstructions: 
+  label: Instructions |NA
   output: iim,admin
 IPTC_Sub-location: 
+  label: Sublocation (legacy) |NA
   output: iim,location
 IPTC_SubjectReference: 
+  label: Subject Code |NA
   output: iim,gimgcont
 IPTC_TimeCreated: 
+  label: Date Created/Time |NA
   output: iim,admin
 IPTC_Writer-Editor: 
+  label: Description Writer |NA
   output: iim,admin
-XMP_AboutCvTerm:
+XMP-iptcExt_AboutCvTerm:
+  label: CV Term About Image|NA
   output: xmp,gimgcont
-  CvId: doit
-  CvTermId: doit
-  CvTermName: doit
-  CvTermRefinedAbout: doit
-XMP_AdditionalModelInformation: 
+  CvId: CV Id
+  CvTermId: CV Term Id
+  CvTermName: CV Term Name
+  CvTermRefinedAbout: Refined About
+XMP-iptcExt_AdditionalModelInformation:
+  label: Additional Model Info |NA
   output: xmp,person
-XMP_ArtworkOrObject:
+XMP-iptcExt_ArtworkOrObject:
+  label: Artwork or Object in the Image |NA
   output: xmp,othings
-  AOCircaDateCreated: doit
-  AOContentDescription: doit
-  AOContributionDescription: doit 
-  AOCopyrightNotice: doit
-  AOCreator: doit
-  AOCreatorId: doit
-  AOCurrentCopyrightOwnerId: doit
-  AOCurrentCopyrightOwnerName: doit
-  AOCurrentLicensorId: doit
-  AOCurrentLicensorName: doit
-  AODateCreated: doit
-  AOPhysicalDescription: doit
-  AOSource: doit
-  AOSourceInvNo: doit
-  AOSourceInvURL: doit
-  AOStylePeriod: doit
-  AOTitle: doit
-XMP_AuthorsPosition: 
+  AOCircaDateCreated: Circa Date Created|NA
+  AOContentDescription: Content Description|NA
+  AOContributionDescription: Contribution Description|NA
+  AOCopyrightNotice: Copyright Notice|NA
+  AOCreator: Creator|NA
+  AOCreatorId: Creator Id|NA
+  AOCurrentCopyrightOwnerId: Copyright Owner Id|NA
+  AOCurrentCopyrightOwnerName: Copyright Owner Name|NA
+  AOCurrentLicensorId: Licensor Id|NA
+  AOCurrentLicensorName: Licensor Name|NA
+  AODateCreated: Date Created|NA
+  AOPhysicalDescription: Physical Description|NA
+  AOSource: Source|NA
+  AOSourceInvNo: Source Inventory No|NA
+  AOSourceInvURL: Source Inventory URL|NA
+  AOStylePeriod: Style Period|NA
+  AOTitle: Title|NA
+XMP-photoshop_AuthorsPosition:
+  label: Creator Jobtitle |NA
   output: xmp,rights
-XMP_CaptionWriter: 
+XMP-photoshop_CaptionWriter:
+  label: Description Writer |NA
   output: xmp,admin
-XMP_City: 
+XMP-photoshop_City:
+  label: City (legacy) |NA
   output: xmp,location
-XMP_CopyrightOwner: 
+XMP-plus_CopyrightOwner:
+  label: Copyright Owner |NA
   output: xmp,rights
-  CopyrightOwnerID: doit
-  CopyrightOwnerName: doit
-XMP_Country: 
+  CopyrightOwnerID: Id|NA
+  CopyrightOwnerName: Name|NA
+XMP-photoshop_Country:
+  label: County (legacy) |NA
   output: xmp,location
-XMP_CountryCode: 
+XMP-iptcCore_CountryCode:
+  label: Country Code (legacy) |NA
   output: xmp,location
-XMP_Creator: 
+XMP-dc_Creator:
+  label: Creator |NA
   output: xmp,rights
-XMP_CreatorContactInfo:
+XMP-iptcCore_CreatorContactInfo:
+  label: Creator's Contact Info |NA
   output: xmp,rights
-  CiAdrCity: doit
-  CiAdrCtry: doit
-  CiAdrExtadr: doit
-  CiAdrPcode: doit
-  CiAdrRegion: doit
-  CiEmailWork: doit
-  CiTelWork: doit
-  CiUrlWork: doit
-XMP_Credit: 
+  CiAdrCity: City|NA
+  CiAdrCtry: Country|NA
+  CiAdrExtadr: Extended Address|NA
+  CiAdrPcode: Postal Code|NA
+  CiAdrRegion: Region|NA
+  CiEmailWork: Email-Work|NA
+  CiTelWork: Phone-Work|NA
+  CiUrlWork: Web Address-Work|NA
+XMP-photoshop_Credit:
+  label: Credit |NA
   output: xmp,rights
-XMP_DateCreated: 
+XMP-photoshop_DateCreated:
+  label: Date Created |NA
   output: xmp,admin
-XMP_Description: 
+XMP-dc_Description:
+  label: Description |NA
   output: xmp,gimgcont
-XMP_DigitalImageGUID: 
+XMP-iptcExt_DigitalImageGUID:
+  label: Digital Image GUID |NA
   output: xmp,admin
-XMP_DigitalSourceType:
+XMP-iptcExt_DigitalSourceType:
+  label: Digital Source Type |NA
   output: xmp,admin
-XMP_EmbdEncRightsExpr: 
+XMP-iptcExt_EmbdEncRightsExpr:
+  label: Embedded Encoded Rights Expression |NA
   output: xmp,rights
-  EncRightsExpr: doit
-  RightsExprEncType: doit
-  RightsExprLangId: doit
-XMP_Event: 
+  EncRightsExpr: Encoded Rights Expression|NA
+  RightsExprEncType: Rights Expr Encoding Type|NA
+  RightsExprLangId: Rights Expr Language Id|NA
+XMP-iptcExt_Event:
+  label: Event |NA
   output: xmp,othings
-XMP_Headline: 
+XMP-photoshop_Headline:
+  label: Headline |NA
   output: xmp,gimgcont
-XMP_ImageCreator:
+XMP-plus_ImageCreator:
+  label: Image Creator |NA
   output: xmp,rights
-  ImageCreatorID: doit
-  ImageCreatorName: doit
-XMP_ImageCreatorImageID: 
+  ImageCreatorID: Id
+  ImageCreatorName: Name
+XMP-plus_ImageCreatorImageID:
+  label: Image Creator's Image Id |NA
   output: xmp,rights
-XMP_ImageSupplier:
+XMP-plus_ImageSupplier:
+  label: Image Supplier |NA
   output: xmp,lic
-  ImageSupplierID: doit
-  ImageSupplierName: doit
-XMP_ImageSupplierImageID: 
+  ImageSupplierID: Id
+  ImageSupplierName: Name
+XMP-plus_ImageSupplierImageID:
+  label: Image Supplier's Image Id |NA
   output: xmp,lic
-XMP_Instructions: 
+XMP-photoshop_Instructions:
+  label: Instructions |NA
   output: xmp,admin
-XMP_IntellectualGenre: 
+XMP-iptcCore_IntellectualGenre:
+  label: Intellectual Genre |NA
   output: xmp,gimgcont
-XMP_Licensor:
+XMP-plus_Licensor:
+  label: Licensor |NA
   output: xmp,lic
-  LicensorCity: doit
-  LicensorCountry: doit
-  LicensorEmail: doit
-  LicensorExtendedAddress: doit
-  LicensorID: doit
-  LicensorName: doit
-  LicensorPostalCode: doit
-  LicensorRegion: doit
-  LicensorStreetAddress: doit
-  LicensorTelephone1: doit
-  LicensorTelephone2: doit
-  LicensorURL: doit
-XMP_LinkedEncRightsExpr:
+  LicensorCity: City|NA
+  LicensorCountry: Country|NA
+  LicensorEmail: Email|NA
+  LicensorExtendedAddress: Ext Address|NA
+  LicensorID: Id|NA
+  LicensorName: Name|NA
+  LicensorPostalCode: Postal Code|NA
+  LicensorRegion: Region|NA
+  LicensorStreetAddress: Street|NA
+  LicensorTelephone1: Telephone 1|NA
+  LicensorTelephone2: Telephone 2|NA
+  LicensorURL: Web URL|NA
+XMP-iptcExt_LinkedEncRightsExpr:
+  label: Linked Encoded Rights Expression |NA
   output: xmp,rights
-  LinkedRightsExpr: doit 
-  RightsExprEncType: doit
-  RightsExprLangId: doit
-XMP_Location: 
+  LinkedRightsExpr: Linked Rights Expression|NA
+  RightsExprEncType: Rights Expr Encoding Type|NA
+  RightsExprLangId: Rights Expr Language Id|NA
+XMP-iptcCore_Location:
+  label: Location (legacy) |NA
   output: xmp,location
-XMP_LocationCreated:
+XMP-iptcExt_LocationCreated:
+  label: Location Created |NA
   output: xmp,location
-  City: doit
-  CountryCode: doit
-  CountryName: doit
-  LocationId: doit
-  ProvinceState: doit
-  Sublocation: doit
-  WorldRegion: doit
-XMP_LocationShown:
+  City: City|NA
+  CountryCode: Country Code|NA
+  CountryName: Country Name|NA
+  LocationId: Location Id
+  ProvinceState: Province/State|NA
+  Sublocation: Sublocation|NA
+  WorldRegion: WorldRegion|NA
+XMP-iptcExt_LocationShown:
+  label: Location Shown |NA
   output: xmp,location
-  City: doit
-  CountryCode: doit
-  CountryName: doit
-  LocationId: doit
-  ProvinceState: doit
-  Sublocation: doit
-  WorldRegion: doit
-XMP_MaxAvailHeight: 
+  City: City|NA
+  CountryCode: Country Code|NA
+  CountryName: Country Name|NA
+  LocationId: Location Id
+  ProvinceState: Province/State|NA
+  Sublocation: Sublocation|NA
+  WorldRegion: WorldRegion|NA
+XMP-iptcExt_MaxAvailHeight:
+  label: Max Available Height |NA
   output: xmp,admin
-XMP_MaxAvailWidth: 
+XMP-iptcExt_MaxAvailWidth:
+  label: Max Available Width |NA
   output: xmp,admin
-XMP_MinorModelAgeDisclosure: 
+XMP-plus_MinorModelAgeDisclosure:
+  label: Minor Model Age Disclosure |NA
   output: xmp,admin
-XMP_ModelAge: 
+XMP-plus_ModelAge:
+  label: Model Age |NA
   output: xmp,person
-XMP_ModelReleaseID: 
+XMP-plus_ModelReleaseID:
+  label: Model Release Id |NA
   output: xmp,person
-XMP_ModelReleaseStatus: 
+XMP-plus_ModelReleaseStatus:
+  label: Model Release Status |NA
   output: xmp,person
-XMP_OrganisationInImageCode: 
+XMP-iptcExt_OrganisationInImageCode:
+  label: Organisation in Image - Code |NA
   output: xmp,othings
-XMP_OrganisationInImageName: 
+XMP-iptcExt_OrganisationInImageName:
+  label: Organisation in Image - Name |NA
   output: xmp,othings
-XMP_PersonInImage: 
+XMP-iptcExt_PersonInImage:
+  label: Person in Image |NA
   output: xmp,person
-XMP_PersonInImageWDetails:
+XMP-iptcExt_PersonInImageWDetails:
+  label: Person in Image with Details |NA
   output: xmp,person
   PersonCharacteristic:
-    CvId: doit
-    CvTermId: doit
-    CvTermName: doit
-    CvTermRefinedAbout: doit
-  PersonDescription: doit
-  PersonId: doit
-  PersonName: doit
-XMP_ProductInImage:
+    CvId: CV Id|NA
+    CvTermId: CV Term Id|NA
+    CvTermName: CV Term Name|NA
+    CvTermRefinedAbout: Refined About|NA
+  PersonDescription: Description|NA
+  PersonId: Id|NA
+  PersonName: Name|NA
+XMP-iptcExt_ProductInImage:
+  label: Product in Image |NA
   output: xmp,othings
-  ProductDescription: doit
-  ProductGTIN: doit
-  ProductName: doit
-XMP_PropertyReleaseID: 
+  ProductDescription: Description|NA
+  ProductGTIN: GTIN|NA
+  ProductName: Name|NA
+XMP-plus_PropertyReleaseID:
+  label: Property Release Id |NA
   output: xmp,rights
-XMP_PropertyReleaseStatus: 
+XMP-plus_PropertyReleaseStatus:
+  label: Property Release Status |NA
   output: xmp,rights
-XMP_RegistryID: 
+XMP-iptcExt_RegistryID:
+  label: Registry Entry |NA
   output: xmp,admin
-  RegItemId: doit
-  RegOrgId: doit
-XMP_Rights: 
+  RegItemId: Item Id|NA
+  RegOrgId: Registry Org Id|NA
+XMP-dc_Rights:
+  label: Copyright Notice|NA
   output: xmp,rights
-XMP_Scene: 
+XMP-iptcCore_Scene:
+  label: Scene Code |NA
   output: xmp,gimgcont
-XMP_Source: 
+XMP-photoshop_Source:
+  label: Source |NA
   output: xmp,rights
-XMP_State: 
+XMP-photoshop_State:
+  label: State (legacy) |NA
   output: xmp,location
-XMP_Subject: 
+XMP-dc_Subject:
+  label: Keywords |NA
   output: xmp,gimgcont
-XMP_SubjectCode: 
+XMP-iptcCore_SubjectCode:
+  label: Subject Code |NA
   output: xmp,gimgcont
-XMP_Title: 
+XMP-dc_Title:
+  label: Title |NA
   output: xmp,admin
-XMP_TransmissionReference: 
+XMP-photoshop_TransmissionReference:
+  label: Job Id |NA
   output: xmp,admin
-XMP_UsageTerms: 
+XMP-iptcCore_UsageTerms:
+  label: Rights Usage Terms  |NA
   output: xmp,lic
 XMP_XMPToolkit: 
+  label: XMP Toolkit |NA
   output: any
