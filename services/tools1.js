@@ -55,7 +55,7 @@ function checkForExtension(imgUrl){
 exports.checkForExtension = checkForExtension;
 
 /**
- * collects technical metadata in an object
+ * Collects technical metadata in an object
  * @param etJson
  * @returns {{}}
  */
@@ -73,11 +73,20 @@ function getTechMd(etJson){
 }
 exports.getTechMd = getTechMd;
 
+/**
+ * Get a specific label out of a string with multiple parts
+ * @param fullLabelStr
+ * @param part (number)
+ * @returns {string}
+ */
 function getLabelPart(fullLabelStr, part){
+    if (part < 0){
+        return '--'; // implicit "part number too small"
+    }
     let labelparts = fullLabelStr.split('|');
     let returnLabel = '';
     if (part > labelparts.length){
-        returnLabel = '--'
+        returnLabel = '---'; // implicit "part number too high"
     }
     else {
         returnLabel = labelparts[part];

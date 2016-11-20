@@ -59,18 +59,22 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
     // let labeltype = 'ipmd'; // FOR TESTING ONLY
 
     let labelId = -1;
-    switch (labeltype){
-        case 'et':
-            labelId = 0;
-            break;
-        case 'ipmd':
-            labelId = 1;
-            break;
-        case 'std':
-            labelId = 2;
-            break;
+    if (labeltype === undefined){
+        labelId = 1;
     }
-
+    else {
+        switch (labeltype.toLowerCase()) {
+            case 'et':
+                labelId = 0;
+                break;
+            case 'ipmd':
+                labelId = 1;
+                break;
+            case 'std':
+                labelId = 2;
+                break;
+        }
+    }
     // An ExifTool process is started to retrieve the metadata
     ep.open().then((pid) => {
         console.log('Started exiftool process %s', pid);

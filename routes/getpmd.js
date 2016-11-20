@@ -81,7 +81,7 @@ function processRequest(req, res) {
             break;
     }
 
-    // * Parameter for label type
+    // * Parameter for label type: set it to a default value
     if (outputlabeltype === undefined)
         outputlabeltype = 'ipmd';
 
