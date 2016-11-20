@@ -166,7 +166,7 @@ function processRequest(req, res) {
                     imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imglfn. outputlabeltype);
+                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imglfn, outputlabeltype);
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> as local file:' + imglfnArr[1], req)
