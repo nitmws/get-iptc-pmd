@@ -36,11 +36,16 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
     else { // uploaded file defined
 
         // *** Process the parameters in the request URL
-        var outputformatparam = 'html';
-        var outputdesignparam = designStds;
+        let outputformatparam = 'html';
+        let outputdesignparam = designStds;
         if (req.body.design !== undefined) {
             outputdesignparam = req.body.design;
         }
+        let outputlabeltype = 'ipmd';
+        if (req.body.labeltype !== undefined) {
+            outputlabeltype = req.body.labeltype;
+        }
+
 
         // * Parameter for Output Format
         var outputformat = '';
@@ -93,10 +98,10 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
             switch (outputdesign){
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, ulFilepath, wsFilepath, imgTitle, ulFilename, outputdesign);
+                    imgproc1.processImageFileAsHtml(res, ulFilepath, wsFilepath, imgTitle, ulFilename, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, ulFilepath, wsFilepath, 'default IPTC reference photo', ulFilename );
+                    pmdmatcher.matchPmdShowHtml(res, ulFilepath, wsFilepath, 'default IPTC reference photo', ulFilename, outputlabeltype );
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + ulFilename + ']', req);

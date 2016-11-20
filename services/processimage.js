@@ -277,10 +277,10 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, ou
             let techMd = tools1.getTechMd(pmdresult.data[0]);
             switch(outputdesign) {
                 case designStds:
-                    res.render('pmdresult_stds_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, techMd, iimOutObj, xmpOutObj, exifOutObj, anyOutObjStd });
+                    res.render('pmdresult_stds_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, labeltype, techMd, iimOutObj, xmpOutObj, exifOutObj, anyOutObjStd });
                     break;
                 case designTopics:
-                    res.render('pmdresult_topics_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, techMd, gimgcontOutObj, personOutObj, locationOutObj, othingsOutObj, rightsOutObj, licOutObj, adminOutObj, anyOutObjTopic });
+                    res.render('pmdresult_topics_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, labeltype, techMd, gimgcontOutObj, personOutObj, locationOutObj, othingsOutObj, rightsOutObj, licOutObj, adminOutObj, anyOutObjTopic });
                     break;
                 case designCompStds:
                     break;

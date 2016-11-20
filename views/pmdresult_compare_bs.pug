@@ -12,8 +12,8 @@ block content
         div(class="row topspace2")
             div(class="col-md-6") The tables below show IPTC fields where values may be embedded in different formats, usually IIM and XMP and sometimes also EXIF. Values should be identical (synchronised by software) across these formats. Go to <a href="https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/photometadataunderthehood.htm" target="_blank">Introduction -- Photo Metadata - Under the Hood</a> for more information about metadata processing and synching.<br /><strong>To make invisible characters like spaces visible the values are shown inside curled brackets {} - they are not a part of the value!</strong>
         div(class="row topspace1")
-            - var ilfnstds = '/getpmd/html/stds/?imglfn=' + imglfn + '||' + imageTitle;
-            - var ilfntopics = '/getpmd/html/topics/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfnstds = '/getpmd/html/stds/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfnstds}">See grouped by technical standards</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span>
 
 
@@ -49,8 +49,8 @@ block content
 
 
         div(class="row topspace2")
-            - var ilfnstds = '/getpmd/html/stds/?imglfn=' + imglfn + '||' + imageTitle;
-            - var ilfntopics = '/getpmd/html/topics/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfnstds = '/getpmd/html/stds/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfnstds}">See grouped by technical standards</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span>
 
 

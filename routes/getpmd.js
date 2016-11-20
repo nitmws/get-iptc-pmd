@@ -134,7 +134,7 @@ function processRequest(req, res) {
                                 imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imglfn, outputdesign, outputlabeltype);
                                 break;
                             case designCompStds:
-                                pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imglfn, imgurl);
+                                pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imglfn, imgurl, outputlabeltype);
                                 break;
                         }
                         tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + imgurl + '] -> ' + downloadFilename, req)
@@ -166,7 +166,7 @@ function processRequest(req, res) {
                     imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imglfn);
+                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imglfn. outputlabeltype);
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> as local file:' + imglfnArr[1], req)
