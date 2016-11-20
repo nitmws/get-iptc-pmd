@@ -10,7 +10,7 @@
 # Status: 2016-11-20, mws
 IFD0_Artist :
   label: Creator (Exif)| Exif/TIFF Artist
-  output: exif,person
+  output: exif,rights
 IFD0_Copyright:
   label: Copyright Notice (Exif)|Exif/TIFF Copyright
   output: exif,rights
@@ -90,243 +90,244 @@ IPTC_Writer-Editor:
   label: "Description Writer (IIM)|IIM 2:122 Writer/Editor"
   output: iim,admin
 XMP-iptcExt_AboutCvTerm:
-  label: "CV Term About Image (XMP) |XMP iptc4xmpExt:AddlModelInfo"
+  label: "CV Term About Image (XMP) |XMP iptc4xmpExt:ArtworkOrObject"
   output: xmp,gimgcont
-  CvId: CV Id (XMP) |XMP 
-  CvTermId: CV Term Id (XMP) |XMP 
-  CvTermName: CV Term Name (XMP) |XMP 
-  CvTermRefinedAbout: Refined About (XMP) |XMP 
+  CvId: "CV Id (XMP) |XMP Iptc4xmpExt:CvId"
+  CvTermId: " CV Term Id (XMP) |XMP Iptc4xmpExt:CvTermId"
+  CvTermName: "CV Term Name (XMP) |XMP Iptc4xmpExt:CvTermName"
+  CvTermRefinedAbout: "Refined About (XMP) |XMP Iptc4xmpExt:CvTermRefinedAbout"
 XMP-iptcExt_AdditionalModelInformation:
-  label: "Additional Model Info (XMP) |XMP " 
+  label: "Additional Model Info (XMP) |XMP iptc4xmpExt:AddlModelInfo"
   output: xmp,person
 XMP-iptcExt_ArtworkOrObject:
-  label: "Artwork or Object in the Image (XMP) |XMP " 
+  label: "Artwork or Object in the Image (XMP) |XMP Iptc4xmpExt:ArtworkOrObject"
   output: xmp,othings
-  AOCircaDateCreated: "Circa Date Created (XMP) |XMP " 
-  AOContentDescription: "Content Description (XMP) |XMP " 
-  AOContributionDescription: "Contribution Description (XMP) |XMP " 
-  AOCopyrightNotice: "Copyright Notice (XMP) |XMP " 
-  AOCreator: "Creator (XMP) |XMP " 
-  AOCreatorId: "Creator Id (XMP) |XMP " 
-  AOCurrentCopyrightOwnerId: "Copyright Owner Id (XMP) |XMP " 
-  AOCurrentCopyrightOwnerName: "Copyright Owner Name (XMP) |XMP " 
-  AOCurrentLicensorId: "Licensor Id (XMP) |XMP " 
-  AOCurrentLicensorName: "Licensor Name (XMP) |XMP " 
-  AODateCreated: "Date Created (XMP) |XMP " 
-  AOPhysicalDescription: "Physical Description (XMP) |XMP " 
-  AOSource: "Source (XMP) |XMP " 
-  AOSourceInvNo: "Source Inventory No (XMP) |XMP " 
-  AOSourceInvURL: "Source Inventory URL (XMP) |XMP " 
-  AOStylePeriod: "Style Period (XMP) |XMP " 
-  AOTitle: "Title (XMP) |XMP " 
+  AOCircaDateCreated: "Circa Date Created (XMP) |XMP Iptc4xmpExt:AOCircaDateCreated"
+  AOContentDescription: "Content Description (XMP) |XMP Iptc4xmpExt:AOContentDescription"
+  AOContributionDescription: "Contribution Description (XMP) |XMP Iptc4xmpExt:AOContributionDescription"
+  AOCopyrightNotice: "Copyright Notice (XMP) |XMP Iptc4xmpExt:AOCopyrightNotice"
+  AOCreator: "Creator (XMP) |XMP Iptc4xmpExt:AOCreator"
+  AOCreatorId: "Creator Id (XMP) |XMP Iptc4xmpExt:AOCreatorId"
+  AOCurrentCopyrightOwnerId: "Copyright Owner Id (XMP) |XMP Iptc4xmpExt:AOCurrentCopyrightOwnerId"
+  AOCurrentCopyrightOwnerName: "Copyright Owner Name (XMP) |XMP Iptc4xmpExt:AOCurrentCopyrightOwnerName"
+  AOCurrentLicensorId: "Licensor Id (XMP) |XMP Iptc4xmpExt:AOCurrentLicensorId"
+  AOCurrentLicensorName: "Licensor Name (XMP) |XMP Iptc4xmpExt:AOCurrentLicensorName"
+  AODateCreated: "Date Created (XMP) |XMP Iptc4xmpExt:AODateCreated"
+  AOPhysicalDescription: "Physical Description (XMP) |XMP Iptc4xmpExt:AOPhysicalDescription"
+  AOSource: "Source (XMP) |XMP Iptc4xmpExt:AOSource"
+  AOSourceInvNo: "Source Inventory No (XMP) |XMP Iptc4xmpExt:AOSourceInvNo"
+  AOSourceInvURL: "Source Inventory URL (XMP) |XMP Iptc4xmpExt:AOSourceInvURL"
+  AOStylePeriod: "Style Period (XMP) |XMP Iptc4xmpExt: " 
+  AOTitle: "Title (XMP) |XMP Iptc4xmpExt:AOStylePeriod"
 XMP-photoshop_AuthorsPosition:
-  label: "Creator Jobtitle (XMP) |XMP " 
+  label: "Creator Jobtitle (XMP) |XMP photoshop:AuthorsPosition"
   output: xmp,rights
 XMP-photoshop_CaptionWriter:
-  label: "Description Writer (XMP) |XMP " 
+  label: "Description Writer (XMP) |XMP photoshop:CaptionWriter"
   output: xmp,admin
 XMP-photoshop_City:
-  label: "City (legacy) (XMP) |XMP " 
+  label: "City (legacy) (XMP) |XMP photoshop:City"
   output: xmp,location
 XMP-plus_CopyrightOwner:
-  label: "Copyright Owner (XMP) |XMP " 
+  label: "Copyright Owner (XMP) |XMP plus:CopyrightOwner"
   output: xmp,rights
-  CopyrightOwnerID: "Id (XMP) |XMP " 
-  CopyrightOwnerName: "Name (XMP) |XMP " 
+  CopyrightOwnerID: "Id (XMP) |XMP plus:CopyrightOwnerID"
+  CopyrightOwnerName: "Name (XMP) |XMP plus:CopyrightOwnerName"
 XMP-photoshop_Country:
-  label: "County (legacy) (XMP) |XMP " 
+  label: "County (legacy) (XMP) |XMP photoshop:Country"
   output: xmp,location
 XMP-iptcCore_CountryCode:
-  label: "Country Code (legacy) (XMP) |XMP " 
+  label: "Country Code (legacy) (XMP) |XMP Iptc4xmpCore:CountryCode"
   output: xmp,location
 XMP-dc_Creator:
-  label: "Creator (XMP) |XMP " 
+  label: "Creator (XMP) |XMP dc:Creator"
   output: xmp,rights
 XMP-iptcCore_CreatorContactInfo:
-  label: "Creator's Contact Info (XMP) |XMP " 
+  label: "Creator's Contact Info (XMP) |XMP Iptc4xmpCore:CreatorContactInfo"
   output: xmp,rights
-  CiAdrCity: "City (XMP) |XMP " 
-  CiAdrCtry: "Country (XMP) |XMP " 
-  CiAdrExtadr: "Extended Address (XMP) |XMP " 
-  CiAdrPcode: "Postal Code (XMP) |XMP " 
-  CiAdrRegion: "Region (XMP) |XMP " 
-  CiEmailWork: "Email-Work (XMP) |XMP " 
-  CiTelWork: "Phone-Work (XMP) |XMP " 
-  CiUrlWork: "Web Address-Work (XMP) |XMP " 
+  CiAdrCity: "City (XMP) |XMP Iptc4xmpCore:CiAdrCity"
+  CiAdrCtry: "Country (XMP) |XMP Iptc4xmpCore:CiAdrCtry"
+  CiAdrExtadr: "Extended Address (XMP) |XMP Iptc4xmpCore:CiAdrExtadr"
+  CiAdrPcode: "Postal Code (XMP) |XMP Iptc4xmpCore:CiAdrPcode"
+  CiAdrRegion: "Region (XMP) |XMP Iptc4xmpCore:CiAdrRegion"
+  CiEmailWork: "Email-Work (XMP) |XMP Iptc4xmpCore:CiEmailWork"
+  CiTelWork: "Phone-Work (XMP) |XMP Iptc4xmpCore:CiTelWork"
+  CiUrlWork: "Web Address-Work (XMP) |XMP Iptc4xmpCore:CiUrlWork"
 XMP-photoshop_Credit:
-  label: "Credit (XMP) |XMP " 
+  label: "Credit (XMP) |XMP photoshop:Credit"
   output: xmp,rights
 XMP-photoshop_DateCreated:
-  label: "Date Created (XMP) |XMP " 
+  label: "Date Created (XMP) |XMP photoshop:DateCreated"
   output: xmp,admin
 XMP-dc_Description:
-  label: "Description (XMP) |XMP " 
+  label: "Description (XMP) |XMP dc:Description"
   output: xmp,gimgcont
 XMP-iptcExt_DigitalImageGUID:
-  label: "Digital Image GUID (XMP) |XMP " 
+  label: "Digital Image GUID (XMP) |XMP Iptc4xmpExt:DigitalImageGUID"
   output: xmp,admin
 XMP-iptcExt_DigitalSourceType:
-  label: "Digital Source Type (XMP) |XMP " 
+  label: "Digital Source Type (XMP) |XMP Iptc4xmpExt:DigitalSourceType"
   output: xmp,admin
 XMP-iptcExt_EmbdEncRightsExpr:
-  label: "Embedded Encoded Rights Expression (XMP) |XMP " 
+  label: "Embedded Encoded Rights Expression (XMP) |XMP Iptc4xmpExt:EmbdEncRightsExpr"
   output: xmp,rights
-  EncRightsExpr: "Encoded Rights Expression (XMP) |XMP " 
-  RightsExprEncType: "Rights Expr Encoding Type (XMP) |XMP " 
-  RightsExprLangId: "Rights Expr Language Id (XMP) |XMP " 
+  EncRightsExpr: "Encoded Rights Expression (XMP) |XMP Iptc4xmpExt:EncRightsExpr"
+  RightsExprEncType: "Rights Expr Encoding Type (XMP) |XMP Iptc4xmpExt:RightsExprEncType"
+  RightsExprLangId: "Rights Expr Language Id (XMP) |XMP Iptc4xmpExt:RightsExprLangId"
 XMP-iptcExt_Event:
-  label: "Event (XMP) |XMP " 
+  label: "Event (XMP) |XMP Iptc4xmpExt:Event"
   output: xmp,othings
 XMP-photoshop_Headline:
-  label: "Headline (XMP) |XMP " 
+  label: "Headline (XMP) |XMP Iptc4xmpExt:Headline"
   output: xmp,gimgcont
 XMP-plus_ImageCreator:
-  label: "Image Creator (XMP) |XMP " 
+  label: "Image Creator (XMP) |XMP plus:ImageCreator"
   output: xmp,rights
-  ImageCreatorID: "Id (XMP) |XMP "
-  ImageCreatorName: "Name (XMP) |XMP "
+  ImageCreatorID: "Id (XMP) |XMP plus:ImageCreatorID"
+  ImageCreatorName: "Name (XMP) |XMP plus:ImageCreatorName"
 XMP-plus_ImageCreatorImageID:
-  label: "Image Creator's Image Id (XMP) |XMP " 
+  label: "Image Creator's Image Id (XMP) |XMP plus:ImageCreatorImageID"
   output: xmp,rights
 XMP-plus_ImageSupplier:
-  label: "Image Supplier (XMP) |XMP " 
+  label: "Image Supplier (XMP) |XMP plus:ImageSupplier"
   output: xmp,lic
-  ImageSupplierID: "Id (XMP) |XMP "
-  ImageSupplierName: "Name (XMP) |XMP "
+  ImageSupplierID: "Id (XMP) |XMP plus:ImageSupplierID"
+  ImageSupplierName: "Name (XMP) |XMP plus:ImageSupplierName"
 XMP-plus_ImageSupplierImageID:
-  label: "Image Supplier's Image Id (XMP) |XMP " 
+  label: "Image Supplier's Image Id (XMP) |XMP plus:ImageSupplierImageID"
   output: xmp,lic
 XMP-photoshop_Instructions:
-  label: "Instructions (XMP) |XMP " 
+  label: "Instructions (XMP) |XMP photoshop:Instructions" 
   output: xmp,admin
 XMP-iptcCore_IntellectualGenre:
-  label: "Intellectual Genre (XMP) |XMP " 
+  label: "Intellectual Genre (XMP) |XMP Iptc4xmpCore:IntellectualGenre" 
   output: xmp,gimgcont
 XMP-plus_Licensor:
-  label: "Licensor (XMP) |XMP " 
+  label: "Licensor (XMP) |XMP plus:Licensor" 
   output: xmp,lic
-  LicensorCity: "City (XMP) |XMP " 
-  LicensorCountry: "Country (XMP) |XMP " 
-  LicensorEmail: "Email (XMP) |XMP " 
-  LicensorExtendedAddress: "Ext Address (XMP) |XMP " 
-  LicensorID: "Id (XMP) |XMP " 
-  LicensorName: "Name (XMP) |XMP " 
-  LicensorPostalCode: "Postal Code (XMP) |XMP " 
-  LicensorRegion: "Region (XMP) |XMP " 
-  LicensorStreetAddress: "Street (XMP) |XMP " 
-  LicensorTelephone1: "Telephone 1 (XMP) |XMP " 
-  LicensorTelephone2: "Telephone 2 (XMP) |XMP " 
-  LicensorURL: "Web URL (XMP) |XMP " 
+  LicensorCity: "City (XMP) |XMP plus:LicensorCity"
+  LicensorCountry: "Country (XMP) |XMP plus:LicensorCountry"
+  LicensorEmail: "Email (XMP) |XMP plus: " 
+  LicensorExtendedAddress: "Ext Address (XMP) |XMP plus:LicensorEmail"
+  LicensorID: "Id (XMP) |XMP plus:LicensorID"
+  LicensorName: "Name (XMP) |XMP plus:LicensorName"
+  LicensorPostalCode: "Postal Code (XMP) |XMP plus:LicensorPostalCode"
+  LicensorRegion: "Region (XMP) |XMP plus:LicensorRegion"
+  LicensorStreetAddress: "Street (XMP) |XMP plus:LicensorStreetAddress"
+  LicensorTelephone1: "Telephone 1 (XMP) |XMP plus:LicensorTelephone1"
+  LicensorTelephone2: "Telephone 2 (XMP) |XMP plus:LicensorTelephone2"
+  LicensorURL: "Web URL (XMP) |XMP plus:LicensorURL"
 XMP-iptcExt_LinkedEncRightsExpr:
-  label: "Linked Encoded Rights Expression (XMP) |XMP " 
+  label: "Linked Encoded Rights Expression (XMP) |XMP Iptc4xmpExt:LinkedEncRightsExpr" 
   output: xmp,rights
-  LinkedRightsExpr: "Linked Rights Expression (XMP) |XMP " 
-  RightsExprEncType: "Rights Expr Encoding Type (XMP) |XMP " 
-  RightsExprLangId: "Rights Expr Language Id (XMP) |XMP " 
+  LinkedRightsExpr: "Linked Rights Expression (XMP) |XMP Iptc4xmpExt:LinkedRightsExpr" 
+  RightsExprEncType: "Rights Expr Encoding Type (XMP) |XMP Iptc4xmpExt:RightsExprEncType" 
+  RightsExprLangId: "Rights Expr Language Id (XMP) |XMP Iptc4xmpExt:RightsExprLangId" 
 XMP-iptcCore_Location:
-  label: "Location (legacy) (XMP) |XMP " 
+  label: "Location (legacy) (XMP) |XMP Iptc4xmpCore:Location" 
   output: xmp,location
 XMP-iptcExt_LocationCreated:
-  label: "Location Created (XMP) |XMP " 
+  label: "Location Created (XMP) |XMP Iptc4xmpExt:LocationCreated" 
   output: xmp,location
-  City: "City (XMP) |XMP " 
-  CountryCode: "Country Code (XMP) |XMP " 
-  CountryName: "Country Name (XMP) |XMP " 
-  LocationId: "Location Id (XMP)|XMP "
-  ProvinceState: "Province/State (XMP) |XMP " 
-  Sublocation: "Sublocation (XMP) |XMP " 
-  WorldRegion: "WorldRegion (XMP) |XMP " 
+  City: "City (XMP) |XMP Iptc4xmpExt:City"
+  CountryCode: "Country Code (XMP) |XMP Iptc4xmpExt:CountryCode"
+  CountryName: "Country Name (XMP) |XMP Iptc4xmpExt:CountryName"
+  LocationId: "Location Id (XMP)|XMP Iptc4xmpExt:LocationId"
+  ProvinceState: "Province/State (XMP) |XMP Iptc4xmpExt:ProvinceState"
+  Sublocation: "Sublocation (XMP) |XMP Iptc4xmpExt:Sublocation"
+  WorldRegion: "WorldRegion (XMP) |XMP Iptc4xmpExt:WorldRegion"
 XMP-iptcExt_LocationShown:
-  label: "Location Shown (XMP) |XMP " 
+  label: "Location Shown (XMP) |XMP Iptc4xmpExt:LocationShown"
   output: xmp,location
-  City: "City (XMP) |XMP " 
-  CountryCode: "Country Code (XMP) |XMP " 
-  CountryName: "Country Name (XMP) |XMP " 
-  LocationId: "Location Id (XMP)|XMP "
-  ProvinceState: "Province/State (XMP) |XMP " 
-  Sublocation: "Sublocation (XMP) |XMP " 
-  WorldRegion: "WorldRegion (XMP) |XMP " 
+  City: "City (XMP) |XMP Iptc4xmpExt:City"
+  CountryCode: "Country Code (XMP) |XMP Iptc4xmpExt:CountryCode"
+  CountryName: "Country Name (XMP) |XMP Iptc4xmpExt:CountryName"
+  LocationId: "Location Id (XMP)|XMP Iptc4xmpExt:LocationId"
+  ProvinceState: "Province/State (XMP) |XMP Iptc4xmpExt:ProvinceState"
+  Sublocation: "Sublocation (XMP) |XMP Iptc4xmpExt:Sublocation"
+  WorldRegion: "WorldRegion (XMP) |XMP Iptc4xmpExt:WorldRegion"
 XMP-iptcExt_MaxAvailHeight:
-  label: "Max Available Height (XMP) |XMP " 
+  label: "Max Available Height (XMP) |XMP Iptc4xmpExt:MaxAvailHeight"
   output: xmp,admin
 XMP-iptcExt_MaxAvailWidth:
-  label: "Max Available Width (XMP) |XMP " 
+  label: "Max Available Width (XMP) |XMP Iptc4xmpExt:MaxAvailWidth"
   output: xmp,admin
 XMP-plus_MinorModelAgeDisclosure:
-  label: "Minor Model Age Disclosure (XMP) |XMP " 
+  label: "Minor Model Age Disclosure (XMP) |XMP plus:MinorModelAgeDisclosure"
   output: xmp,admin
 XMP-plus_ModelAge:
-  label: "Model Age (XMP) |XMP " 
+  label: "Model Age (XMP) |XMP plus:ModelAge"
   output: xmp,person
 XMP-plus_ModelReleaseID:
-  label: "Model Release Id (XMP) |XMP " 
+  label: "Model Release Id (XMP) |XMP plus:ModelReleaseID"
   output: xmp,person
 XMP-plus_ModelReleaseStatus:
-  label: "Model Release Status (XMP) |XMP " 
+  label: "Model Release Status (XMP) |XMP plus:ModelReleaseStatus"
   output: xmp,person
 XMP-iptcExt_OrganisationInImageCode:
-  label: "Organisation in Image - Code (XMP) |XMP " 
+  label: "Organisation in Image - Code (XMP) |XMP Iptc4xmpExt:OrganisationInImageCode"
   output: xmp,othings
 XMP-iptcExt_OrganisationInImageName:
-  label: "Organisation in Image - Name (XMP) |XMP " 
+  label: "Organisation in Image - Name (XMP) |XMP Iptc4xmpExt:OrganisationInImageName"
   output: xmp,othings
 XMP-iptcExt_PersonInImage:
-  label: "Person in Image (XMP) |XMP " 
+  label: "Person in Image (XMP) |XMP Iptc4xmpExt:PersonInImage"
   output: xmp,person
 XMP-iptcExt_PersonInImageWDetails:
-  label: "Person in Image with Details (XMP) |XMP " 
+  label: "Person in Image with Details (XMP) |XMP Iptc4xmpExt:PersonInImageWDetails"
   output: xmp,person
   PersonCharacteristic:
-    CvId: "CV Id (XMP) |XMP " 
-    CvTermId: "CV Term Id (XMP) |XMP " 
-    CvTermName: "CV Term Name (XMP) |XMP " 
-    CvTermRefinedAbout: "Refined About (XMP) |XMP " 
-  PersonDescription: "Description (XMP) |XMP " 
-  PersonId: "Id (XMP) |XMP " 
-  PersonName: "Name (XMP) |XMP " 
+    CvId: "CV Id (XMP) |XMP Iptc4xmpExt:CvId"
+    CvTermId: " CV Term Id (XMP) |XMP Iptc4xmpExt:CvTermId"
+    CvTermName: "CV Term Name (XMP) |XMP Iptc4xmpExt:CvTermName"
+    CvTermRefinedAbout: "Refined About (XMP) |XMP Iptc4xmpExt:CvTermRefinedAbout"
+  PersonDescription: "Description (XMP) |XMP Iptc4xmpExt:PersonDescription"
+  PersonId: "Id (XMP) |XMP Iptc4xmpExt:PersonId"
+  PersonName: "Name (XMP) |XMP Iptc4xmpExt:PersonName"
 XMP-iptcExt_ProductInImage:
-  label: "Product in Image (XMP) |XMP " 
+  label: "Product in Image (XMP) |XMP Iptc4xmpExt:ProductInImage"
   output: xmp,othings
-  ProductDescription: "Description (XMP) |XMP " 
-  ProductGTIN: "GTIN (XMP) |XMP " 
-  ProductName: "Name (XMP) |XMP " 
+  ProductDescription: "Description (XMP) |XMP Iptc4xmpExt:ProductDescription"
+  ProductGTIN: "GTIN (XMP) |XMP Iptc4xmpExt:ProductGTIN"
+  ProductName: "Name (XMP) |XMP Iptc4xmpExt:ProductName"
 XMP-plus_PropertyReleaseID:
-  label: "Property Release Id (XMP) |XMP " 
+  label: "Property Release Id (XMP) |XMP plus:PropertyReleaseID"
   output: xmp,rights
 XMP-plus_PropertyReleaseStatus:
-  label: "Property Release Status (XMP) |XMP " 
+  label: "Property Release Status (XMP) |XMP plus:PropertyReleaseStatus"
   output: xmp,rights
 XMP-iptcExt_RegistryID:
-  label: "Registry Entry (XMP) |XMP " 
+  label: "Registry Entry (XMP) |XMP Iptc4xmpExt:RegistryID"
   output: xmp,admin
-  RegItemId: Item Id (XMP) |XMP " 
-  RegOrgId: Registry Org Id (XMP) |XMP " 
+  RegItemId: "Item Id (XMP) |XMP Iptc4xmpExt:RegItemId"
+  RegOrgId: "Organisation Id (XMP) |XMP Iptc4xmpExt:RegOrgId"
+  RegEntryRole: "Role (XMP)|XMP Iptc4xmpExt:RegEntryRole"
 XMP-dc_Rights:
-  label: "Copyright Notice (XMP) |XMP " 
+  label: "Copyright Notice (XMP) |XMP dc:Rights"
   output: xmp,rights
 XMP-iptcCore_Scene:
-  label: "Scene Code (XMP) |XMP " 
+  label: "Scene Code (XMP) |XMP Iptc4xmpExt:Scene"
   output: xmp,gimgcont
 XMP-photoshop_Source:
-  label: "Source (XMP) |XMP " 
+  label: "Source (XMP) |XMP photoshop:Source"
   output: xmp,rights
 XMP-photoshop_State:
-  label: "State (legacy) (XMP) |XMP " 
+  label: "State (legacy) (XMP) |XMP photoshop:State"
   output: xmp,location
 XMP-dc_Subject:
-  label: "Keywords (XMP) |XMP " 
+  label: "Keywords (XMP) |XMP dc:Subject"
   output: xmp,gimgcont
 XMP-iptcCore_SubjectCode:
-  label: "Subject Code (XMP) |XMP " 
+  label: "Subject Code (XMP) |XMP Iptc4xmpCore:SubjectCode"
   output: xmp,gimgcont
 XMP-dc_Title:
-  label: "Title (XMP) |XMP " 
+  label: "Title (XMP) |XMP dc:Title"
   output: xmp,admin
 XMP-photoshop_TransmissionReference:
-  label: "Job Id (XMP) |XMP " 
+  label: "Job Id (XMP) |XMP photoshop:TransmissionReference"
   output: xmp,admin
 XMP-iptcCore_UsageTerms:
-  label: "Rights Usage Terms (XMP) |XMP " 
+  label: "Rights Usage Terms (XMP) |XMP Iptc4xmpCore:UsageTerms"
   output: xmp,lic
 XMP_XMPToolkit: 
   label: XMP Toolkit (XMP) |XMP 

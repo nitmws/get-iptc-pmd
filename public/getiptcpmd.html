@@ -12,16 +12,10 @@
         {
             var getUrl = '/getpmd/html/';
             getUrl += document.forms[0].design.value;
+            getUrl += '/' + document.forms[0].labeltype.value;
             if (document.forms[0].tourl.value !== ''){
                 getUrl += '/?imgurl=' + document.forms[0].tourl.value;
             }
-            window.location = getUrl;
-            return false;
-        }
-        function goToGetPMDupload()
-        {
-            var getUrl = '/upload/html/';
-            getUrl += document.forms[1].design.value;
             window.location = getUrl;
             return false;
         }
@@ -48,7 +42,7 @@
                 fields defined by that standard.)
             </div>
             <div class="form-group">
-                <strong>Enter the design of the output:</strong><br>
+                <strong>Design of the output:</strong><br>
                 <div class="radio">
                     <label><input  name="design"  checked="checked"  value="stds"  type="radio">
                         Grouped by technical format standards IIM, XMP and Exif</label>
@@ -62,6 +56,23 @@
                     <label><input  name="design"  value="compare"  type="radio">
                         Compare field values embedded in different formats
                     </label>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="form-group">
+                    <strong>Type of field labels:</strong>
+                    <div class="radio">
+                        <label><input  name="labeltype"  checked="checked"  value="ipmd"  type="radio">
+                            IPTC Photo Metadata Std&nbsp;&nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label><input  name="labeltype"  value="std"  type="radio">
+                            Id of technical standard (IIM, XMP, Exif)&nbsp;&nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label><input  name="labeltype"  value="et"  type="radio">
+                            Id of Exiftool</label>
+                    </div>
                 </div>
             </div>
             <input  value="Get Photo Metadata of Web Image"  type="submit" class="btn btn-success">
@@ -79,7 +90,7 @@
                 <input type="text" class="form-control" id="upload-file-info" readonly>
             </div>
             <div class="form-group">
-                <strong>Enter the design of the output:</strong><br>
+                <strong>Design of the output:</strong><br>
                 <div class="radio">
                     <label><input  name="design"  checked="checked"  value="stds"  type="radio">
                         Grouped by technical format standards IIM, XMP and Exif</label>
@@ -93,6 +104,23 @@
                     <label><input  name="design"  value="compare"  type="radio">
                         Compare field values embedded in different formats
                     </label>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="form-group">
+                    <strong>Type of field labels:</strong>
+                    <div class="radio">
+                        <label><input  name="labeltype"  checked="checked"  value="ipmd"  type="radio">
+                            IPTC Photo Metadata Std&nbsp;&nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label><input  name="labeltype"  value="std"  type="radio">
+                            Id of technical standard (IIM, XMP, Exif)&nbsp;&nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label><input  name="labeltype"  value="et"  type="radio">
+                            Id of Exiftool</label>
+                    </div>
                 </div>
             </div>
             <input  value="Get Photo Metadata of Local Image"  type="submit" class="btn btn-success">
