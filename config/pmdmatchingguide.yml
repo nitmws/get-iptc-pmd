@@ -3,9 +3,9 @@
 match01:
   label: "Creator"
   props:
-    - EXIF_Artist
     - IPTC_By-line
     - XMP_Creator
+    - IFD0_Artist
 match02:
   label: "Creator's Jobtitle"
   props:
@@ -16,13 +16,13 @@ match03:
   props:
     - IPTC_Caption-Abstract
     - XMP_Description
-    - EXIF_ImageDescription
+    - IFD0_ImageDescription
 match04:
   label: "Copyright Notice"
   props:
     - IPTC_CopyrightNotice
     - XMP_Rights
-    - EXIF_Copyright
+    - IFD0_Copyright
 match05:
   label: "Credit"
   props:
@@ -33,7 +33,7 @@ match06:
   props:
     - IPTC_DateCreated
     - XMP_DateCreated
-    - EXIF_DateTimeOriginal
+    - ExifIFD_DateTimeOriginal
 match14:
   label: "Time part of Date Created (IIM only) "
   props:

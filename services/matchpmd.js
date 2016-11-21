@@ -71,7 +71,7 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, labeltyp
                                 xmpValue = 'Not found';
                             }
                         }
-                        if (propname.substring(0,5) == 'EXIF_'){
+                        if ((propname.substring(0,5) == 'IFD0_')||(propname.substring(0,5) == 'ExifIFD_')){
                             exifName = propname.replace('_', ':'); // modify for ExifTool
                             if (pmdresult.data[0][exifName] !== undefined){
                                 exifValue = '{' + pmdresult.data[0][exifName] + '}';
