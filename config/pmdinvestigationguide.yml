@@ -177,6 +177,13 @@ XMP-iptcExt_EmbdEncRightsExpr:
 XMP-iptcExt_Event:
   label: "Event (XMP) |XMP Iptc4xmpExt:Event"
   output: xmp,othings
+XMP-iptcExt_Genre:
+  label: "Genre (of the image) (XMP) |XMP iptc4xmpExt:Genre"
+  output: xmp,gimgcont
+  CvId: "CV Id (XMP) |XMP Iptc4xmpExt:CvId"
+  CvTermId: " CV Term Id (XMP) |XMP Iptc4xmpExt:CvTermId"
+  CvTermName: "CV Term Name (XMP) |XMP Iptc4xmpExt:CvTermName"
+  CvTermRefinedAbout: "Refined About (XMP) |XMP Iptc4xmpExt:CvTermRefinedAbout"
 XMP-photoshop_Headline:
   label: "Headline (XMP) |XMP Iptc4xmpExt:Headline"
   output: xmp,gimgcont

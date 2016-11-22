@@ -26,10 +26,9 @@
     <div class="container">
         <h2 style='color:#cc3300; '>This is an experimental site</h2>
         <div class="row">
-            <div class="col-md-5"><h1>Get IPTC Photo Metadata</h1></div>
-            <div class="col-md-7"><h3>... embedded into an Image</h3></div>
+            <div class="col-md-5"><h1>Get IPTC Photo Metadata ...</h1></div>
         </div>
-        <h3>Option A: an image on the web</h3>
+        <h3>Option A: ... embedded into an image on the web</h3>
         <form id="getpmdForm" action="#"  method="get"  onsubmit="return goToGetPMDdownload()">
             <div class="form-group">
                 <div class="input-group">
@@ -37,7 +36,7 @@
                         <input  name="tourl" size="80"  id="tourl"  type="text" class="form-control" placeholder="Image URL" aria-describedby="basic-addon2">
                     </label>
                 </div>
-                (If this field is empty the metadata of the <a  href="https://www.iptc.org/std/photometadata/examples/IPTC-PhotometadataRef-Std2014_large.jpg" target="_blank">IPTC reference image of the Photo Metadata
+                (If this field is empty the metadata of the <a  href="https://www.iptc.org/std/photometadata/examples/IPTC-PhotometadataRef-Std2016_large.jpg" target="_blank">IPTC reference image of the Photo Metadata
                 Standard 2016</a> is shown. This image file comprises all metadata
                 fields defined by that standard.)
             </div>
@@ -60,18 +59,18 @@
             </div>
             <div class="form-inline">
                 <div class="form-group">
-                    <strong>Type of field labels:</strong>
+                    <strong>The Field Names show:&nbsp;&nbsp;</strong>
                     <div class="radio">
                         <label><input  name="labeltype"  checked="checked"  value="ipmd"  type="radio">
-                            IPTC Photo Metadata Std&nbsp;&nbsp;&nbsp;</label>
+                            IPTC Photo Metadata Std names&nbsp;&nbsp;&nbsp;</label>
                     </div>
                     <div class="radio">
                         <label><input  name="labeltype"  value="std"  type="radio">
-                            Id of technical standard (IIM, XMP, Exif)&nbsp;&nbsp;&nbsp;</label>
+                            Field ID of technical format (IIM, XMP, Exif)&nbsp;&nbsp;&nbsp;</label>
                     </div>
                     <div class="radio">
                         <label><input  name="labeltype"  value="et"  type="radio">
-                            Id of Exiftool</label>
+                            Field ID used by Exiftool</label>
                     </div>
                 </div>
             </div>
@@ -79,7 +78,7 @@
         </form>
 
 
-        <h3>Option B: an image uploaded from your computer</h3>
+        <h3>Option B: ... embedded into an image uploaded from your computer</h3>
         <form  id="uploadForm"  enctype="multipart/form-data"  action="/upload"  method="post">
             <div class="input-group">
                 <label class="input-group-btn">
@@ -108,18 +107,18 @@
             </div>
             <div class="form-inline">
                 <div class="form-group">
-                    <strong>Type of field labels:</strong>
+                    <strong>The Field Names show:&nbsp;&nbsp;</strong>
                     <div class="radio">
                         <label><input  name="labeltype"  checked="checked"  value="ipmd"  type="radio">
-                            IPTC Photo Metadata Std&nbsp;&nbsp;&nbsp;</label>
+                            IPTC Photo Metadata Std names&nbsp;&nbsp;&nbsp;</label>
                     </div>
                     <div class="radio">
                         <label><input  name="labeltype"  value="std"  type="radio">
-                            Id of technical standard (IIM, XMP, Exif)&nbsp;&nbsp;&nbsp;</label>
+                            Field ID of technical format (IIM, XMP, Exif)&nbsp;&nbsp;&nbsp;</label>
                     </div>
                     <div class="radio">
                         <label><input  name="labeltype"  value="et"  type="radio">
-                            Id of Exiftool</label>
+                            Field ID used by Exiftool</label>
                     </div>
                 </div>
             </div>
@@ -133,6 +132,7 @@
                     <li>An image file - either referenced by a URL or uploaded - is searched for headers holding metadata in the Exif, IIM and XMP format.</li>
                     <li>Each of the headers is searched for metadata fields defined by the <a href="https://iptc.org/standards/photo-metadata/iptc-standard/" target="_blank">IPTC Photo Metadata Standard</a>.</li>
                     <li>What has been found is displayed in three different groupings, see above.</li>
+                    <li>For the two grouped display types one can select what the Field Names of the results table show.</li>
                 </ul>
                 <p>A key element of this service is <a href="http://owl.phy.queensu.ca/~phil/exiftool/" target="_blank">ExifTool</a>, a software developed by Phil Harvey, to retrieve a rich set of metadata fields in different technical formats or to embed such a set into image and video files.</p>
             </div>

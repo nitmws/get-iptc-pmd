@@ -1,21 +1,22 @@
 "use strict";
 
-var express = require('express');
-var router = express.Router();
-var url = require("url");
-var fs = require("fs");
-var appconfig = require("../services/appconfig");
+let express = require('express');
+let router = express.Router();
+let url = require("url");
+let fs = require("fs");
+let appconfig = require("../services/appconfig");
 appconfig.loadConfigData("");
 
-var randomstring = require("randomstring");
-var http = require('http');
-var https = require('https');
-var imgproc1 = require('../services/processimage');
-var pmdmatcher = require('../services/matchpmd');
-var tools1 = require('../services/tools1');
+let randomstring = require("randomstring");
+let http = require('http');
+let https = require('https');
+let imgproc1 = require('../services/processimage');
+let pmdmatcher = require('../services/matchpmd');
+let tools1 = require('../services/tools1');
 
 let downloadDir = appconfig.data.app.localImageDir;
 let webserverDir = appconfig.data.app.webserverImageDir;
+let defaultImgFn = appconfig.data.app.defaultimageFname;
 
 const designStds = 'perstandards';
 const designTopics = 'pertopics';
@@ -44,7 +45,7 @@ function processRequest(req, res) {
     let outputlabeltype = req.params.labeltype;
 
     // * Parameter for Output Format
-    var outputformat = '';
+    let outputformat = '';
     if (outputformatparam === undefined)
         outputformatparam = 'html';
     switch (outputformatparam.toLowerCase()) {
@@ -63,7 +64,7 @@ function processRequest(req, res) {
     }
 
     // * Parameter for Output Design and layout of the page
-    var outputdesign = '';
+    let outputdesign = '';
     if (outputdesignparam === undefined)
         outputdesignparam = 'std';
     switch (outputdesignparam.toLowerCase()){
@@ -121,10 +122,6 @@ function processRequest(req, res) {
                     imglfn = downloadFilename;
                     let dlFilepath = downloadDir + downloadFilename;
                     let wsFilepath = webserverDir + downloadFilename;
-                    let options = {
-                        url: imgurl,
-                        dest: dlFilepath
-                    };
                     console.log('Download image file name: ' + downloadFilename);
                     downloadImageFile(imgurl, dlFilepath, function (data) {
                         console.log('Result of downloading a file: ' + data);
@@ -172,7 +169,7 @@ function processRequest(req, res) {
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> as local file:' + imglfnArr[1], req)
         }
         else { // image URL and image local file name undefined: use the default image
-            imglfn = 'testphoto1.jpg';
+            imglfn = defaultImgFn;
             let processFilepath = downloadDir + imglfn;
             let wsFilepath = webserverDir + imglfn;
             switch (outputdesign) {
@@ -195,7 +192,7 @@ function processRequest(req, res) {
  * @returns {*}
  */
 function validateFormallyImageUrl(imgUrl) {
-    var isOk = false;
+    let isOk = false;
     if (imgUrl.indexOf('https://') == 0)
         isOk = true;
     if (imgUrl.indexOf('http://') == 0)
@@ -229,7 +226,7 @@ function downloadImageFile(imgUrl, destFn, callback) {
             host: hostname,
             port: portNr,
             path: path1
-        }
+        };
         // file_name = url.parse(imgUrl).pathname.split('/').pop(),
         //Creating the file
     let file = fs.createWriteStream(destFn, {flags: 'w', encoding: 'binary'});

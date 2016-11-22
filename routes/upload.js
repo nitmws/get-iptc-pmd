@@ -1,20 +1,20 @@
 "use strict";
 
-var express = require('express');
-var router = express.Router();
-var multer  = require('multer');
-var imgproc1 = require('../services/processimage');
-var pmdmatcher = require('../services/matchpmd');
-var tools1 = require('../services/tools1');
+let express = require('express');
+let router = express.Router();
+let multer = require('multer');
+let imgproc1 = require('../services/processimage');
+let pmdmatcher = require('../services/matchpmd');
+let tools1 = require('../services/tools1');
 
-var appconfig = require("../services/appconfig");
+let appconfig = require("../services/appconfig");
 appconfig.loadConfigData("");
 let ulDir =  appconfig.data.app.uploadDir;
 let webserverDir = appconfig.data.app.webserverImageDir;
 
 const uploadImgPrefix = 'ulimg-';
 
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, ulDir);
     },
@@ -46,9 +46,8 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
             outputlabeltype = req.body.labeltype;
         }
 
-
         // * Parameter for Output Format
-        var outputformat = '';
+        let outputformat = '';
         if (outputformatparam === undefined)
             outputformatparam = 'html';
         switch (outputformatparam.toLowerCase()) {
@@ -67,7 +66,7 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
         }
 
         // * Parameter for Output Design and layout of the page
-        var outputdesign = '';
+        let outputdesign = '';
         if (outputdesignparam === undefined)
             outputdesignparam = 'std';
         switch (outputdesignparam.toLowerCase()) {
@@ -94,7 +93,6 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
             let imgTitle = 'Uploaded file ' + req.file.originalname;
 
             // html output
-
             switch (outputdesign){
                 case designStds:
                 case designTopics:
