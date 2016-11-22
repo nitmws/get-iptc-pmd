@@ -154,7 +154,7 @@ XMP-iptcCore_CreatorContactInfo:
   CiTelWork: "Phone-Work (XMP) |XMP Iptc4xmpCore:CiTelWork"
   CiUrlWork: "Web Address-Work (XMP) |XMP Iptc4xmpCore:CiUrlWork"
 XMP-photoshop_Credit:
-  label: "Credit (XMP) |XMP photoshop:Credit"
+  label: "Credit Line (XMP) |XMP photoshop:Credit"
   output: xmp,rights
 XMP-photoshop_DateCreated:
   label: "Date Created (XMP) |XMP photoshop:DateCreated"
@@ -326,7 +326,7 @@ XMP-dc_Title:
 XMP-photoshop_TransmissionReference:
   label: "Job Id (XMP) |XMP photoshop:TransmissionReference"
   output: xmp,admin
-XMP-iptcCore_UsageTerms:
+XMP-xmpRights_UsageTerms:
   label: "Rights Usage Terms (XMP) |XMP Iptc4xmpCore:UsageTerms"
   output: xmp,lic
 XMP_XMPToolkit: 
