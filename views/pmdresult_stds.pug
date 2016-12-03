@@ -12,9 +12,15 @@ block content
         div(class="row")
             div(class="col-md-6 topspace2") The tables below show the IPTC Field Names in alphabetical order.<br>Go to the <a href='https://www.iptc.org/std/photometadata/documentation/userguide' target='_blank'>IPTC Photo Metadata User Guide</a> for information about the fields and how to use them.
         div(class="row topspace1")
+<<<<<<< HEAD:views/pmdresult_stds.pug
             - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             - var ilfncompare = '/getpmd/html/compare/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">See compared fields</a></span>
+=======
+            - var ilfntopics = '/getpmd/html/topics/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfncompare = '/getpmd/html/compare/?imglfn=' + imglfn + '||' + imageTitle;
+            div(class="col-md-6") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">See compared fields</a></span>
+>>>>>>> ef8011d... UI style updated:views/pmdresult_stds_bs.pug
 
         h2 IIM - IPTC Photo Metadata Fields
         table(class='pmd1 table-bordered table-striped table-curved')
@@ -86,8 +92,14 @@ block content
 
 
         div(class="row topspace2")
+<<<<<<< HEAD:views/pmdresult_stds.pug
             - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             - var ilfncompare = '/getpmd/html/compare/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">See compared fields</a></span>
+=======
+            - var ilfntopics = '/getpmd/html/topics/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfncompare = '/getpmd/html/compare/?imglfn=' + imglfn + '||' + imageTitle;
+            div(class="col-md-6") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">See compared fields</a></span>
+>>>>>>> ef8011d... UI style updated:views/pmdresult_stds_bs.pug
 
 
