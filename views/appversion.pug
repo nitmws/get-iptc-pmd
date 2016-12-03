@@ -1,6 +1,10 @@
-extends layout_bs
+extends layout
 
 block content
   div(class='container')
     h2 System Version
-    p= theappversion
+    div(class="row")
+      div(class="col-md-6") #{theappversion}
+    div(class="row topspace2")
+      div(class="col-md-6") <a href="/">Back to Request Form</a>
+

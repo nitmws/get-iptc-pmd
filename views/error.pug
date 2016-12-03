@@ -1,7 +1,11 @@
-extends layout_bs
+extends layout
 
 block content
   div(class='container')
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+    h1 Error Message
+    h2= message
+    h3= error.status
+    div(class="row topspace2")
+      div(class="col-md-6") Error stack: #{error.stack}
+    div(class="row topspace2")
+      div(class="col-md-6") <a href="/">Back to Request Form</a>

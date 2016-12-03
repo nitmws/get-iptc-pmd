@@ -23,7 +23,7 @@ const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
 
 // Version of the system
-const systemVersion = "2016-11-19";
+const systemVersion = "0.1 [2016-12-02]";
 
 /**
  * Main function of the getpmd router

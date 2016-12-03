@@ -102,7 +102,7 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, labeltyp
                 }
             }
             let techMd = tools1.getTechMd(pmdresult.data[0]);
-            res.render('pmdresult_compare_bs', { imageTitle: imgtitle, imgwsfpath, imglfn, techMd, matchOutObj, labeltype });
+            res.render('pmdresult_compare', { imageTitle: imgtitle, imgwsfpath, imglfn, techMd, matchOutObj, labeltype });
         });
     }).then(() => {
         return ep.close().then(() => {

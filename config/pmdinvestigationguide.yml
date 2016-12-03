@@ -5,6 +5,7 @@
 # 2/ the "label": a sequence of IPTC Photo Metadata and technical standard labels, separated by |
 # 2/ the "output": a sequence of target object for the output, separated by commas
 # Field structures have to follow the YAML syntax: they have to be indented by at least 2 spaces
+# Fields inside structures have as value the same as the "label" of top level fields.
 # BE AWARE: this Guide lists only the field names in structures but not how they are held,
 # as single, plain value or in an array. This is derived from the ExifTool JSON retrieved from the image.
 # Status: 2016-11-20, mws

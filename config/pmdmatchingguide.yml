@@ -1,5 +1,8 @@
 # IPTC PMD Std 2014 / ExifTool Tags / PMD Matching Guide - YAML format
 # Test Guide below refers to the JSON structure exported by ExifTool
+# The Guide defines sets of metadata properties of different technical
+#    format to be matched.
+# Stautus: 2016-11-21, mws
 match01:
   label: "Creator"
   props:

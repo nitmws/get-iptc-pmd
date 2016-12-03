@@ -15,3 +15,11 @@ For the display of the data three options are available:
 * Grouped by technical format standards IIM, XMP and Exif
 * Grouped by common topics of fields (General content, persons, locations, ..., rights, licence, administrative issues) as outlined in the IPTC Photo Metadata [User Guide](https://www.iptc.org/std/photometadata/documentation/userguide/)
 * Comparing the IIM, XMP and Exif values of fields which can embedded in at least two of these technical formats
+
+For the display of the labels these three options are available:
+
+* The labels as defined by the IPTC Photo Metadata Standard.
+* The field identifier as defined by the technical standards IIM, XMP and Exif.
+* The field identifier as defined by exiftool
+
+A test site of this project is at [http://getiptcpmd.nitsvc.net](http://getiptcpmd.nitsvc.net)
