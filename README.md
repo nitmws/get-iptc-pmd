@@ -23,3 +23,19 @@ For the display of the labels these three options are available:
 * The field identifier as defined by exiftool
 
 A test site of this project is at [http://getiptcpmd.nitsvc.net](http://getiptcpmd.nitsvc.net)
+
+## How to Make Use of This Project
+
+This project is split into two major parts:
+
+* The service: a Node.js/Express server with a RESTful API design (only read/GET is used). See files in /routes and /services
+* The user interface: the web page getiptcpmd.html in the /public folder (with stylesheets) for collecting user requests and transforming them into API calls. The templates in /views are required for the display of results of the get-iptc-pmd-service as HTML.
+
+Using that framework the project can be adjusted to these purposes:
+
+* Change what metadata fields are displayed: this is controlled by the data in the /config/pmdinvestigationguide.yml file. This file allows to modify the labels, e.g. they can be translated into another language.
+ * Change how results are displayed: currently two options for displaying the full results - grouped by technical standards and semantic topics - are implemented. This can be modified for specific needs: different groupings, different display of each field.
+ * Extending beyond IPTC Photo Metadata: in fact any metadata field supported by exiftool could be searched for and shown in the result. This would require additional or changed internal data structure (objects handing over results to the HTML templates) and therefore a deeper look into the Javascript code but is no big problem.
+ * The use of this project could be stripped down to accessing the API only and attaching a completely different user interface and an business logic (in the services) complying to it.
+  
+  
