@@ -2,6 +2,8 @@
 	"app" : {
 		"localImageDir" : "C:/localPath/public/testimages/",
 		"webserverImageDir" : "/testimages/",
+		"uploadDir" : "./public/testimages/",
+		"defaultimageFname" : "IPTC-PhotometadataRef-Std2016.jpg",
 		"localLogFpath" : "C:/localPath/getIptcPmd.log",
 		"logLevel" : 2
 	}
