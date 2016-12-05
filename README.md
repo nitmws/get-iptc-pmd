@@ -34,8 +34,8 @@ This project is split into two major parts:
 Using that framework the project can be adjusted to these purposes:
 
 * Change what metadata fields are displayed: this is controlled by the data in the /config/pmdinvestigationguide.yml file. This file allows to modify the labels, e.g. they can be translated into another language.
- * Change how results are displayed: currently two options for displaying the full results - grouped by technical standards and semantic topics - are implemented. This can be modified for specific needs: different groupings, different display of each field.
- * Extending beyond IPTC Photo Metadata: in fact any metadata field supported by exiftool could be searched for and shown in the result. This would require additional or changed internal data structure (objects handing over results to the HTML templates) and therefore a deeper look into the Javascript code but is no big problem.
- * The use of this project could be stripped down to accessing the API only and attaching a completely different user interface and an business logic (in the services) complying to it.
+* Change how results are displayed: currently two options for displaying the full results - grouped by technical standards and semantic topics - are implemented. This can be modified for specific needs: different groupings, different display of each field.
+* Extending beyond IPTC Photo Metadata: in fact any metadata field supported by exiftool could be searched for and shown in the result. This would require additional or changed internal data structure (objects handing over results to the HTML templates) and therefore a deeper look into the Javascript code but is no big problem.
+* The use of this project could be stripped down to accessing the API only and attaching a completely different user interface and an business logic (in the services) complying to it.
   
   
