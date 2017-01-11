@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    div(class='container')
+        div(class="row")
+            div(class="col-md-8")
+                h1(class="checkpagebox1") Image URLs in a Web Page
+        div(class="row")
+            div(class="col-md-8") ... retrieved from the page: <strong>#{webpageurl}</strong>
+        div(class="row")
+            div(class="col-md-8 topspace2") Clicking on an image URL below will start retrieving the metadata from the image and showing it in the usual way of this site. (If you want to keep this list use a "open this link a a tab" context menu item of your web browser.)
+        div(class="row")
+            div(class="col-md-8") Please check the URLs as they may be relative to the web page's location. In this case clicking on the URL will not deliver a result.
+
+        ul(class="col-md-8 topmarg2")
+            each imageurl in imageurls
+                - var getpmdurl =  '/getpmd/html/topics/?imgurl=' + imageurl;
+                li <a href="#{getpmdurl}">#{imageurl}</a>

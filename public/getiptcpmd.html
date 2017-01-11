@@ -45,6 +45,39 @@
             window.location = getUrl;
             return false;
         }
+
+        function goToCheckWebPage()
+        {
+            var opts = {
+                lines: 13 // The number of lines to draw
+                , length: 28 // The length of each line
+                , width: 14 // The line thickness
+                , radius: 42 // The radius of the inner circle
+                , scale: 1 // Scales overall size of the spinner
+                , corners: 1 // Corner roundness (0..1)
+                , color: '#000' // #rgb or #rrggbb or array of colors
+                , opacity: 0.25 // Opacity of the lines
+                , rotate: 0 // The rotation offset
+                , direction: 1 // 1: clockwise, -1: counterclockwise
+                , speed: 1 // Rounds per second
+                , trail: 60 // Afterglow percentage
+                , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+                , zIndex: 2e9 // The z-index (defaults to 2000000000)
+                , className: 'spinner' // The CSS class to assign to the spinner
+                , top: '50%' // Top position relative to parent
+                , left: '50%' // Left position relative to parent
+                , shadow: false // Whether to render a shadow
+                , hwaccel: false // Whether to use hardware acceleration
+                , position: 'absolute' // Element positioning
+            }
+            var target = document.getElementById('checkpageForm')
+            var spinner = new Spinner(opts).spin(target);
+
+            var getUrl = '/checkpage?pageurl=' + document.forms[2].pageurl.value;
+            window.location = getUrl;
+            return false;
+        }
+
         function showSpinner(){
             var opts = {
                 lines: 13 // The number of lines to draw
@@ -177,7 +210,22 @@
             </div>
             <input  value="Get Photo Metadata of Local Image"  type="submit" class="btn btn-success">
         </form>
-        <div id="info1" class="row">
+
+        <h3>Or: Check a Web Page for Image URLs</h3>
+        <div class="row">
+            <div class="col-md-12"> ... and get a list of URLs which may be used as starting point for getting metadata.
+        <form id="checkpageForm" action="#"  method="get"  onsubmit="return goToCheckWebPage()">
+            <div class="form-group">
+                <div class="input-group">
+                    <label  for="tourl">Enter the URL of the web page
+                        <input  name="pageurl" size="80"  id="pageurl"  type="text" class="form-control" placeholder="Page URL" aria-describedby="basic-addon2">
+                    </label>
+                </div>
+            </div>
+            <input  value="Check Page"  type="submit" class="btn btn-success">
+        </form>
+
+        <div id="info1" class="row topmarg2">
             <div class="col-md-6">
                 <h4>This service ...</h4>
                 <p class="prelist">... builds on the IPTC <a href="https://iptc.org/standards/photo-metadata/iptc-standard/" target="_blank">Photo Metadata Standard</a> and its technical implementations IIM and XMP, and references to Exif. The images are processed this way:</p>

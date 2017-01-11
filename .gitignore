@@ -41,6 +41,7 @@ jspm_packages
 *.bak
 nittest*.html
 node_modules
+apredev1
 config/appconfig-NIT-FIX8.json
 config/appconfig-NIT-MOB6.json
 config/appconfig.json

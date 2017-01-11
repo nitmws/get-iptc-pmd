@@ -20,6 +20,9 @@ table.pmd1 th, td {
 .topspace3{
 	padding-top: 18px;
 }
+.topmarg2{
+	margin-top: 12px;
+}
 .techmdbox{
 	border: 1px black solid;
 	margin-top: 6px;
@@ -61,14 +64,20 @@ table.pmd1 th, td {
 .table-curved tr:last-child td:last-child {
 	border-radius: 0 0 6px 0;
 }
-
 #getpmdForm {
 	background:#F5EE8D;
 	padding: 5px;
 }
-
 #uploadForm{
 	background:#8DBEF8;
+	padding: 5px;
+}
+#checkpageForm {
+	background:#ccff99;
+	padding: 5px;
+}
+.checkpagebox1 {
+	background:#ccff99;
 	padding: 5px;
 }
 .submitbtn {
