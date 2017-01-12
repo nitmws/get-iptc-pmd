@@ -7,6 +7,11 @@ let fs = require("fs");
 let appconfig = require("../services/appconfig");
 appconfig.loadConfigData("");
 
+// Version of the system
+let appversion = require("../services/appversion");
+appversion.loadVersionData();
+let systemVersion = appversion.data.release + ' [' + appversion.data.timestamp + ']';
+
 let randomstring = require("randomstring");
 let http = require('http');
 let https = require('https');
@@ -22,8 +27,6 @@ const designStds = 'perstandards';
 const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
 
-// Version of the system
-const systemVersion = "0.1 [2016-12-02]";
 
 /**
  * Main function of the getpmd router
