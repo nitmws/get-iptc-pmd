@@ -19,7 +19,7 @@ module.exports = { matchPmdShowHtml };
 // Object holding the output for the PugJs template
 let matchOutObj = [];
 
-function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, labeltype) {
+function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, imglfn, labeltype) {
     // An ExifTool process is started to retrieve the metadata
     ep.open().then((pid) => {
         console.log('Started exiftool process %s', pid);
@@ -102,7 +102,7 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imglfn, labeltyp
                 }
             }
             let techMd = tools1.getTechMd(pmdresult.data[0]);
-            res.render('pmdresult_compare', { imageTitle: imgtitle, imgwsfpath, imglfn, techMd, matchOutObj, labeltype });
+            res.render('pmdresult_compare', { imageTitle: imgtitle, imgurl, imgwsfpath, imglfn, techMd, matchOutObj, labeltype });
         });
     }).then(() => {
         return ep.close().then(() => {

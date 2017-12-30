@@ -6,7 +6,10 @@ block content
         div(class="row")
             div(class="col-md-6") ... as retrieved from the image file: <strong>#{imageTitle}</strong>
         div(class="row")
-            div(class="col-md-6") <img src="#{imgwsfpath}" width="300">
+            if imgurl === 'local'
+                div(class="col-md-6") Uploaded local files are not displayed
+            else
+                div(class="col-md-6") <img src="#{imgurl}" width="300">
         div(class="row")
             div(class="col-md-6 techmdbox") original size:#{techMd.width}x#{techMd.height} colorspace:#{techMd.colorspace} compression:#{techMd.compression}
         div(class="row topspace2")

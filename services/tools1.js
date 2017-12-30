@@ -9,7 +9,7 @@ appconfig.loadConfigData("");
  */
 function write2Log(logline, req) {
     let now = new Date();
-    let ipaddr = req.ip;
+    let ipaddr = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     fs.appendFile(appconfig.data.app.localLogFpath, now.toISOString() + "|" + ipaddr + "|" + req.headers['user-agent'] + "|" + logline + "\r\n", function (err) {
     });
 }

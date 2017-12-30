@@ -27,6 +27,7 @@ const designStds = 'perstandards';
 const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
 
+const imageFragmentSize = 71680; // 71680 = 70kB
 
 /**
  * Main function of the getpmd router
@@ -126,15 +127,15 @@ function processRequest(req, res) {
                     let dlFilepath = downloadDir + downloadFilename;
                     let wsFilepath = webserverDir + downloadFilename;
                     console.log('Download image file name: ' + downloadFilename);
-                    downloadImageFile(imgurl, dlFilepath, function (data) {
+                    downloadImageFile2(imgurl, dlFilepath, function (data) {
                         console.log('Result of downloading a file: ' + data);
                         switch (outputdesign){
                             case designStds:
                             case designTopics:
-                                imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imglfn, outputdesign, outputlabeltype);
+                                imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputdesign, outputlabeltype);
                                 break;
                             case designCompStds:
-                                pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imglfn, imgurl, outputlabeltype);
+                                pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputlabeltype);
                                 break;
                         }
                         tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + imgurl + '] -> ' + downloadFilename, req)
@@ -163,10 +164,10 @@ function processRequest(req, res) {
             switch (outputdesign) {
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imglfn, outputdesign, outputlabeltype);
+                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, 'local', imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imglfn, outputlabeltype);
+                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, 'local', imglfn, outputlabeltype);
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> as local file:' + imglfnArr[1], req)
@@ -178,10 +179,10 @@ function processRequest(req, res) {
             switch (outputdesign) {
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', imglfn, outputdesign, outputlabeltype);
+                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', 'local', imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', imglfn );
+                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', 'local', imglfn );
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> DEFAULTPHOTO', req)
@@ -256,6 +257,89 @@ function downloadImageFile(imgUrl, destFn, callback) {
                 file.end();
                 console.log('Downloaded ' + destFn);
                 callback(destFn);
+            });
+        });
+    }
+    process.on('uncaughtException', function(err) {
+        console.log('Cannot download ' + imgUrl + ' (' + err + ')');
+        callback(null);
+    });
+}
+
+function downloadImageFile2(imgUrl, destFn, callback) {
+    let portNr = 80;
+    let protType = 'http';
+    if (imgUrl.indexOf('https') == 0)
+    {
+        portNr = 443;
+        protType = 'https';
+    }
+    let hostname = url.parse(imgUrl).host;
+    let pos1 = imgUrl.indexOf(hostname);
+    // var path1 = url.parse(imgUrl).path; // core path only
+    let path1 = imgUrl.substring(pos1 + hostname.length); // including queries as this might be required by APIs
+    let options = {
+        host: hostname,
+        port: portNr,
+        path: path1
+    };
+    // file_name = url.parse(imgUrl).pathname.split('/').pop(),
+    //Creating the file
+    let file = fs.createWriteStream(destFn, {flags: 'w', encoding: 'binary'});
+    let fileLength = 0;
+    let fileOpen = true;
+
+    console.log('Downloading file from ' + imgUrl);
+    console.log('to ' + destFn);
+    if (protType === 'http') {
+        http.get(options, function (res) {
+            res.on('data', function (chunk) {
+                if (fileOpen) {
+                    fileLength += chunk.length;
+                    if (fileLength > imageFragmentSize) { // file size over limit
+                        file.write(chunk);
+                        file.end();
+                        fileOpen = false;
+                        console.log('Downloaded ' + destFn);
+                        callback(destFn);
+                    }
+                    else {
+                        file.write(chunk);
+                    }
+                }
+            }).on('end', function () {
+                if (fileOpen) {
+                    //Closing the file
+                    file.end();
+                    console.log('Downloaded ' + destFn);
+                    callback(destFn);
+                }
+            });
+        });
+    }
+    if (protType === 'https') {
+        https.get(options, function (res) {
+            res.on('data', function (chunk) {
+                if (fileOpen) {
+                    fileLength += chunk.length;
+                    if (fileLength > imageFragmentSize) { // file size over limit
+                        file.write(chunk);
+                        file.end();
+                        fileOpen = false;
+                        console.log('Downloaded ' + destFn);
+                        callback(destFn);
+                    }
+                    else {
+                        file.write(chunk);
+                    }
+                }
+            }).on('end', function () {
+                //Closing the file
+                if (fileOpen) {
+                    file.end();
+                    console.log('Downloaded ' + destFn);
+                    callback(destFn);
+                }
             });
         });
     }

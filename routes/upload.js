@@ -14,6 +14,7 @@ let webserverDir = appconfig.data.app.webserverImageDir;
 
 const uploadImgPrefix = 'ulimg-';
 
+/*
 let storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, ulDir);
@@ -22,11 +23,21 @@ let storage = multer.diskStorage({
         callback(null, uploadImgPrefix + file.originalname);
     }
 });
+*/
+
+let uploadStorage = require('../services/uploadStorage');
+let storage = uploadStorage({
+    destination: function (req, file, callback) {
+        callback(null, ulDir + uploadImgPrefix + file.originalname);
+    }
+});
 
 const designStds = 'perstandards';
 const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
 
+// const imageFragmentSize = 71680; // 71680 = 70kB
+// , limits : { fileSize : 71680 }
 
 router.post('/', multer({ storage : storage}).single('userPhoto'), function(req, res, next) {
 
@@ -96,10 +107,10 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
             switch (outputdesign){
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, ulFilepath, wsFilepath, imgTitle, ulFilename, outputdesign, outputlabeltype);
+                    imgproc1.processImageFileAsHtml(res, ulFilepath, wsFilepath, imgTitle, 'local', ulFilename, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, ulFilepath, wsFilepath, 'default IPTC reference photo', ulFilename, outputlabeltype );
+                    pmdmatcher.matchPmdShowHtml(res, ulFilepath, wsFilepath, 'default IPTC reference photo', 'local', ulFilename, outputlabeltype );
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + ulFilename + ']', req);
