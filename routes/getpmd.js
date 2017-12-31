@@ -22,6 +22,7 @@ let tools1 = require('../services/tools1');
 let downloadDir = appconfig.data.app.localImageDir;
 let webserverDir = appconfig.data.app.webserverImageDir;
 let defaultImgFn = appconfig.data.app.defaultimageFname;
+let defaultImgLabel = appconfig.data.app.defaultimageLabel;
 
 const designStds = 'perstandards';
 const designTopics = 'pertopics';
@@ -152,22 +153,26 @@ function processRequest(req, res) {
     }
     else { // image URL is undefined
         if (imglfn !== 'NA'){
-            // at this point imglfn may have appended the orginal image URL
+            // at this point imglfn may have an appended orginal image URL, separated by ||
             let imglfnArr = imglfn.split('||');// split them
             imglfn = imglfnArr[0];
             let imgurl2 = ' -- ';
+            let imgurl3 = 'local';
             if (imglfnArr.length > 1){
                 imgurl2 = decodeURIComponent(imglfnArr[1]);
+                if (imgurl2.startsWith('http')){
+                    imgurl3 = imgurl2;
+                }
             }
             let processFilepath = downloadDir + imglfn;
             let wsFilepath = webserverDir + imglfn;
             switch (outputdesign) {
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, 'local', imglfn, outputdesign, outputlabeltype);
+                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imgurl3, imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, 'local', imglfn, outputlabeltype);
+                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imgurl3, imglfn, outputlabeltype);
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> as local file:' + imglfnArr[1], req)
@@ -179,10 +184,10 @@ function processRequest(req, res) {
             switch (outputdesign) {
                 case designStds:
                 case designTopics:
-                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', 'local', imglfn, outputdesign, outputlabeltype);
+                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, defaultImgLabel, 'local', imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, 'default IPTC reference photo', 'local', imglfn );
+                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, defaultImgLabel, 'local', imglfn );
                     break;
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> DEFAULTPHOTO', req)
@@ -321,16 +326,13 @@ function downloadImageFile2(imgUrl, destFn, callback) {
         https.get(options, function (res) {
             res.on('data', function (chunk) {
                 if (fileOpen) {
+                    file.write(chunk);
                     fileLength += chunk.length;
                     if (fileLength > imageFragmentSize) { // file size over limit
-                        file.write(chunk);
                         file.end();
                         fileOpen = false;
                         console.log('Downloaded ' + destFn);
                         callback(destFn);
-                    }
-                    else {
-                        file.write(chunk);
                     }
                 }
             }).on('end', function () {

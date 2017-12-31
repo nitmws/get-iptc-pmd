@@ -16,4 +16,3 @@ function loadConfigData(configFilePath) {
     Object.freeze(exports.data);
 }
 exports.loadConfigData = loadConfigData;
-//# sourceMappingURL=appconfig.js.map

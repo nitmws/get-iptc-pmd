@@ -304,6 +304,9 @@ XMP-plus_PropertyReleaseID:
 XMP-plus_PropertyReleaseStatus:
   label: "Property Release Status (XMP) |XMP plus:PropertyReleaseStatus"
   output: xmp,rights
+XMP-xmp_Rating:
+  label: "Image Rating (XMP) |XMP xmp:Rating"
+  output: xmp,gimgcont
 XMP-iptcExt_RegistryID:
   label: "Registry Entry (XMP) |XMP Iptc4xmpExt:RegistryID"
   output: xmp,admin
@@ -335,8 +338,11 @@ XMP-photoshop_TransmissionReference:
   label: "Job Id (XMP) |XMP photoshop:TransmissionReference"
   output: xmp,admin
 XMP-xmpRights_UsageTerms:
-  label: "Rights Usage Terms (XMP) |XMP Iptc4xmpCore:UsageTerms"
+  label: "Rights Usage Terms (XMP) |XMP xmpRights:UsageTerms"
   output: xmp,lic
+XMP-xmpRights_WebStatement:
+  label: "Web Statement of Rights (XMP) |XMP xmpRights:WebStatement"
+  output: xmp,rights
 XMP_XMPToolkit: 
   label: XMP Toolkit (XMP) |XMP 
   output: any

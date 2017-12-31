@@ -22,18 +22,15 @@ UploadStorage.prototype._handleFile = function _handleFile (req, uploadFile, cb)
 
         uploadFile.stream.on('data', function (chunk) {
             if (outstreamOpen) {
+                outStream.write(chunk);
                 outstreamLength += chunk.length;
                 if (outstreamLength > imageFragmentSize) { // file size over limit
-                    outStream.write(chunk);
                     outStream.end();
                     outstreamOpen = false;
                     cb(null, {
                         path: path,
                         size: outStream.bytesWritten
                     })
-                }
-                else {
-                    outStream.write(chunk);
                 }
             }
         }).on('end', function () {

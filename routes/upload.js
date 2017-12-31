@@ -14,7 +14,7 @@ let webserverDir = appconfig.data.app.webserverImageDir;
 
 const uploadImgPrefix = 'ulimg-';
 
-/*
+/* the diskStorage worker provided by multer
 let storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, ulDir);
@@ -25,6 +25,7 @@ let storage = multer.diskStorage({
 });
 */
 
+// the uploadStorage worker provided by this application
 let uploadStorage = require('../services/uploadStorage');
 let storage = uploadStorage({
     destination: function (req, file, callback) {
@@ -36,8 +37,6 @@ const designStds = 'perstandards';
 const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
 
-// const imageFragmentSize = 71680; // 71680 = 70kB
-// , limits : { fileSize : 71680 }
 
 router.post('/', multer({ storage : storage}).single('userPhoto'), function(req, res, next) {
 
