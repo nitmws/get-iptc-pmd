@@ -3,8 +3,10 @@
 		"localImageDir" : "C:/localPath/public/testimages/",
 		"webserverImageDir" : "/testimages/",
 		"uploadDir" : "./public/testimages/",
-		"defaultimageFname" : "IPTC-PhotometadataRef-Std2016.jpg",
+		"defaultimageFname" : "IPTC-PhotometadataRef-Std2017.1.jpg",
+		"defaultimageLabel": "IPTC Photo Metadata Standard 2017.1 reference photo",
 		"localLogFpath" : "C:/localPath/getIptcPmd.log",
-		"logLevel" : 2
+		"logLevel" : 2,
+		"minMetadataHeaderSize": 71680
 	}
 }
