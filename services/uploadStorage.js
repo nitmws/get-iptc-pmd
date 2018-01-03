@@ -2,6 +2,10 @@
 
 let fs = require('fs')
 
+let appconfig = require("../services/appconfig");
+appconfig.loadConfigData("");
+const imageFragmentSize = appconfig.data.app.minMetadataHeaderSize; // 71680 = 70kB
+
 function getDestination (req, file, cb) {
     cb(null, '/dev/null')
 }
@@ -10,7 +14,6 @@ function UploadStorage (opts) {
     this.getDestination = (opts.destination || getDestination)
 }
 
-const imageFragmentSize = 71680; // 71680 = 70kB
 
 UploadStorage.prototype._handleFile = function _handleFile (req, uploadFile, cb) {
     this.getDestination(req, uploadFile, function (err, path) {
