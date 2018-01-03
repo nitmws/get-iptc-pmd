@@ -1,8 +1,8 @@
 # Get IPTC Photo MetaData (PMD)
 
-A web based system for retrieving embedded photo metadata from image files. 
+A web based system for retrieving embedded IPTC photo metadata from image files. 
 
-Metadata fields may be embedded in IPTC's [IIM](https://iptc.org/standards/iim/), Adobe/ISO's [XMP](http://www.adobe.com/devnet/xmp.html) and CIPA's [Exif](http://www.cipa.jp/std/std-sec_e.html) format.
+Metadata fields may be embedded using IPTC's [IIM](https://iptc.org/standards/iim/), Adobe/ISO's [XMP](http://www.adobe.com/devnet/xmp.html) and CIPA's [Exif](http://www.cipa.jp/std/std-sec_e.html) format.
 
 Metadata fields and their values are retrieved by Phil Harvey's [ExifTool](http://owl.phy.queensu.ca/~phil/exiftool/)
 
@@ -22,13 +22,20 @@ For the display of the labels these three options are available:
 * The field identifier as defined by the technical standards IIM, XMP and Exif.
 * The field identifier as defined by exiftool
 
-A test site of this project is at [http://getiptcpmd.nitsvc.net](http://getiptcpmd.nitsvc.net)
+A test site of this project is available at [http://getiptcpmd.nitsvc.net](http://getiptcpmd.nitsvc.net)
+
+## Special Features
+
+* This system is not strictly bound to IPTC metadata; it can be adjusted to any set of metadata supported by exiftools. See more on that below.
+* The core web service with its RESTful API can be used with any other user interface. See more on that below.
+* The core web service keeps the required web traffic low: by a parameter in the appconfig.json file one can limit the size of the downloaded data. (Be aware: the metadata are located in the first section of an image file, downloading about 70 KByte from a 6 MByte image may be sufficient for retrieving them.)
+
 
 ## How to Make Use of This Project
 
 This project is split into two major parts:
 
-* The service: a Node.js/Express server with a RESTful API design (only read/GET is used). See files in /routes and /services
+* The service: a Node.js/Express server with a RESTful API design (only read/GET is used). See files in /routes and /services.
 * The user interface: the web page getiptcpmd.html in the /public folder (with stylesheets) for collecting user requests and transforming them into API calls. The templates in /views are required for the display of results of the get-iptc-pmd-service as HTML.
 
 Using that framework the project can be adjusted to these purposes:
