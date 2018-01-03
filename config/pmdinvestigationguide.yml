@@ -10,13 +10,13 @@
 # as single, plain value or in an array. This is derived from the ExifTool JSON retrieved from the image.
 # Status: 2016-11-20, mws
 IFD0_Artist :
-  label: Creator (Exif)| Exif/TIFF Artist
+  label: Creator (Exif - Artist)| Exif/TIFF Artist
   output: exif,rights
 IFD0_Copyright:
   label: Copyright Notice (Exif)|Exif/TIFF Copyright
   output: exif,rights
 ExifIFD_DateTimeOriginal:
-  label: Date Created (Exif)|Exif/IFD DateTimeOriginal
+  label: Date Created (Exif - DateTime Original)|Exif/IFD DateTimeOriginal
   output: exif,admin
 IFD0_ImageDescription:
   label: Description (Exif)|Exif/TIFF ImageDescription
@@ -33,10 +33,7 @@ IPTC_By-line:
 IPTC_By-lineTitle: 
   label: "Creator Jobtitle (IIM)|IIM 2:85 By-line Title"
   output: iim,rights
-IPTC_Caption-Abstract:
-   label: "Description (IIM)|IIM 2:120 Caption/Abstract"
-   output: iim,gimgcont
-IPTC_City: 
+IPTC_City:
   label: "City (legacy) (IIM)|IIM 2:90 City"
   output: iim,location
 IPTC_CopyrightNotice: 
@@ -54,49 +51,45 @@ IPTC_Credit:
 IPTC_DateCreated: 
   label: "Date Created/Date (IIM)|IIM 2:55 Date Created"
   output: iim,admin
-IPTC_Headline: 
+IPTC_TimeCreated:
+  label: "Date Created/Time (IIM)|IIM 2:20 Time Created"
+  output: iim,admin
+IPTC_Caption-Abstract:
+   label: "Description (IIM)|IIM 2:120 Caption/Abstract"
+   output: iim,gimgcont
+IPTC_Writer-Editor:
+  label: "Description Writer (IIM)|IIM 2:122 Writer/Editor"
+  output: iim,admin
+IPTC_Headline:
   label: "Headline (IIM)|IIM 2:105 Headline"
   output: iim,gimgcont
-IPTC_Keywords: 
-  label: "Keywords (IIM)|IIM 2:25 Keywords"
-  output: iim,gimgcont
-IPTC_ObjectAttributeReference: 
+IPTC_SpecialInstructions:
+  label: "Instructions (IIM)|IIM 2:40 Special Instruction"
+  output: iim,admin
+IPTC_ObjectAttributeReference:
   label: "Intellectual Genre (IIM)|IIM 2:04 Object Attribute Reference"
   output: iim,gimgcont
-IPTC_ObjectName: 
-  label: "Title (IIM)|IIM 2:05 Object Name"
-  output: iim,admin
-IPTC_OriginalTransmissionReference: 
+IPTC_OriginalTransmissionReference:
   label: "Job Id (IIM)|IIM 2:103 Original Transmission Reference"
   output: iim,admin
-IPTC_Province-State: 
+IPTC_Keywords:
+  label: "Keywords (IIM)|IIM 2:25 Keywords"
+  output: iim,gimgcont
+IPTC_Province-State:
   label: "Province/State (IIM)|IIM 2:95 Province/State"
   output: iim,location
 IPTC_Source: 
   label: "Source (IIM)|IIM 2:115 Source"
   output: iim,rights
-IPTC_SpecialInstructions: 
-  label: "Instructions (IIM)|IIM 2:40 Special Instruction"
-  output: iim,admin
-IPTC_Sub-location: 
+IPTC_Sub-location:
   label: "Sublocation (legacy) (IIM)|IIM 2:92 Sublocation"
   output: iim,location
 IPTC_SubjectReference: 
   label: "Subject Code (IIM)|IIM 2:12 Subject Reference"
   output: iim,gimgcont
-IPTC_TimeCreated: 
-  label: "Date Created/Time (IIM)|IIM 2:20 Time Created"
+IPTC_ObjectName:
+  label: "Title (IIM)|IIM 2:05 Object Name"
   output: iim,admin
-IPTC_Writer-Editor: 
-  label: "Description Writer (IIM)|IIM 2:122 Writer/Editor"
-  output: iim,admin
-XMP-iptcExt_AboutCvTerm:
-  label: "CV Term About Image (XMP) |XMP iptc4xmpExt:ArtworkOrObject"
-  output: xmp,gimgcont
-  CvId: "CV Id (XMP) |XMP Iptc4xmpExt:CvId"
-  CvTermId: " CV Term Id (XMP) |XMP Iptc4xmpExt:CvTermId"
-  CvTermName: "CV Term Name (XMP) |XMP Iptc4xmpExt:CvTermName"
-  CvTermRefinedAbout: "Refined About (XMP) |XMP Iptc4xmpExt:CvTermRefinedAbout"
 XMP-iptcExt_AdditionalModelInformation:
   label: "Additional Model Info (XMP) |XMP iptc4xmpExt:AddlModelInfo"
   output: xmp,person
@@ -120,15 +113,12 @@ XMP-iptcExt_ArtworkOrObject:
   AOSourceInvURL: "Source Inventory URL (XMP) |XMP Iptc4xmpExt:AOSourceInvURL"
   AOStylePeriod: "Style Period (XMP) |XMP Iptc4xmpExt: " 
   AOTitle: "Title (XMP) |XMP Iptc4xmpExt:AOStylePeriod"
-XMP-photoshop_AuthorsPosition:
-  label: "Creator Jobtitle (XMP) |XMP photoshop:AuthorsPosition"
-  output: xmp,rights
-XMP-photoshop_CaptionWriter:
-  label: "Description Writer (XMP) |XMP photoshop:CaptionWriter"
-  output: xmp,admin
 XMP-photoshop_City:
   label: "City (legacy) (XMP) |XMP photoshop:City"
   output: xmp,location
+XMP-dc_Rights:
+  label: "Copyright Notice (XMP) |XMP dc:Rights"
+  output: xmp,rights
 XMP-plus_CopyrightOwner:
   label: "Copyright Owner (XMP) |XMP plus:CopyrightOwner"
   output: xmp,rights
@@ -142,6 +132,9 @@ XMP-iptcCore_CountryCode:
   output: xmp,location
 XMP-dc_Creator:
   label: "Creator (XMP) |XMP dc:Creator"
+  output: xmp,rights
+XMP-photoshop_AuthorsPosition:
+  label: "Creator's Jobtitle (XMP) |XMP photoshop:AuthorsPosition"
   output: xmp,rights
 XMP-iptcCore_CreatorContactInfo:
   label: "Creator's Contact Info (XMP) |XMP Iptc4xmpCore:CreatorContactInfo"
@@ -157,12 +150,22 @@ XMP-iptcCore_CreatorContactInfo:
 XMP-photoshop_Credit:
   label: "Credit Line (XMP) |XMP photoshop:Credit"
   output: xmp,rights
+XMP-iptcExt_AboutCvTerm:
+  label: "CV Term About Image (XMP) |XMP iptc4xmpExt:ArtworkOrObject"
+  output: xmp,gimgcont
+  CvId: "CV Id (XMP) |XMP Iptc4xmpExt:CvId"
+  CvTermId: " CV Term Id (XMP) |XMP Iptc4xmpExt:CvTermId"
+  CvTermName: "CV Term Name (XMP) |XMP Iptc4xmpExt:CvTermName"
+  CvTermRefinedAbout: "Refined About (XMP) |XMP Iptc4xmpExt:CvTermRefinedAbout"
 XMP-photoshop_DateCreated:
   label: "Date Created (XMP) |XMP photoshop:DateCreated"
   output: xmp,admin
 XMP-dc_Description:
   label: "Description (XMP) |XMP dc:Description"
   output: xmp,gimgcont
+XMP-photoshop_CaptionWriter:
+  label: "Description Writer (XMP) |XMP photoshop:CaptionWriter"
+  output: xmp,admin
 XMP-iptcExt_DigitalImageGUID:
   label: "Digital Image GUID (XMP) |XMP Iptc4xmpExt:DigitalImageGUID"
   output: xmp,admin
@@ -201,6 +204,9 @@ XMP-plus_ImageSupplier:
   output: xmp,lic
   ImageSupplierID: "Id (XMP) |XMP plus:ImageSupplierID"
   ImageSupplierName: "Name (XMP) |XMP plus:ImageSupplierName"
+XMP-xmp_Rating:
+  label: "Image Rating (XMP) |XMP xmp:Rating"
+  output: xmp,gimgcont
 XMP-plus_ImageSupplierImageID:
   label: "Image Supplier's Image Id (XMP) |XMP plus:ImageSupplierImageID"
   output: xmp,lic
@@ -210,6 +216,9 @@ XMP-photoshop_Instructions:
 XMP-iptcCore_IntellectualGenre:
   label: "Intellectual Genre (XMP) |XMP Iptc4xmpCore:IntellectualGenre" 
   output: xmp,gimgcont
+XMP-photoshop_TransmissionReference:
+  label: "Job Id (XMP) |XMP photoshop:TransmissionReference"
+  output: xmp,admin
 XMP-plus_Licensor:
   label: "Licensor (XMP) |XMP plus:Licensor" 
   output: xmp,lic
@@ -304,18 +313,12 @@ XMP-plus_PropertyReleaseID:
 XMP-plus_PropertyReleaseStatus:
   label: "Property Release Status (XMP) |XMP plus:PropertyReleaseStatus"
   output: xmp,rights
-XMP-xmp_Rating:
-  label: "Image Rating (XMP) |XMP xmp:Rating"
-  output: xmp,gimgcont
 XMP-iptcExt_RegistryID:
   label: "Registry Entry (XMP) |XMP Iptc4xmpExt:RegistryID"
   output: xmp,admin
   RegItemId: "Item Id (XMP) |XMP Iptc4xmpExt:RegItemId"
   RegOrgId: "Organisation Id (XMP) |XMP Iptc4xmpExt:RegOrgId"
   RegEntryRole: "Role (XMP)|XMP Iptc4xmpExt:RegEntryRole"
-XMP-dc_Rights:
-  label: "Copyright Notice (XMP) |XMP dc:Rights"
-  output: xmp,rights
 XMP-iptcCore_Scene:
   label: "Scene Code (XMP) |XMP Iptc4xmpExt:Scene"
   output: xmp,gimgcont
@@ -334,9 +337,6 @@ XMP-iptcCore_SubjectCode:
 XMP-dc_Title:
   label: "Title (XMP) |XMP dc:Title"
   output: xmp,admin
-XMP-photoshop_TransmissionReference:
-  label: "Job Id (XMP) |XMP photoshop:TransmissionReference"
-  output: xmp,admin
 XMP-xmpRights_UsageTerms:
   label: "Rights Usage Terms (XMP) |XMP xmpRights:UsageTerms"
   output: xmp,lic
@@ -344,5 +344,5 @@ XMP-xmpRights_WebStatement:
   label: "Web Statement of Rights (XMP) |XMP xmpRights:WebStatement"
   output: xmp,rights
 XMP_XMPToolkit: 
-  label: XMP Toolkit (XMP) |XMP 
+  label: XMP Toolkit Version (XMP) |XMP
   output: any
