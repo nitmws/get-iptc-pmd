@@ -19,7 +19,10 @@ This file configures the application as a whole.
 }
 ```
 
-## pmdmatchingguide.yml
+## pmdinvestigationguide.yml
 
 This file defines which properties should be included into the checking of the metadata. How this works is defined by a comment in the header of this file.
-  
+
+## pmdmatchingguide.yml
+
+This file defines how to match the IPTC-IIM values against the XMP values and Exif values of metadata properties using these technical formats.
