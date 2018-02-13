@@ -294,6 +294,8 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
         return ep.close().then(() => {
             console.log('Closed exiftool');
         });
+    }).catch( err => {
+        tools1.write2Log('ERROR @retrieving PMD by exiftool: ' + err);
     });
 }
 // end of processImageFileAsHtml

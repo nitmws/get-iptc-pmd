@@ -50,4 +50,5 @@ images/dl*.*
 images/ul*.*
 public/testimages/dl*.*
 public/testimages/ul*.*
+public/getiptcpmd_*.html
 
