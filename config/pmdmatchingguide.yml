@@ -7,35 +7,35 @@ match01:
   label: "Creator"
   props:
     - IPTC_By-line
-    - XMP_Creator
+    - XMP-dc_Creator
     - IFD0_Artist
 match02:
   label: "Creator's Jobtitle"
   props:
     - IPTC_By-lineTitle
-    - XMP_AuthorsPosition
+    - XMP-photoshop_AuthorsPosition
 match03:
   label: "Description"
   props:
     - IPTC_Caption-Abstract
-    - XMP_Description
+    - XMP-dc_Description
     - IFD0_ImageDescription
 match04:
   label: "Copyright Notice"
   props:
     - IPTC_CopyrightNotice
-    - XMP_Rights
+    - XMP-dc_Rights
     - IFD0_Copyright
 match05:
   label: "Credit"
   props:
-    - IPTC_Credit
+    - IPTC-photoshop_Credit
     - XMP_Credit
 match06:
   label: "Date Created (formats are different in IIM, XMP and Exif)"
   props:
     - IPTC_DateCreated
-    - XMP_DateCreated
+    - XMP-photoshop_DateCreated
     - ExifIFD_DateTimeOriginal
 match14:
   label: "Time part of Date Created (IIM only) "
@@ -45,35 +45,35 @@ match07:
   label: "Headline"
   props:
     - IPTC_Headline
-    - XMP_Headline
+    - XMP-photoshop_Headline
 match08:
   label: "Keywords"
   props:
     - IPTC_Keywords
-    - XMP_Subject
+    - XMP-dc_Subject
 match09:
   label: "Title"
   props:
     - IPTC_ObjectName
-    - XMP_Title
+    - XMP-dc_Title
 match10:
   label: "Job Id"
   props:
     - IPTC_OriginalTransmissionReference
-    - XMP_TransmissionReference
+    - XMP-photoshop_TransmissionReference
 match11:
   label: "Source"
   props:
     - IPTC_Source
-    - XMP_Source
+    - XMP-photoshop_Source
 match12:
   label: "Instructions"
   props:
     - IPTC_SpecialInstructions
-    - XMP_Instructions
+    - XMP-photoshop_Instructions
 match13:
   label: "Description Writer"
   props:
     - IPTC_Writer-Editor
-    - XMP_CaptionWriter
+    - XMP-photoshop_CaptionWriter
 

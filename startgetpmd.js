@@ -1,18 +1,28 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
 
-var app = require('./app');
+const app = require('./app');
 var debug = require('debug')('ExifToolServer02:server');
 var http = require('http');
+var fs = require('fs');
+var util = require('util');
+
+var log_file = fs.createWriteStream(__dirname + '/auxdata/console.log', {flags : 'w'});
+var log_stdout = process.stdout;
+
+console.log = function(d) { //
+    log_file.write(util.format(d) + '\n');
+    log_stdout.write(util.format(d) + '\n');
+};
 
 /**
  * Get port from environment and store in Express.
+ * comment out one of the port settings
  */
 
-var port = normalizePort(process.env.PORT || '80');
+var port = normalizePort(process.env.PORT || '3000');
+// var port = '3100';
 app.set('port', port);
 
 /**

@@ -42,6 +42,7 @@ jspm_packages
 nittest*.html
 node_modules
 apredev1
+auxdata
 config/appconfig-NIT-FIX8.json
 config/appconfig-NIT-MOB6.json
 config/appconfig.json
@@ -51,4 +52,5 @@ images/ul*.*
 public/testimages/dl*.*
 public/testimages/ul*.*
 public/getiptcpmd_*.html
+public/stylesheets/style_wbs_*.css
 
