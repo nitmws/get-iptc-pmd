@@ -62,7 +62,7 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, imglfn, 
                                 iimValue = 'Not found';
                             }
                         }
-                        if (propname.substring(0,4) == 'XMP_'){
+                        if (propname.substring(0,4) == 'XMP-'){
                             xmpName = propname.replace('_', ':'); // modify for ExifTool
                             if (pmdresult.data[0][xmpName] !== undefined){
                                 xmpValue = '{' + pmdresult.data[0][xmpName] + '}';
