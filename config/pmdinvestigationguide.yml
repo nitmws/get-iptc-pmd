@@ -2,6 +2,9 @@
 # Test Guide below refers to the JSON structure exported by ExifTool
 # HELP: only three types of keys:
 # 1/ the ExifTool field name (the ":" is replaced by a "_" for YAML reasons!!)
+#    Check first how the used version of exiftool delivers the XMP field names,
+#        newer version include the namespace (e.g. XMP-dc:Rights) by default,
+#        older version don't include it (e.g. XMP:Rights)
 # 2/ the "label": a sequence of IPTC Photo Metadata and technical standard labels, separated by |
 # 2/ the "output": a sequence of target object for the output, separated by commas
 # Field structures have to follow the YAML syntax: they have to be indented by at least 2 spaces
