@@ -21,41 +21,41 @@ block content
             - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfnstds}">See grouped by technical standards</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span>
 
+        div(class="resultdata1")
+
+            h2 Compared Photo Metadata Fields
+
+            each compdataset in matchOutObj
+                div(class="row topspace2")
+                    div(class="col-md-6") Compared field:  <strong>#{compdataset.label}</strong>
+
+                table(class='pmd1 table-bordered table-striped table-curved')
+                    tbody
+                        - var testiim = compdataset.iimvalue != "NA";
+                        if testiim
+                            tr
+                                td IIM value
+                                td=compdataset.iimvalue
+                        - var testxmp = compdataset.xmpvalue != "NA";
+                        if testxmp
+                            tr
+                                td XMP value
+                                td=compdataset.xmpvalue
+                        - var testexif = compdataset.exifvalue != "NA";
+                        if testexif
+                            tr
+                                td Exif value
+                                td=compdataset.exifvalue
+                        - var testnote = compdataset.note != "NA";
+                        if testnote
+                            tr
+                                td Note
+                                td=compdataset.note
 
 
-        h2 Compared Photo Metadata Fields
-
-        each compdataset in matchOutObj
             div(class="row topspace2")
-                div(class="col-md-6") Compared field:  <strong>#{compdataset.label}</strong>
-
-            table(class='pmd1 table-bordered table-striped table-curved')
-                tbody
-                    - var testiim = compdataset.iimvalue != "NA";
-                    if testiim
-                        tr
-                            td IIM value
-                            td=compdataset.iimvalue
-                    - var testxmp = compdataset.xmpvalue != "NA";
-                    if testxmp
-                        tr
-                            td XMP value
-                            td=compdataset.xmpvalue
-                    - var testexif = compdataset.exifvalue != "NA";
-                    if testexif
-                        tr
-                            td Exif value
-                            td=compdataset.exifvalue
-                    - var testnote = compdataset.note != "NA";
-                    if testnote
-                        tr
-                            td Note
-                            td=compdataset.note
-
-
-        div(class="row topspace2")
-            - var ilfnstds = '/getpmd/html/stds/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
-            - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
-            div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfnstds}">See grouped by technical standards</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span>
+                - var ilfnstds = '/getpmd/html/stds/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
+                - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
+                div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfnstds}">See grouped by technical standards</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span>
 
 

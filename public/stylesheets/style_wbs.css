@@ -67,6 +67,13 @@ table.pmd1 th, td {
 .getpmdtop1{
 	background: #faebcc;
 }
+.resultdata1{
+	background: #fff;
+	padding: 3px;
+}
+.getpmdfooter1{
+	background: #faebcc;
+}
 #getpmdForm {
 	background:#F5EE8D;
 	padding: 5px;
