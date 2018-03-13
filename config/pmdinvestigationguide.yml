@@ -25,7 +25,7 @@ IFD0_ImageDescription:
   label: Description (Exif)|Exif/TIFF ImageDescription
   output: exif,admin
 ExifTool_ExifToolVersion: 
-  label: Exiftool Version|NA (Exiftool Version)
+  label: Exiftool Version used by this system|NA (Exiftool Version)
   output: any
 System_FileName:
   label: File Name|NA (File Name)
@@ -346,6 +346,6 @@ XMP-xmpRights_UsageTerms:
 XMP-xmpRights_WebStatement:
   label: "Web Statement of Rights (XMP) |XMP xmpRights:WebStatement"
   output: xmp,rights
-XMP_XMPToolkit: 
+XMP-x_XMPToolkit:
   label: XMP Toolkit Version (XMP) |XMP
   output: any

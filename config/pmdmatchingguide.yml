@@ -29,8 +29,8 @@ match04:
 match05:
   label: "Credit"
   props:
-    - IPTC-photoshop_Credit
-    - XMP_Credit
+    - IPTC_Credit
+    - XMP-photoshop_Credit
 match06:
   label: "Date Created (formats are different in IIM, XMP and Exif)"
   props:

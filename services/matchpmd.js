@@ -86,8 +86,10 @@ function matchPmdShowHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, imglfn, 
                     if (!skipCreateNote) {
                         if (iimValue !== xmpValue) {
                             matchNote = 'IIM and XMP don\'t match';
-                            if (exifValue !== iimValue) {
-                                matchNote += ' and Exif doesn\'t match the IIM value';
+                            if (exifValue !== 'NA') {
+                                if (exifValue !== iimValue) {
+                                    matchNote += ' and Exif doesn\'t match the IIM value';
+                                }
                             }
                         }
                         else {
