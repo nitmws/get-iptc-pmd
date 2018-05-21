@@ -9,7 +9,10 @@ appconfig.loadConfigData("");
  */
 function write2Log(logline, req) {
     let now = new Date();
-    let ipaddr = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    // next 2 lines: changed following the EU GDPR considering IP addresses as private data on 2018-05-21
+    // Logging the IP address may be reactivated under the full legal responsibility of the party running the GET-PMD site
+    // let ipaddr = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    let ipaddr = "NA (GDPR)"
     fs.appendFile(appconfig.data.app.localLogFpath, now.toISOString() + "|" + ipaddr + "|" + req.headers['user-agent'] + "|" + logline + "\r\n", function (err) {
     });
 }
