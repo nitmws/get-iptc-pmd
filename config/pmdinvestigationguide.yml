@@ -272,12 +272,12 @@ XMP-iptcExt_MaxAvailHeight:
 XMP-iptcExt_MaxAvailWidth:
   label: "Max Available Width (XMP) |XMP Iptc4xmpExt:MaxAvailWidth"
   output: xmp,admin
+XMP-iptcExt_ModelAge:
+  label: "Model Age (XMP) |XMP Iptc4xmpExt:ModelAge"
+  output: xmp,person
 XMP-plus_MinorModelAgeDisclosure:
   label: "Minor Model Age Disclosure (XMP) |XMP plus:MinorModelAgeDisclosure"
   output: xmp,admin
-XMP-plus_ModelAge:
-  label: "Model Age (XMP) |XMP plus:ModelAge"
-  output: xmp,person
 XMP-plus_ModelReleaseID:
   label: "Model Release Id (XMP) |XMP plus:ModelReleaseID"
   output: xmp,person
