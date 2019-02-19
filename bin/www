@@ -3,10 +3,19 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
-var debug = require('debug')('get-iptc-pmd:server');
+const app = require('./app');
+var debug = require('debug')('ExifToolServer02:server');
 var http = require('http');
+var fs = require('fs');
+var util = require('util');
+
+var log_file = fs.createWriteStream(__dirname + '/auxdata/console.log', {flags : 'w'});
+var log_stdout = process.stdout;
+
+console.log = function(d) { //
+    log_file.write(util.format(d) + '\n');
+    log_stdout.write(util.format(d) + '\n');
+};
 
 /**
  * Get port from environment and store in Express.

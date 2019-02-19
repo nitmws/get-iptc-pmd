@@ -12,7 +12,7 @@
     "debug": "^3.1.0",
     "express": "^4.16.3",
     "js-yaml": "^3.6.1",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "multer": "^1.2.0",
     "node-exiftool": "^2.0.0",
     "pug": "^2.0.0-beta6",

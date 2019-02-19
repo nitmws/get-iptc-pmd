@@ -32,7 +32,7 @@ const imageFragmentSize = appconfig.data.app.minMetadataHeaderSize;
 
 /**
  * Main function of the getpmd router
- * Parsed format of the request URL: {hostname:port}/:outputformat?/:outputdesign?/:labeltype?/?imgurl=...
+ * Parsed format of the request URL: {hostname:port}/getpmd/:outputformat?/:outputdesign?/:labeltype?/?imgurl=...
  */
 router.get('/:outputfmt?/:outputdesign?/:labeltype?', function(req, res, next) {
     processRequest(req, res);
@@ -129,17 +129,22 @@ function processRequest(req, res) {
                     let wsFilepath = webserverDir + downloadFilename;
                     console.log('Download image file name: ' + downloadFilename);
                     downloadImageFile2(imgurl, dlFilepath, function (data) {
-                        console.log('Result of downloading a file: ' + data);
-                        switch (outputdesign){
-                            case designStds:
-                            case designTopics:
-                                imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputdesign, outputlabeltype);
-                                break;
-                            case designCompStds:
-                                pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputlabeltype);
-                                break;
+                        if (data !== null) {
+                            console.log('Result of downloading a file: ' + data);
+                            switch (outputdesign) {
+                                case designStds:
+                                case designTopics:
+                                    imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputdesign, outputlabeltype);
+                                    break;
+                                case designCompStds:
+                                    pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputlabeltype);
+                                    break;
+                            }
+                            tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + imgurl + '] -> ' + downloadFilename, req)
+                        } else {
+                            tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + imgurl + '] -> NULL (download error)', req);
+                            res.render('noimage1', {imageTitle: imgurl, noImageMessage : 'This image cannot be downloaded from the hosting server.'});
                         }
-                        tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + imgurl + '] -> ' + downloadFilename, req)
                     });
                 }
                 else { // file extension is not applicable

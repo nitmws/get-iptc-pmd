@@ -13,7 +13,13 @@ function write2Log(logline, req) {
     // Logging the IP address may be reactivated under the full legal responsibility of the party running the GET-PMD site
     // let ipaddr = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     let ipaddr = "NA (GDPR)"
-    fs.appendFile(appconfig.data.app.localLogFpath, now.toISOString() + "|" + ipaddr + "|" + req.headers['user-agent'] + "|" + logline + "\r\n", function (err) {
+    let uaheader = "NA";
+    if (req){
+        if (req.headers){
+            uaheader = req.headers['user-agent'];
+        }
+    }
+    fs.appendFile(appconfig.data.app.localLogFpath, now.toISOString() + "|" + ipaddr + "|" + uaheader + "|" + logline + "\r\n", function (err) {
     });
 }
 exports.write2Log = write2Log;
