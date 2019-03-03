@@ -75,11 +75,13 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
                 break;
         }
     }
-    ep.close().then(() => {
-        console.log('Start action: close exiftool');
-    }).catch( err => {
-        // tools1.write2Log('ERROR @default closing of exiftool: ' + err);
-    });
+    if (ep.isOpen) {
+        ep.close().then(() => {
+            console.log('Start action: close exiftool');
+        }).catch(err => {
+            tools1.write2Log('ERROR @default closing of exiftool: ' + err);
+        });
+    }
     // An ExifTool process is started to retrieve the metadata
     ep.open().then((pid) => {
         console.log('Started exiftool process %s', pid);
