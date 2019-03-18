@@ -1,4 +1,4 @@
-# IPTC PMD Std 2014 / ExifTool Tags / PMD Investigation Guide - YAML format
+# IPTC PMD Std 2017.1 / ExifTool Tags / PMD Investigation Guide - YAML format
 # Test Guide below refers to the JSON structure exported by ExifTool
 # HELP: only three types of keys:
 # 1/ the ExifTool field name (the ":" is replaced by a "_" for YAML reasons!!)
@@ -11,7 +11,7 @@
 # Fields inside structures have as value the same as the "label" of top level fields.
 # BE AWARE: this Guide lists only the field names in structures but not how they are held,
 # as single, plain value or in an array. This is derived from the ExifTool JSON retrieved from the image.
-# Status: 2016-11-20, mws
+# Status: 2017-11, mws
 IFD0_Artist :
   label: Creator (Exif - Artist)| Exif/TIFF Artist
   output: exif,rights
