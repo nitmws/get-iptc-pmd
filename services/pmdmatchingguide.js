@@ -1,9 +1,11 @@
 "use strict";
 let fs = require("fs");
+let path = require("path");
 let yaml = require('js-yaml');
 function loadData() {
     try {
-        exports.data = yaml.safeLoad(fs.readFileSync('./config/pmdmatchingguide.yml', 'utf8'));
+        let filepath = path.join(__dirname, '../config/pmdmatchingguide.yml');
+        exports.data = yaml.safeLoad(fs.readFileSync(filepath,'utf8'));
     } catch (e) {
         console.log(e);
     }

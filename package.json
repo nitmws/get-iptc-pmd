@@ -1,9 +1,9 @@
 {
   "name": "get-iptc-pmd",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node startgetpmd.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

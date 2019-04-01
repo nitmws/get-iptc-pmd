@@ -1,8 +1,0 @@
-{
-  "release" : "0.2.0",
-  "timestamp" : "2017-12-31",
-  "history" : [
-    "2017-12-31: up/download of image files limited to about 70kBytes = faster",
-    "2017-01-12: first release of the project"
-  ]
-}
