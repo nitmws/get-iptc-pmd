@@ -32,7 +32,7 @@ exports.write2Log = write2Log;
 function checkForExtension(imgUrl){
     let fnameextOk = false;
     let lastdot = imgUrl.lastIndexOf('.');
-    if (lastdot > - 1 && lastdot + 1 < imgUrl.length){ // there is a dot at a reasonable position in the URL
+    if (lastdot > - 1 && lastdot > (imgUrl.length - 7)){ // there is a dot at a reasonable position in the URL
         let fnameext = imgUrl.substring(lastdot + 1).toLowerCase();
         if (fnameext.startsWith('jpg')){
             return "jpg";
