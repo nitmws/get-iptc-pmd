@@ -11,11 +11,11 @@
     "cookie-parser": "~1.4.3",
     "debug": "^3.1.0",
     "express": "^4.16.3",
-    "js-yaml": "^3.6.1",
+    "js-yaml": "^3.13.1",
     "morgan": "^1.9.1",
     "multer": "^1.2.0",
     "node-exiftool": "^2.0.0",
-    "pug": "^2.0.0-beta6",
+    "pug": "^2.0.4",
     "randomstring": "^1.1.5",
     "request": "^2.88.0",
     "serve-favicon": "^2.5.0"
