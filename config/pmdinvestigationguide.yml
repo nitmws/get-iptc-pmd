@@ -94,7 +94,7 @@ IPTC_ObjectName:
   label: "Title (IIM)|IIM 2:05 Object Name"
   output: iim,admin
 XMP-iptcExt_AdditionalModelInformation:
-  label: "Additional Model Info (XMP) |XMP iptc4xmpExt:AddlModelInfo"
+  label: "Additional Model Info (XMP) |XMP Iptc4xmpExt:AddlModelInfo"
   output: xmp,person
 XMP-iptcExt_ArtworkOrObject:
   label: "Artwork or Object in the Image (XMP) |XMP Iptc4xmpExt:ArtworkOrObject"
@@ -154,7 +154,7 @@ XMP-photoshop_Credit:
   label: "Credit Line (XMP) |XMP photoshop:Credit"
   output: xmp,rights
 XMP-iptcExt_AboutCvTerm:
-  label: "CV Term About Image (XMP) |XMP iptc4xmpExt:ArtworkOrObject"
+  label: "CV Term About Image (XMP) |XMP Iptc4xmpExt:AboutCvTerm"
   output: xmp,gimgcont
   CvId: "CV Id (XMP) |XMP Iptc4xmpExt:CvId"
   CvTermId: " CV Term Id (XMP) |XMP Iptc4xmpExt:CvTermId"
@@ -185,7 +185,7 @@ XMP-iptcExt_Event:
   label: "Event (XMP) |XMP Iptc4xmpExt:Event"
   output: xmp,othings
 XMP-iptcExt_Genre:
-  label: "Genre (of the image) (XMP) |XMP iptc4xmpExt:Genre"
+  label: "Genre (of the image) (XMP) |XMP Iptc4xmpExt:Genre"
   output: xmp,gimgcont
   CvId: "CV Id (XMP) |XMP Iptc4xmpExt:CvId"
   CvTermId: " CV Term Id (XMP) |XMP Iptc4xmpExt:CvTermId"
