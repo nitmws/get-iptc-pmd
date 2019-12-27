@@ -21,9 +21,19 @@ mixin tablerows(rowL1)
                                 td: table(class='pmd1 table-bordered table-striped')
                                     tbody
                                         each rowL3 in rowsL3
+                                            - var singlevalueL3 = rowL3.ptype == "plain";
                                             tr
                                                 td=rowL3.pname
-                                                td=rowL3.pvalue
+                                                if singlevalueL3
+                                                    td=rowL3.pvalue
+                                                else
+                                                    - var rowsL4 = rowL3.pvalue;
+                                                    td: table(class='pmd1 table-bordered table-striped')
+                                                        tbody
+                                                            each rowL4 in rowsL4
+                                                                tr
+                                                                    td=rowL4.pname
+                                                                    td=rowL4.pvalue
 
 
 block content

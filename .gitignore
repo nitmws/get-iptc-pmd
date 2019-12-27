@@ -39,6 +39,7 @@ jspm_packages
 # NIT project specific
 .idea
 *.bak
+*_pre2020.*
 nittest*.html
 node_modules
 apredev1

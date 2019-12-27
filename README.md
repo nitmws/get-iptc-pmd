@@ -1,14 +1,14 @@
 # Get IPTC Photo MetaData (PMD)
 
-A web based system for retrieving embedded IPTC photo metadata from image files. 
+A web based system for retrieving embedded IPTC photo metadata from image files and displaying them. 
 
 Metadata fields may be embedded using IPTC's [IIM](https://iptc.org/standards/iim/), Adobe/ISO's [XMP](http://www.adobe.com/devnet/xmp.html) and CIPA's [Exif](http://www.cipa.jp/std/std-sec_e.html) format.
 
-Metadata fields and their values are retrieved by Phil Harvey's [ExifTool](http://owl.phy.queensu.ca/~phil/exiftool/)
+Metadata fields and their values are retrieved by Phil Harvey's [ExifTool](https://exiftool.org)
 
 The retrieved metadata fields are sorted out and displayed as defined by the [IPTC Photo Metadata Standard](https://iptc.org/standards/photo-metadata/iptc-standard/) 
 
-For the processing of an image either its web URL can be provided or it can be uploaded from a local computer.
+For the processing of an image either its web URL can be used or it can be uploaded from a local computer.
 
 For the display of the data three options are available:
 
@@ -20,13 +20,13 @@ For the display of the labels these three options are available:
 
 * The labels as defined by the IPTC Photo Metadata Standard.
 * The field identifier as defined by the technical standards IIM, XMP and Exif.
-* The field identifier as defined by exiftool
+* The field identifier as defined by ExifTool
 
 A test site of this project is available at [http://getiptcpmd.nitsvc.net](http://getiptcpmd.nitsvc.net)
 
 ## Special Features
 
-* This system is not strictly bound to IPTC metadata; it can be adjusted to any set of metadata supported by exiftools. See more on that below.
+* This system is not strictly bound to IPTC metadata; it can be adjusted to any set of metadata supported by ExifTool. See more on that below.
 * The core web service with its RESTful API can be used with any other user interface. See more on that below.
 * The core web service keeps the required web traffic low: by a parameter in the appconfig.json file one can limit the size of the downloaded data. (Be aware: the metadata are located in the first section of an image file, downloading about 70 KByte from a 6 MByte image may be sufficient for retrieving them.)
 
