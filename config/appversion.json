@@ -1,7 +1,8 @@
 {
-  "release" : "0.2.2",
-  "timestamp" : "2019-04-30",
+  "release" : "0.2.3",
+  "timestamp" : "2019-12-27",
   "history" : [
+    "2019-12-27: minor edits prior to a major rewrite of the processing of metadata",
     "2019-04-30: tools1/checkForExtension: improved testing of lastdot",
     "2019-04-01: accessing config files got a path.join with __dir, appversion moved to config directory",
     "2017-12-31: up/download of image files limited to about 70kBytes = faster",
