@@ -1,0 +1,907 @@
+# ExifTool Tags for the Photo Metadata Investigation Guide (YAML format)
+# The data below build on the JSON structure exported by ExifTool - https://exiftool.org
+# 3 groups of ExifTool property names are available:
+# * topwithprefix = all top level properties, WITH ExifTool group/namespace prefix
+# * topnoprefix = all top level properties, with NO ExifTool prefix
+# * instructure = properties defined as members of a structure
+# The Property Structure, used for each supported photo metadata property
+# 1/ the YAML property name: ExifTool field name (with prefix-versions: the ":" is replaced by a "_" for YAML reasons!!)
+#    Check how the used version of exiftool delivers the XMP field names,
+#        parameters -struct -G1 include the namespace (e.g. XMP-dc:Rights) by default,
+#        parameters -struct -G don't include it (e.g. XMP:Rights)
+# 2/ the sub-property "label": a sequence of IPTC Photo Metadata and technical standard labels, separated by a |
+# 3/ the sub-property "sortorder": a key for sorting properties (below: used only for topwithprefix properties)
+# 4/ the sub-property "output": a sequence of target object(s) for the output, separated by commas
+# The structures have to follow the YAML syntax: they have to be indented by at least 2 spaces
+# BE AWARE: this Guide lists only the field names in structures but not how they are held,
+# as single, plain value or in an array. This is derived from the ExifTool JSON retrieved from the image.
+# BE AWARE: the metadata properties listed below are related to an IPTC Photo Metadata Standard.
+#    See https://iptc.org/standards/photo-metadata/iptc-standard/
+#    All properties defined by it and Exif properties with the same semantics are included.
+#    In addition a few technical metadata.
+# Status: (IPTC PMD Std 2017.1) 2017-11, mws - 2019-11 (IPTC PMD Std 2019.1), mws
+topwithprefix:
+  xCommenttwpfx01: "Presets of properties outside the IPTC PMD Standard"
+  ExifIFD_DateTimeOriginal:
+    label: Date Created (Exif - DateTime Original)|Exif/IFD DateTimeOriginal
+    sortorder: so190z
+    output: exif,admin
+  XMP-x_XMPToolkit:
+    label: XMP Toolkit Version (XMP)|XMP
+    sortorder: so910x
+    output: any
+  ExifTool_ExifToolVersion:
+    label: Exiftool Version used by this system|NA (Exiftool Version)
+    sortorder: so810a
+    output: any
+  System_FileName:
+    label: File Name|NA (File Name)
+    sortorder: so920x
+    output: none
+  xCommenttwpfx02: "END of static presets - INSERT topwithprefix.yml below"
+  XMP-photoshop_City:
+    label: "City (legacy) (XMP)|XMP photoshop:City"
+    sortorder: so110x
+    specidx: "#city-legacy"
+    output: xmp,location
+  IPTC_City:
+    label: "City (legacy) (IIM)|IIM 2:90 City"
+    sortorder: so110i
+    specidx: "#city-legacy"
+    output: iim,location
+  XMP-dc_Rights:
+    label: "Copyright Notice (XMP)|XMP dc:rights"
+    sortorder: so120x
+    specidx: "#copyright-notice"
+    output: xmp,rights
+  IPTC_CopyrightNotice:
+    label: "Copyright Notice (IIM)|IIM 2:116 Copyright Notice"
+    sortorder: so120i
+    specidx: "#copyright-notice"
+    output: iim,rights
+  IFD0_Copyright:
+    label: "Copyright Notice (Exif)|Exif Copyright"
+    sortorder: so120z
+    output: exif,rights
+  XMP-photoshop_Country:
+    label: "Country (legacy) (XMP)|XMP photoshop:Country"
+    sortorder: so130x
+    specidx: "#country-legacy"
+    output: xmp,location
+  IPTC_Country-PrimaryLocationName:
+    label: "Country (legacy) (IIM)|IIM 2:101 Country/Primary Location Name"
+    sortorder: so130i
+    specidx: "#country-legacy"
+    output: iim,location
+  XMP-iptcCore_CountryCode:
+    label: "Country Code (legacy) (XMP)|XMP Iptc4xmpCore:CountryCode"
+    sortorder: so140x
+    specidx: "#country-code-legacy"
+    output: xmp,location
+  IPTC_Country-PrimaryLocationCode:
+    label: "Country Code (legacy) (IIM)|IIM 2:100 Country/Primary Location Code"
+    sortorder: so140i
+    specidx: "#country-code-legacy"
+    output: iim,location
+  XMP-dc_Creator:
+    label: "Creator (XMP)|XMP dc:creator"
+    sortorder: so150x
+    specidx: "#creator"
+    output: xmp,rights
+  IPTC_By-line:
+    label: "Creator (IIM)|IIM 2:80 By-line"
+    sortorder: so150i
+    specidx: "#creator"
+    output: iim,rights
+  IFD0_Artist:
+    label: "Creator (Exif)|Exif Artist"
+    sortorder: so150z
+    output: exif,rights
+  XMP-iptcCore_CreatorContactInfo:
+    label: "Creator's Contact Info (XMP)|XMP Iptc4xmpCore:CreatorContactInfo"
+    sortorder: so160x
+    specidx: "#creator's-contact-info"
+    output: xmp,rights
+  IPTC_Contact:
+    label: "Creator's Contact Info (IIM)|IIM "
+    sortorder: so160i
+    specidx: "#creator's-contact-info"
+    output: iim,rights
+  XMP-photoshop_AuthorsPosition:
+    label: "Creator's jobtitle (XMP)|XMP photoshop:AuthorsPosition"
+    sortorder: so170x
+    specidx: "#creator's-jobtitle"
+    output: xmp,rights
+  IPTC_By-lineTitle:
+    label: "Creator's jobtitle (IIM)|IIM 2:85 By-line Title"
+    sortorder: so170i
+    specidx: "#creator's-jobtitle"
+    output: iim,rights
+  XMP-photoshop_Credit:
+    label: "Credit Line (XMP)|XMP photoshop:Credit"
+    sortorder: so180x
+    specidx: "#credit-line"
+    output: xmp,rights
+  IPTC_Credit:
+    label: "Credit Line (IIM)|IIM 2:110 Credit"
+    sortorder: so180i
+    specidx: "#credit-line"
+    output: iim,rights
+  XMP-photoshop_DateCreated:
+    label: "Date Created (XMP)|XMP photoshop:DateCreated"
+    sortorder: so190x
+    specidx: "#date-created"
+    output: xmp,admin
+  IPTC_DateCreated:
+    label: "Date Created (IIM)|IIM 2:55 Date Created"
+    sortorder: so190i
+    specidx: "#date-created"
+    output: iim,admin
+  IPTC_TimeCreated:
+    label: "Date/time Created (IIM)|IIM 2:60 Time Created"
+    sortorder: so190i
+    specidx: "#date-created"
+    output: iim,admin
+  XMP-dc_Description:
+    label: "Description (XMP)|XMP dc:description"
+    sortorder: so200x
+    specidx: "#description"
+    output: xmp,gimgcont
+  IPTC_Caption-Abstract:
+    label: "Description (IIM)|IIM 2:120 Caption/Abstract"
+    sortorder: so200i
+    specidx: "#description"
+    output: iim,gimgcont
+  XMP-photoshop_CaptionWriter:
+    label: "Description Writer (XMP)|XMP photoshop:CaptionWriter"
+    sortorder: so210x
+    specidx: "#description-writer"
+    output: xmp,admin
+  IPTC_Writer-Editor:
+    label: "Description Writer (IIM)|IIM 2:122 Writer/Editor"
+    sortorder: so210i
+    specidx: "#description-writer"
+    output: iim,admin
+  XMP-photoshop_Headline:
+    label: "Headline (XMP)|XMP photoshop:Headline"
+    sortorder: so220x
+    specidx: "#headline"
+    output: xmp,gimgcont
+  IPTC_Headline:
+    label: "Headline (IIM)|IIM 2:105 Headline"
+    sortorder: so220i
+    specidx: "#headline"
+    output: iim,gimgcont
+  XMP-photoshop_Instructions:
+    label: "Instructions (XMP)|XMP photoshop:Instructions"
+    sortorder: so230x
+    specidx: "#instructions"
+    output: xmp,admin
+  IPTC_SpecialInstructions:
+    label: "Instructions (IIM)|IIM 2:40 Special Instruction"
+    sortorder: so230i
+    specidx: "#instructions"
+    output: iim,admin
+  XMP-iptcCore_IntellectualGenre:
+    label: "Intellectual Genre (XMP)|XMP Iptc4xmpCore:IntellectualGenre"
+    sortorder: so240x
+    specidx: "#intellectual-genre"
+    output: xmp,gimgcont
+  IPTC_ObjectAttributeReference:
+    label: "Intellectual Genre (IIM)|IIM 2:04 Object Attribute Reference"
+    sortorder: so240i
+    specidx: "#intellectual-genre"
+    output: iim,gimgcont
+  XMP-photoshop_TransmissionReference:
+    label: "Job Id (XMP)|XMP photoshop:TransmissionReference"
+    sortorder: so250x
+    specidx: "#job-id"
+    output: xmp,admin
+  IPTC_OriginalTransmissionReference:
+    label: "Job Id (IIM)|IIM 2:103 Original Transmission Reference"
+    sortorder: so250i
+    specidx: "#job-id"
+    output: iim,admin
+  XMP-dc_Subject:
+    label: "Keywords (XMP)|XMP dc:subject"
+    sortorder: so260x
+    specidx: "#keywords"
+    output: xmp,gimgcont
+  IPTC_Keywords:
+    label: "Keywords (IIM)|IIM 2:25 Keywords"
+    sortorder: so260i
+    specidx: "#keywords"
+    output: iim,gimgcont
+  XMP-photoshop_State:
+    label: "Province or State (legacy) (XMP)|XMP photoshop:State"
+    sortorder: so270x
+    specidx: "#province-or-state-legacy"
+    output: xmp,location
+  IPTC_Province-State:
+    label: "Province or State (legacy) (IIM)|IIM 2:95 Province/State"
+    sortorder: so270i
+    specidx: "#province-or-state-legacy"
+    output: iim,location
+  XMP-xmpRights_UsageTerms:
+    label: "Rights Usage Terms (XMP)|XMP xmpRights:UsageTerms"
+    sortorder: so280x
+    specidx: "#rights-usage-terms"
+    output: xmp,licensing
+  XMP-iptcCore_Scene:
+    label: "Scene Code (XMP)|XMP Iptc4xmpCore:Scene"
+    sortorder: so290x
+    specidx: "#scene-code"
+    output: xmp,gimgcont
+  XMP-photoshop_Source:
+    label: "Source (XMP)|XMP photoshop:Source"
+    sortorder: so300x
+    specidx: "#source"
+    output: xmp,rights
+  IPTC_Source:
+    label: "Source (IIM)|IIM 2:115 Source"
+    sortorder: so300i
+    specidx: "#source"
+    output: iim,rights
+  XMP-iptcCore_SubjectCode:
+    label: "Subject Code (XMP)|XMP Iptc4xmpCore:SubjectCode"
+    sortorder: so310x
+    specidx: "#subject-code"
+    output: xmp,gimgcont
+  IPTC_SubjectReference:
+    label: "Subject Code (IIM)|IIM 2:12 Subject Reference"
+    sortorder: so310i
+    specidx: "#subject-code"
+    output: iim,gimgcont
+  XMP-iptcCore_Location:
+    label: "Sublocation (legacy) (XMP)|XMP Iptc4xmpCore:Location"
+    sortorder: so320x
+    specidx: "#sublocation-legacy"
+    output: xmp,location
+  IPTC_Sub-location:
+    label: "Sublocation (legacy) (IIM)|IIM 2:92 Sublocation"
+    sortorder: so320i
+    specidx: "#sublocation-legacy"
+    output: iim,location
+  XMP-dc_Title:
+    label: "Title (XMP)|XMP dc:title"
+    sortorder: so330x
+    specidx: "#title"
+    output: xmp,admin
+  IPTC_ObjectName:
+    label: "Title (IIM)|IIM 2:05 Object Name"
+    sortorder: so330i
+    specidx: "#title"
+    output: iim,admin
+  XMP-iptcExt_AdditionalModelInformation:
+    label: "Additional Model Information (XMP)|XMP Iptc4xmpExt:AddlModelInfo"
+    sortorder: so340x
+    specidx: "#additional-model-information"
+    output: xmp,person
+  XMP-iptcExt_ArtworkOrObject:
+    label: "Artwork or Object in the Image (XMP)|XMP Iptc4xmpExt:ArtworkOrObject"
+    sortorder: so350x
+    specidx: "#artwork-or-object-in-the-image"
+    output: xmp,othings
+  XMP-iptcExt_OrganisationInImageCode:
+    label: "Code of Organisation Featured in the Image (XMP)|XMP Iptc4xmpExt:OrganisationInImageCode"
+    sortorder: so360x
+    specidx: "#code-of-organisation-featured-in-the-image"
+    output: xmp,othings
+  XMP-plus_CopyrightOwner:
+    label: "Copyright Owner (XMP)|XMP plus:CopyrightOwner"
+    sortorder: so370x
+    specidx: "#copyright-owner"
+    output: xmp,rights
+  XMP-iptcExt_AboutCvTerm:
+    label: "CV-Term About Image (XMP)|XMP Iptc4xmpExt:AboutCvTerm"
+    sortorder: so380x
+    specidx: "#cv-term-about-image"
+    output: xmp,gimgcont
+  XMP-iptcExt_DigitalImageGUID:
+    label: "Digital Image GUID (XMP)|XMP Iptc4xmpExt:DigImageGUID"
+    sortorder: so390x
+    specidx: "#digital-image-guid"
+    output: xmp,admin
+  XMP-iptcExt_DigitalSourceType:
+    label: "Digital Source Type (XMP)|XMP Iptc4xmpExt:DigitalSourceType"
+    sortorder: so400x
+    specidx: "#digital-source-type"
+    output: xmp,admin
+  XMP-iptcExt_EmbdEncRightsExpr:
+    label: "Embedded Encoded Rights Expression (XMP)|XMP Iptc4xmpExt:EmbdEncRightsExpr"
+    sortorder: so410x
+    specidx: "#embedded-encoded-rights-expression"
+    output: xmp,licensing
+  XMP-iptcExt_Event:
+    label: "Event (XMP)|XMP Iptc4xmpExt:Event"
+    sortorder: so420x
+    specidx: "#event"
+    output: xmp,othings
+  XMP-iptcExt_Genre:
+    label: "Genre (XMP)|XMP Iptc4xmpExt:Genre"
+    sortorder: so430x
+    specidx: "#genre"
+    output: xmp,gimgcont
+  XMP-plus_ImageCreator:
+    label: "Image Creator (XMP)|XMP plus:ImageCreator"
+    sortorder: so440x
+    specidx: "#image-creator"
+    output: xmp,rights
+  XMP-xmp_Rating:
+    label: "Image Rating (XMP)|XMP xmp:Rating"
+    sortorder: so450x
+    specidx: "#image-rating"
+    output: xmp,gimgcont
+  XMP-iptcExt_ImageRegion:
+    label: "Image Region (XMP)|XMP Iptc4xmpExt:ImageRegion"
+    sortorder: so460x
+    specidx: "#image-region"
+    output: xmp,imgreg
+  XMP-iptcExt_RegistryID:
+    label: "Image Registry Entry (XMP)|XMP Iptc4xmpExt:RegistryId"
+    sortorder: so470x
+    specidx: "#image-registry-entry"
+    output: xmp,admin
+  XMP-plus_ImageSupplier:
+    label: "Image Supplier (XMP)|XMP plus:ImageSupplier"
+    sortorder: so480x
+    specidx: "#image-supplier"
+    output: xmp,licensing
+  XMP-plus_ImageSupplierImageID:
+    label: "Image Supplier Image ID (XMP)|XMP plus:ImageSupplierImageID"
+    sortorder: so490x
+    specidx: "#image-supplier-image-id"
+    output: xmp,licensing
+  XMP-plus_Licensor:
+    label: "Licensor (XMP)|XMP plus:Licensor"
+    sortorder: so500x
+    specidx: "#licensor"
+    output: xmp,licensing
+  XMP-iptcExt_LinkedEncRightsExpr:
+    label: "Linked  Encoded Rights Expression (XMP)|XMP Iptc4xmpExt:LinkedEncRightsExpr"
+    sortorder: so510x
+    specidx: "#linked--encoded-rights-expression"
+    output: xmp,licensing
+  XMP-iptcExt_LocationCreated:
+    label: "Location created (XMP)|XMP Iptc4xmpExt:LocationCreated"
+    sortorder: so520x
+    specidx: "#location-created"
+    output: xmp,location
+  XMP-iptcExt_LocationShown:
+    label: "Location Shown in the Image (XMP)|XMP Iptc4xmpExt:LocationShown"
+    sortorder: so530x
+    specidx: "#location-shown-in-the-image"
+    output: xmp,location
+  XMP-iptcExt_MaxAvailHeight:
+    label: "Max Avail Height (XMP)|XMP Iptc4xmpExt:MaxAvailHeight"
+    sortorder: so540x
+    specidx: "#max-avail-height"
+    output: xmp,admin
+  XMP-iptcExt_MaxAvailWidth:
+    label: "Max Avail Width (XMP)|XMP Iptc4xmpExt:MaxAvailWidth"
+    sortorder: so550x
+    specidx: "#max-avail-width"
+    output: xmp,admin
+  XMP-plus_MinorModelAgeDisclosure:
+    label: "Minor Model Age Disclosure (XMP)|XMP plus:MinorModelAgeDisclosure"
+    sortorder: so560x
+    specidx: "#minor-model-age-disclosure"
+    output: xmp,person
+  XMP-iptcExt_ModelAge:
+    label: "Model Age (XMP)|XMP Iptc4xmpExt:ModelAge"
+    sortorder: so570x
+    specidx: "#model-age"
+    output: xmp,person
+  XMP-plus_ModelReleaseID:
+    label: "Model Release Id (XMP)|XMP plus:ModelReleaseID"
+    sortorder: so580x
+    specidx: "#model-release-id"
+    output: xmp,person
+  XMP-plus_ModelReleaseStatus:
+    label: "Model Release Status (XMP)|XMP plus:ModelReleaseStatus"
+    sortorder: so590x
+    specidx: "#model-release-status"
+    output: xmp,person
+  XMP-iptcExt_OrganisationInImageName:
+    label: "Name of Organisation Featured in the Image (XMP)|XMP Iptc4xmpExt:OrganisationInImageName"
+    sortorder: so600x
+    specidx: "#name-of-organisation-featured-in-the-image"
+    output: xmp,othings
+  XMP-iptcExt_PersonInImage:
+    label: "Person Shown in the Image (XMP)|XMP Iptc4xmpExt:PersonInImage"
+    sortorder: so610x
+    specidx: "#person-shown-in-the-image"
+    output: xmp,person
+  XMP-iptcExt_PersonInImageWDetails:
+    label: "Person Shown in the Image with Details (XMP)|XMP Iptc4xmpExt:PersonInImageWDetails"
+    sortorder: so620x
+    specidx: "#person-shown-in-the-image-with-details"
+    output: xmp,person
+  XMP-iptcExt_ProductInImage:
+    label: "Product Shown in the Image (XMP)|XMP Iptc4xmpExt:ProductInImage"
+    sortorder: so640x
+    specidx: "#product-shown-in-the-image"
+    output: xmp,othings
+  XMP-plus_PropertyReleaseID:
+    label: "Property Release Id (XMP)|XMP plus:PropertyReleaseID"
+    sortorder: so650x
+    specidx: "#property-release-id"
+    output: xmp,rights
+  XMP-plus_PropertyReleaseStatus:
+    label: "Property Release Status (XMP)|XMP plus:PropertyReleaseStatus"
+    sortorder: so660x
+    specidx: "#property-release-status"
+    output: xmp,rights
+  XMP-xmpRights_WebStatement:
+    label: "Web Statement of Rights (XMP)|XMP xmpRights:WebStatement"
+    sortorder: so670x
+    specidx: "#web-statement-of-rights"
+    output: xmp,rights
+topnoprefix:
+  City:
+    label: "City (legacy) (XMP)|XMP photoshop:City"
+    sortorder: so110x
+    specidx: "#city-legacy"
+  Rights:
+    label: "Copyright Notice (XMP)|XMP dc:rights"
+    sortorder: so120x
+    specidx: "#copyright-notice"
+  CopyrightNotice:
+    label: "Copyright Notice (IIM)|IIM 2:116 Copyright Notice"
+    sortorder: so120i
+    specidx: "#copyright-notice"
+  Copyright:
+    label: "Copyright Notice (Exif)|Exif XXX"
+    sortorder: so120z
+  Country:
+    label: "Country (legacy) (XMP)|XMP photoshop:Country"
+    sortorder: so130x
+    specidx: "#country-legacy"
+  Country-PrimaryLocationName:
+    label: "Country (legacy) (IIM)|IIM 2:101 Country/Primary Location Name"
+    sortorder: so130i
+    specidx: "#country-legacy"
+  CountryCode:
+    label: "Country Code (legacy) (XMP)|XMP Iptc4xmpCore:CountryCode"
+    sortorder: so140x
+    specidx: "#country-code-legacy"
+  Country-PrimaryLocationCode:
+    label: "Country Code (legacy) (IIM)|IIM 2:100 Country/Primary Location Code"
+    sortorder: so140i
+    specidx: "#country-code-legacy"
+  Creator:
+    label: "Creator (XMP)|XMP dc:creator"
+    sortorder: so150x
+    specidx: "#creator"
+  By-line:
+    label: "Creator (IIM)|IIM 2:80 By-line"
+    sortorder: so150i
+    specidx: "#creator"
+  Artist:
+    label: "Creator (Exif)|Exif XXX"
+    sortorder: so150z
+  CreatorContactInfo:
+    label: "Creator's Contact Info (XMP)|XMP Iptc4xmpCore:CreatorContactInfo"
+    sortorder: so160x
+    specidx: "#creator's-contact-info"
+  Contact:
+    label: "Creator's Contact Info (IIM)|IIM "
+    sortorder: so160i
+    specidx: "#creator's-contact-info"
+  AuthorsPosition:
+    label: "Creator's jobtitle (XMP)|XMP photoshop:AuthorsPosition"
+    sortorder: so170x
+    specidx: "#creator's-jobtitle"
+  By-lineTitle:
+    label: "Creator's jobtitle (IIM)|IIM 2:85 By-line Title"
+    sortorder: so170i
+    specidx: "#creator's-jobtitle"
+  Credit:
+    label: "Credit Line (XMP)|XMP photoshop:Credit"
+    sortorder: so180x
+    specidx: "#credit-line"
+  DateCreated:
+    label: "Date Created (XMP)|XMP photoshop:DateCreated"
+    sortorder: so190x
+    specidx: "#date-created"
+  DateCreated+IPTC:TimeCreated:
+    label: "Date Created (IIM)|IIM 2:55 Date Created"
+    sortorder: so190i
+    specidx: "#date-created"
+  Description:
+    label: "Description (XMP)|XMP dc:description"
+    sortorder: so200x
+    specidx: "#description"
+  Caption-Abstract:
+    label: "Description (IIM)|IIM 2:120 Caption/Abstract"
+    sortorder: so200i
+    specidx: "#description"
+  CaptionWriter:
+    label: "Description Writer (XMP)|XMP photoshop:CaptionWriter"
+    sortorder: so210x
+    specidx: "#description-writer"
+  Writer-Editor:
+    label: "Description Writer (IIM)|IIM 2:122 Writer/Editor"
+    sortorder: so210i
+    specidx: "#description-writer"
+  Headline:
+    label: "Headline (XMP)|XMP photoshop:Headline"
+    sortorder: so220x
+    specidx: "#headline"
+  Instructions:
+    label: "Instructions (XMP)|XMP photoshop:Instructions"
+    sortorder: so230x
+    specidx: "#instructions"
+  SpecialInstructions:
+    label: "Instructions (IIM)|IIM 2:40 Special Instruction"
+    sortorder: so230i
+    specidx: "#instructions"
+  IntellectualGenre:
+    label: "Intellectual Genre (XMP)|XMP Iptc4xmpCore:IntellectualGenre"
+    sortorder: so240x
+    specidx: "#intellectual-genre"
+  ObjectAttributeReference:
+    label: "Intellectual Genre (IIM)|IIM 2:04 Object Attribute Reference"
+    sortorder: so240i
+    specidx: "#intellectual-genre"
+  TransmissionReference:
+    label: "Job Id (XMP)|XMP photoshop:TransmissionReference"
+    sortorder: so250x
+    specidx: "#job-id"
+  OriginalTransmissionReference:
+    label: "Job Id (IIM)|IIM 2:103 Original Transmission Reference"
+    sortorder: so250i
+    specidx: "#job-id"
+  Subject:
+    label: "Keywords (XMP)|XMP dc:subject"
+    sortorder: so260x
+    specidx: "#keywords"
+  Keywords:
+    label: "Keywords (IIM)|IIM 2:25 Keywords"
+    sortorder: so260i
+    specidx: "#keywords"
+  State:
+    label: "Province or State (legacy) (XMP)|XMP photoshop:State"
+    sortorder: so270x
+    specidx: "#province-or-state-legacy"
+  Province-State:
+    label: "Province or State (legacy) (IIM)|IIM 2:95 Province/State"
+    sortorder: so270i
+    specidx: "#province-or-state-legacy"
+  UsageTerms:
+    label: "Rights Usage Terms (XMP)|XMP xmpRights:UsageTerms"
+    sortorder: so280x
+    specidx: "#rights-usage-terms"
+  Scene:
+    label: "Scene Code (XMP)|XMP Iptc4xmpCore:Scene"
+    sortorder: so290x
+    specidx: "#scene-code"
+  Source:
+    label: "Source (XMP)|XMP photoshop:Source"
+    sortorder: so300x
+    specidx: "#source"
+  SubjectCode:
+    label: "Subject Code (XMP)|XMP Iptc4xmpCore:SubjectCode"
+    sortorder: so310x
+    specidx: "#subject-code"
+  SubjectReference:
+    label: "Subject Code (IIM)|IIM 2:12 Subject Reference"
+    sortorder: so310i
+    specidx: "#subject-code"
+  Location:
+    label: "Sublocation (legacy) (XMP)|XMP Iptc4xmpCore:Location"
+    sortorder: so320x
+    specidx: "#sublocation-legacy"
+  Sub-location:
+    label: "Sublocation (legacy) (IIM)|IIM 2:92 Sublocation"
+    sortorder: so320i
+    specidx: "#sublocation-legacy"
+  Title:
+    label: "Title (XMP)|XMP dc:title"
+    sortorder: so330x
+    specidx: "#title"
+  ObjectName:
+    label: "Title (IIM)|IIM 2:05 Object Name"
+    sortorder: so330i
+    specidx: "#title"
+  AdditionalModelInformation:
+    label: "Additional Model Information (XMP)|XMP Iptc4xmpExt:AddlModelInfo"
+    sortorder: so340x
+    specidx: "#additional-model-information"
+  ArtworkOrObject:
+    label: "Artwork or Object in the Image (XMP)|XMP Iptc4xmpExt:ArtworkOrObject"
+    sortorder: so350x
+    specidx: "#artwork-or-object-in-the-image"
+  OrganisationInImageCode:
+    label: "Code of Organisation Featured in the Image (XMP)|XMP Iptc4xmpExt:OrganisationInImageCode"
+    sortorder: so360x
+    specidx: "#code-of-organisation-featured-in-the-image"
+  CopyrightOwner:
+    label: "Copyright Owner (XMP)|XMP plus:CopyrightOwner"
+    sortorder: so370x
+    specidx: "#copyright-owner"
+  AboutCvTerm:
+    label: "CV-Term About Image (XMP)|XMP Iptc4xmpExt:AboutCvTerm"
+    sortorder: so380x
+    specidx: "#cv-term-about-image"
+  DigitalImageGUID:
+    label: "Digital Image GUID (XMP)|XMP Iptc4xmpExt:DigImageGUID"
+    sortorder: so390x
+    specidx: "#digital-image-guid"
+  DigitalSourceType:
+    label: "Digital Source Type (XMP)|XMP Iptc4xmpExt:DigitalSourceType"
+    sortorder: so400x
+    specidx: "#digital-source-type"
+  EmbdEncRightsExpr:
+    label: "Embedded Encoded Rights Expression (XMP)|XMP Iptc4xmpExt:EmbdEncRightsExpr"
+    sortorder: so410x
+    specidx: "#embedded-encoded-rights-expression"
+  Event:
+    label: "Event (XMP)|XMP Iptc4xmpExt:Event"
+    sortorder: so420x
+    specidx: "#event"
+  Genre:
+    label: "Genre (XMP)|XMP Iptc4xmpExt:Genre"
+    sortorder: so430x
+    specidx: "#genre"
+  ImageCreator:
+    label: "Image Creator (XMP)|XMP plus:ImageCreator"
+    sortorder: so440x
+    specidx: "#image-creator"
+  Rating:
+    label: "Image Rating (XMP)|XMP xmp:Rating"
+    sortorder: so450x
+    specidx: "#image-rating"
+  ImageRegion:
+    label: "Image Region (XMP)|XMP Iptc4xmpExt:ImageRegion"
+    sortorder: so460x
+    specidx: "#image-region"
+  RegistryID:
+    label: "Image Registry Entry (XMP)|XMP Iptc4xmpExt:RegistryId"
+    sortorder: so470x
+    specidx: "#image-registry-entry"
+  ImageSupplier:
+    label: "Image Supplier (XMP)|XMP plus:ImageSupplier"
+    sortorder: so480x
+    specidx: "#image-supplier"
+  ImageSupplierImageID:
+    label: "Image Supplier Image ID (XMP)|XMP plus:ImageSupplierImageID"
+    sortorder: so490x
+    specidx: "#image-supplier-image-id"
+  Licensor:
+    label: "Licensor (XMP)|XMP plus:Licensor"
+    sortorder: so500x
+    specidx: "#licensor"
+  LinkedEncRightsExpr:
+    label: "Linked  Encoded Rights Expression (XMP)|XMP Iptc4xmpExt:LinkedEncRightsExpr"
+    sortorder: so510x
+    specidx: "#linked--encoded-rights-expression"
+  LocationCreated:
+    label: "Location created (XMP)|XMP Iptc4xmpExt:LocationCreated"
+    sortorder: so520x
+    specidx: "#location-created"
+  LocationShown:
+    label: "Location Shown in the Image (XMP)|XMP Iptc4xmpExt:LocationShown"
+    sortorder: so530x
+    specidx: "#location-shown-in-the-image"
+  MaxAvailHeight:
+    label: "Max Avail Height (XMP)|XMP Iptc4xmpExt:MaxAvailHeight"
+    sortorder: so540x
+    specidx: "#max-avail-height"
+  MaxAvailWidth:
+    label: "Max Avail Width (XMP)|XMP Iptc4xmpExt:MaxAvailWidth"
+    sortorder: so550x
+    specidx: "#max-avail-width"
+  MinorModelAgeDisclosure:
+    label: "Minor Model Age Disclosure (XMP)|XMP plus:MinorModelAgeDisclosure"
+    sortorder: so560x
+    specidx: "#minor-model-age-disclosure"
+  ModelAge:
+    label: "Model Age (XMP)|XMP Iptc4xmpExt:ModelAge"
+    sortorder: so570x
+    specidx: "#model-age"
+  ModelReleaseID:
+    label: "Model Release Id (XMP)|XMP plus:ModelReleaseID"
+    sortorder: so580x
+    specidx: "#model-release-id"
+  ModelReleaseStatus:
+    label: "Model Release Status (XMP)|XMP plus:ModelReleaseStatus"
+    sortorder: so590x
+    specidx: "#model-release-status"
+  OrganisationInImageName:
+    label: "Name of Organisation Featured in the Image (XMP)|XMP Iptc4xmpExt:OrganisationInImageName"
+    sortorder: so600x
+    specidx: "#name-of-organisation-featured-in-the-image"
+  PersonInImage:
+    label: "Person Shown in the Image (XMP)|XMP Iptc4xmpExt:PersonInImage"
+    sortorder: so610x
+    specidx: "#person-shown-in-the-image"
+  PersonInImageWDetails:
+    label: "Person Shown in the Image with Details (XMP)|XMP Iptc4xmpExt:PersonInImageWDetails"
+    sortorder: so620x
+    specidx: "#person-shown-in-the-image-with-details"
+  ProductInImage:
+    label: "Product Shown in the Image (XMP)|XMP Iptc4xmpExt:ProductInImage"
+    sortorder: so640x
+    specidx: "#product-shown-in-the-image"
+  PropertyReleaseID:
+    label: "Property Release Id (XMP)|XMP plus:PropertyReleaseID"
+    sortorder: so650x
+    specidx: "#property-release-id"
+  PropertyReleaseStatus:
+    label: "Property Release Status (XMP)|XMP plus:PropertyReleaseStatus"
+    sortorder: so660x
+    specidx: "#property-release-status"
+  WebStatement:
+    label: "Web Statement of Rights (XMP)|XMP xmpRights:WebStatement"
+    sortorder: so670x
+    specidx: "#web-statement-of-rights"
+instructure:
+  xCommentInstr01: "Below: properties of PLUS structures"
+  CopyrightOwnerID:
+    label: "Id (XMP) |XMP plus:CopyrightOwnerID"
+  CopyrightOwnerName:
+    label: "Name (XMP) |XMP plus:CopyrightOwnerName"
+  ImageCreatorID:
+    label: "Id (XMP) |XMP plus:ImageCreatorID"
+  ImageCreatorName:
+    label: "Name (XMP) |XMP plus:ImageCreatorName"
+  ImageSupplierID:
+    label: "Id (XMP) |XMP plus:ImageSupplierID"
+  ImageSupplierName:
+    label: "Name (XMP) |XMP plus:ImageSupplierName"
+  LicensorCity:
+    label: "City (XMP) |XMP plus:LicensorCity"
+  LicensorCountry:
+    label: "Country (XMP) |XMP plus:LicensorCountry"
+  LicensorEmail:
+    label: "Email (XMP) |XMP plus: "
+  LicensorExtendedAddress:
+    label: "Ext Address (XMP) |XMP plus:LicensorEmail"
+  LicensorID:
+    label: "Id (XMP) |XMP plus:LicensorID"
+  LicensorName:
+    label: "Name (XMP) |XMP plus:LicensorName"
+  LicensorPostalCode:
+    label: "Postal Code (XMP) |XMP plus:LicensorPostalCode"
+  LicensorRegion:
+    label: "Region (XMP) |XMP plus:LicensorRegion"
+  LicensorStreetAddress:
+    label: "Street (XMP) |XMP plus:LicensorStreetAddress"
+  LicensorTelephone1:
+    label: "Telephone 1 (XMP) |XMP plus:LicensorTelephone1"
+  LicensorTelephone2:
+    label: "Telephone 2 (XMP) |XMP plus:LicensorTelephone2"
+  LicensorURL:
+    label: "Web URL (XMP) |XMP plus:LicensorURL"
+  xCommentInstr02: "END of PLUS properties presets - INSERT instructure.yml below"
+  CiAdrExtadr:
+    label: "Address (XMP)|XMP Iptc4xmpCore:CiAdrExtadr"
+  CiAdrCity:
+    label: "City (XMP)|XMP Iptc4xmpCore:CiAdrCity"
+  CiAdrCtry:
+    label: "Country (XMP)|XMP Iptc4xmpCore:CiAdrCtry"
+  CiEmailWork:
+    label: "Email address(es) (XMP)|XMP Iptc4xmpCore:CiEmailWork"
+  CiTelWork:
+    label: "Phone number(s) (XMP)|XMP Iptc4xmpCore:CiTelWork"
+  CiAdrPcode:
+    label: "Postal Code (XMP)|XMP Iptc4xmpCore:CiAdrPcode"
+  CiAdrRegion:
+    label: "State/Province (XMP)|XMP Iptc4xmpCore:CiAdrRegion"
+  CiUrlWork:
+    label: "Web URL(s) (XMP)|XMP Iptc4xmpCore:CiUrlWork"
+  AOCircaDateCreated:
+    label: "Circa Date Created (XMP)|XMP Iptc4xmpExt:AOCircaDateCreated"
+  AOContentDescription:
+    label: "Content Description (XMP)|XMP Iptc4xmpExt:AOContentDescription"
+  AOContributionDescription:
+    label: "Contribution Description (XMP)|XMP Iptc4xmpExt:AOContributionDescription"
+  AOCopyrightNotice:
+    label: "Copyright Notice (XMP)|XMP Iptc4xmpExt:AOCopyrightNotice"
+  AOCreator:
+    label: "Creator (XMP)|XMP Iptc4xmpExt:AOCreator"
+  AOCreatorId:
+    label: "Creator ID (XMP)|XMP Iptc4xmpExt:AOCreatorId"
+  AOCurrentCopyrightOwnerId:
+    label: "Current Copyright Owner ID (XMP)|XMP Iptc4xmpExt:AOCurrentCopyrightOwnerId"
+  AOCurrentCopyrightOwnerName:
+    label: "Current Copyright Owner Name (XMP)|XMP Iptc4xmpExt:AOCurrentCopyrightOwnerName"
+  AOCurrentLicensorId:
+    label: "Current Licensor ID (XMP)|XMP Iptc4xmpExt:AOCurrentLicensorId"
+  AOCurrentLicensorName:
+    label: "Current Licensor Name (XMP)|XMP Iptc4xmpExt:AOCurrentLicensorName"
+  AODateCreated:
+    label: "Date Created (XMP)|XMP Iptc4xmpExt:AODateCreated"
+  AOPhysicalDescription:
+    label: "Physical Description (XMP)|XMP Iptc4xmpExt:AOPhysicalDescription"
+  AOSource:
+    label: "Source (XMP)|XMP Iptc4xmpExt:AOSource"
+  AOSourceInvNo:
+    label: "Source Inventory Number (XMP)|XMP Iptc4xmpExt:AOSourceInvNo"
+  AOSourceInvURL:
+    label: "Source Inventory URL (XMP)|XMP Iptc4xmpExt:AOSourceInvURL"
+  AOStylePeriod:
+    label: "Style Period (XMP)|XMP Iptc4xmpExt:AOStylePeriod"
+  AOTitle:
+    label: "Title (XMP)|XMP Iptc4xmpExt:AOTitle"
+  CvId:
+    label: "CV-Term CV ID (XMP)|XMP Iptc4xmpExt:CvId"
+  CvTermId:
+    label: "CV-Term ID (XMP)|XMP Iptc4xmpExt:CvTermId"
+  CvTermName:
+    label: "CV-Term name (XMP)|XMP Iptc4xmpExt:CvTermName"
+  CvTermRefinedAbout:
+    label: "Refined 'about' Relationship of the CV-Term (XMP)|XMP Iptc4xmpExt:CvTermRefinedAbout"
+  EncRightsExpr:
+    label: "Encoded Rights Expression (XMP)|XMP Iptc4xmpExt:EncRightsExpr"
+  RightsExprEncType:
+    label: "Encoding type (XMP)|XMP Iptc4xmpExt:RightsExprEncType"
+  RightsExprLangId:
+    label: "Rights Expression Language ID (XMP)|XMP Iptc4xmpExt:RightsExprLangId"
+  Identifier:
+    label: "Identifier (XMP)|XMP xmp:Identifier"
+  Name:
+    label: "Name (XMP)|XMP Iptc4xmpExt:Name"
+  RegionBoundary:
+    label: "Region Boundary (XMP)|XMP Iptc4xmpExt:RegionBoundary"
+  RiD:
+    label: "Region Identifier (XMP)|XMP Iptc4xmpExt:rId"
+  RCtype:
+    label: "Region Content Type (XMP)|XMP Iptc4xmpExt:rCtype"
+  RRole:
+    label: "Region Role (XMP)|XMP Iptc4xmpExt:rRole"
+  RbShape:
+    label: "Boundary Shape (XMP)|XMP Iptc4xmpExt:rbShape"
+  RbUnit:
+    label: "Boundary Measuring Unit (XMP)|XMP Iptc4xmpExt:rbUnit"
+  RbX:
+    label: "X-Axis Coordinate (XMP)|XMP Iptc4xmpExt:rbX"
+  RbY:
+    label: "Y-Axis Coordinate (XMP)|XMP Iptc4xmpExt:rbY"
+  RbW:
+    label: "Rectangle Width (XMP)|XMP Iptc4xmpExt:rbW"
+  RbH:
+    label: "Rectangle Height (XMP)|XMP Iptc4xmpExt:rbH"
+  RbRx:
+    label: "Circle Radius (XMP)|XMP Iptc4xmpExt:rbRx"
+  RbVertices:
+    label: "Polygon Vertices (XMP)|XMP Iptc4xmpExt:rbVertices"
+  LinkedRightsExpr:
+    label: "Link to Encoded Rights Expression (XMP)|XMP Iptc4xmpExt:LinkedRightsExpr"
+  City:
+    label: "City (XMP)|XMP Iptc4xmpExt:City"
+  CountryCode:
+    label: "Country ISO-Code (XMP)|XMP Iptc4xmpExt:CountryCode"
+  CountryName:
+    label: "Country Name (XMP)|XMP Iptc4xmpExt:CountryName"
+  LocationId:
+    label: "Location Identifier (XMP)|XMP Iptc4xmpExt:LocationId"
+  LocationName:
+    label: "Location Name (XMP)|XMP Iptc4xmpExt:LocationName"
+  ProvinceState:
+    label: "Province or State (XMP)|XMP Iptc4xmpExt:ProvinceState"
+  Sublocation:
+    label: "Sublocation (XMP)|XMP Iptc4xmpExt:Sublocation"
+  WorldRegion:
+    label: "World Region (XMP)|XMP Iptc4xmpExt:WorldRegion"
+  PersonCharacteristic:
+    label: "Characteristics (XMP)|XMP Iptc4xmpExt:PersonCharacteristic"
+  PersonDescription:
+    label: "Description (XMP)|XMP Iptc4xmpExt:PersonDescription"
+  PersonId:
+    label: "Identifier (XMP)|XMP Iptc4xmpExt:PersonId"
+  PersonName:
+    label: "Name (XMP)|XMP Iptc4xmpExt:PersonName"
+  ProductDescription:
+    label: "Description (XMP)|XMP Iptc4xmpExt:ProductDescription"
+  ProductGTIN:
+    label: "GTIN (XMP)|XMP Iptc4xmpExt:ProductGTIN"
+  ProductName:
+    label: "Name (XMP)|XMP Iptc4xmpExt:ProductName"
+  RegItemId:
+    label: "Item Id (XMP)|XMP Iptc4xmpExt:RegItemId"
+  RegOrgId:
+    label: "Organisation Id (XMP)|XMP Iptc4xmpExt:RegOrgId"
+  RegEntryRole:
+    label: "Role (XMP)|XMP Iptc4xmpExt:RegEntryRole"
