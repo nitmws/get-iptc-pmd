@@ -15,7 +15,7 @@ block content
         div(class="row")
             div(class="col-md-6 techmdbox") original size:#{techMd.width}x#{techMd.height}, colorspace:#{techMd.colorspace}, compression:#{techMd.compression}
         div(class="row")
-            div(class="col-md-6 topspace2") The tables below show the IPTC Field Names in alphabetical order.<br>For fields with multiple values they are separated by a comma.<br>Go to the <a href='https://www.iptc.org/std/photometadata/documentation/userguide' target='_blank'>IPTC Photo Metadata User Guide</a> for information about the fields and how to use them.
+            div(class="col-md-6 topspace2") The tables below show the IPTC Field Names in alphabetical order, they are linked to the specification in the IPTC Photo Metadata Standard.<br>Fields with multiple occurrences show an index in []-brackets as prefix.<br>Go to the <a href='https://www.iptc.org/std/photometadata/documentation/userguide' target='_blank'>IPTC Photo Metadata User Guide</a> for information about how the fields should be used.
         div(class="row topspace1")
             - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             - var ilfncompare = '/getpmd/html/compare/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
@@ -31,8 +31,9 @@ block content
                         th Field Value
                 tbody
                     each iimprop in iimOutObj
+                        - var propspecurl = "https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata" + iimprop.pspecidx
                         tr
-                            td=iimprop.pname
+                            td <a href="#{propspecurl}">#{iimprop.pname}</a>
                             td=iimprop.pvalue
 
             h2 XMP - IPTC Photo Metadata Fields
@@ -45,7 +46,8 @@ block content
                     each rowL1 in xmpOutObj
                         tr
                             - var singlevalueL1 = rowL1.ptype == "plain";
-                            td=rowL1.pname
+                            - var rowL1specurl = "https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata" + rowL1.pspecidx
+                            td <a href="#{rowL1specurl}">#{rowL1.pname}</a>
                             if singlevalueL1
                                 td=rowL1.pvalue
                             else

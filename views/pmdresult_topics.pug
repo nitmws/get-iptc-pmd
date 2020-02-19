@@ -3,7 +3,8 @@ extends layout
 mixin tablerows(rowL1)
     tr
         - var singlevalueL1 = rowL1.ptype == "plain";
-        td=rowL1.pname
+        - var rowL1specurl = "https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata" + rowL1.pspecidx
+        td <a href="#{rowL1specurl}">#{rowL1.pname}</a>
         if singlevalueL1
             td=rowL1.pvalue
         else
@@ -51,7 +52,7 @@ block content
         div(class="row")
             div(class="col-md-6 techmdbox") original size:#{techMd.width}x#{techMd.height}, colorspace:#{techMd.colorspace}, compression:#{techMd.compression}
         div(class="row topspace2")
-            div(class="col-md-8") The tables below show the IPTC Field Names in alphabetical order.<br>For fields with multiple values they are separated by a comma.<br>The grouping of fields is the same as in the <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/howtoeditmetadatafor1.htm' target='_blank'>IPTC Photo Metadata User Guide</a> - click on the headings of the sections.
+            div(class="col-md-8") The tables below show the IPTC Field Names in alphabetical order, they are linked to the specification in the IPTC Photo Metadata Standard.<br>Fields with multiple occurrences show an index in []-brackets as prefix.<br>The grouping of fields is the same as in the <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_how_to_edit_metadata_for' target='_blank'>IPTC Photo Metadata User Guide</a> - click on the headings of the sections.
         div(class="row topspace1")
             - var ilfnstds = '/getpmd/html/stds/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             - var ilfncompare = '/getpmd/html/compare/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
@@ -59,7 +60,7 @@ block content
 
         div(class="resultdata1")
 
-            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/generalimagecontent.htm' target='_blank'>Fields About Image Content in General</a>
+            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_general_image_content' target='_blank'>Fields About Image Content in General</a>
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -69,7 +70,7 @@ block content
                     each rowL1a in gimgcontOutObj
                         +tablerows(rowL1a)
 
-            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/personsdepictedintheimage.htm' target='_blank'>Fields About Persons</a>
+            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_persons_depicted_in_the_image' target='_blank'>Fields About Persons</a>
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -79,7 +80,7 @@ block content
                     each rowL1a in personOutObj
                         +tablerows(rowL1a)
 
-            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/locations.htm' target='_blank'>Fields About Locations</a>
+            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_locations' target='_blank'>Fields About Locations</a>
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -89,7 +90,7 @@ block content
                     each rowL1a in locationOutObj
                         +tablerows(rowL1a)
 
-            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/otherthingsshownintheimage.htm' target='_blank'>Fields About Other Things in the Image</a>
+            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_other_things_shown_in_the_image' target='_blank'>Fields About Other Things in the Image</a>
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -100,7 +101,7 @@ block content
                         +tablerows(rowL1a)
 
 
-            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/rightsinformation.htm' target='_blank'>Fields with Rights Information</a>
+            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_rights_information' target='_blank'>Fields with Rights Information</a>
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -111,7 +112,7 @@ block content
                         +tablerows(rowL1a)
 
 
-            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/licensinguseoftheimage.htm' target='_blank'>Fields About Licensing</a>
+            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_licensing_use_of_the_image' target='_blank'>Fields About Licensing</a>
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -121,7 +122,7 @@ block content
                     each rowL1a in licOutObj
                         +tablerows(rowL1a)
 
-            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#!Documents/administrationandcommissioningdetails.htm' target='_blank'>Fields About Administration and Commissioning</a>
+            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_administration_and_commissioning_details' target='_blank'>Fields About Administration and Commissioning</a>
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -129,6 +130,16 @@ block content
                         th Field Value
                 tbody
                     each rowL1a in adminOutObj
+                        +tablerows(rowL1a)
+
+            h2 <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_image_regions' target='_blank'>Image Region Metadata</a>
+            table(class='pmd1 table-bordered table-striped table-curved')
+                thead
+                    tr
+                        th Field Name
+                        th Field Value
+                tbody
+                    each rowL1a in imgregOutObj
                         +tablerows(rowL1a)
 
             h2 Any other data

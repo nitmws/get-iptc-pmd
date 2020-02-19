@@ -110,7 +110,7 @@ function processRequest(req, res) {
     imgurl = decodeURIComponent(imgurl);
     let downloadFilename = 'dlimg-' + randomstring.generate(8);
     if (imgurl !== 'NA') {
-        if (imgurl.toLowerCase() == 'v') {
+        if (imgurl.toLowerCase() === 'v') {
             res.render('appversion', {theappversion: systemVersion});
         }
         else {
@@ -207,9 +207,9 @@ function processRequest(req, res) {
  */
 function validateFormallyImageUrl(imgUrl) {
     let isOk = false;
-    if (imgUrl.indexOf('https://') == 0)
+    if (imgUrl.indexOf('https://')=== 0)
         isOk = true;
-    if (imgUrl.indexOf('http://') == 0)
+    if (imgUrl.indexOf('http://') === 0)
         isOk = true;
     if (isOk) {
         if (imgUrl.length > 18)
@@ -227,7 +227,7 @@ function validateFormallyImageUrl(imgUrl) {
 function downloadImageFile2(imgUrl, destFn, callback) {
     let portNr = 80;
     let protType = 'http';
-    if (imgUrl.indexOf('https') == 0)
+    if (imgUrl.indexOf('https') === 0)
     {
         portNr = 443;
         protType = 'https';
@@ -300,59 +300,5 @@ function downloadImageFile2(imgUrl, destFn, callback) {
         callback(null);
     });
 }
-
-/* version 1 - replaced by downloadImageFile2, above
-function downloadImageFile(imgUrl, destFn, callback) {
-    let portNr = 80;
-    let protType = 'http';
-    if (imgUrl.indexOf('https') == 0)
-    {
-        portNr = 443;
-        protType = 'https';
-    }
-    let hostname = url.parse(imgUrl).host;
-    let pos1 = imgUrl.indexOf(hostname);
-    // var path1 = url.parse(imgUrl).path; // core path only
-    let path1 = imgUrl.substring(pos1 + hostname.length); // including queries as this might be required by APIs
-    let options = {
-            host: hostname,
-            port: portNr,
-            path: path1
-        };
-        // file_name = url.parse(imgUrl).pathname.split('/').pop(),
-        //Creating the file
-    let file = fs.createWriteStream(destFn, {flags: 'w', encoding: 'binary'});
-    console.log('Downloading file from ' + imgUrl);
-    console.log('to ' + destFn);
-    if (protType === 'http') {
-        http.get(options, function (res) {
-            res.pipe(file, {end: 'false'});
-            //When the file is complete
-            res.on('end', function () {
-                //Closing the file
-                file.end();
-                console.log('Downloaded ' + destFn);
-                callback(destFn);
-            });
-        });
-    }
-    if (protType === 'https') {
-        https.get(options, function (res) {
-            res.pipe(file, {end: 'false'});
-            //When the file is complete
-            res.on('end', function () {
-                //Closing the file
-                file.end();
-                console.log('Downloaded ' + destFn);
-                callback(destFn);
-            });
-        });
-    }
-    process.on('uncaughtException', function(err) {
-        console.log('Cannot download ' + imgUrl + ' (' + err + ')');
-        callback(null);
-    });
-}
-*/
 
 module.exports = router;

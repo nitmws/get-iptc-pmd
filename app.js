@@ -11,9 +11,6 @@ var upload = require('./routes/upload');
 var checkpage = require('./routes/checkpage');
 var listurls = require('./routes/listurls');
 
-// for testing
-// var getpmdt1 = require('./routes/getpmdt1');
-
 var app = express();
 
 // view engine setup
@@ -33,9 +30,6 @@ app.use('/getpmd', getpmd);
 app.use('/upload', upload);
 app.use('/checkpage', checkpage);
 app.use('/listurls', listurls);
-
-
-// app.use('/getpmdt1', getpmdt1); // for testing purposes
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
