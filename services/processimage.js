@@ -1,9 +1,3 @@
-"use strict";
-
-let fs = require("fs");
-let appconfig = require("./appconfig"); // configuration of this app
-appconfig.loadConfigData("");
-
 let tools1 = require('../services/tools1');
 
 const exiftool = require('node-exiftool');
@@ -21,6 +15,7 @@ let refStruPropNames = getPropnames(pmdinvguide.data.instructure);
 const designStds = 'perstandards'; // metadata fields grouped per standard
 const designTopics = 'pertopics'; // metadata fields grouped per topic
 const designCompStds = 'comparestandards'; // comparing IPTC properties used across formats
+const designIsearch1 = 'isearch1'; // IPTC metadata relevant for image search results (variant 1)
 
 // codes to control the PUGJS output
 const plainptype = "plain"; // the value of this property is plain text
@@ -40,7 +35,6 @@ module.exports = { processImageFileAsHtml };
  * @param outputdesign - code of the output design
  */
 function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, imglfn, outputdesign, labeltype) {
-
     // Arrays of objects for output of the PMD in different sections of the HTML output
     // for the 'perstandard' design
     let iimOutObjarr = [];
@@ -59,6 +53,11 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
     let anyOutObjarrTopic = [];
     let noneOutObjarrStd = [];
     let noneOutObjarrTopic = [];
+    // for special feature designs
+    let isearch1SpecOutObjarr = []; // for the design of image search metadata
+    let noneOutObjarrSpec = [];
+    // for other purposes
+    let schemaorgObjarr = []; // container of schema.org metadata (property name/value pair objects)
 
     let labelId = -1;
     if (labeltype === undefined){
@@ -95,6 +94,8 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
             // these target... objects are set by the PMD Investigation Guide
             let targetObjStd = null; // values will be set later
             let targetObjTopics = null; // values will be set later
+            // ... for special output designs:
+            let targetObjSpecIsearch1 = null; // values will be set later
 
 
             let topPmdPropNames = Object.getOwnPropertyNames(pmdresult.data[0]);
@@ -119,6 +120,7 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
                 let outputList = propOutputAll.split(','); // array of all 'output' terms
                 // iterate array and set where a property should be displayed
                 for (let io = 0; io < outputList.length; io++){
+                    targetObjSpecIsearch1 = noneOutObjarrSpec;
                     switch(outputList[io]){
                         case 'iim':
                             targetObjStd = iimOutObjarr;
@@ -157,9 +159,13 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
                             targetObjTopics = anyOutObjStdarr;
                             targetObjStd = anyOutObjarrTopic;
                             break;
+                        case 'isearch1':
+                            targetObjSpecIsearch1 = isearch1SpecOutObjarr;
+                            break;
                         default :
                             targetObjStd = noneOutObjarrStd;
                             targetObjTopics = noneOutObjarrTopic;
+                            targetObjSpecIsearch1 = noneOutObjarrSpec;
                             break;
                     }
                 }
@@ -173,7 +179,7 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
                     if (topProp.length > 0){
                         if (typeof topProp[0] === 'object' ){ // array items are objects
                             propType = structptype;
-                            propValue = getPropValueData(topProp, labelId)[pvdValue]; // investigate the value object of the topProp
+                            propValue = getPropValueData(topProp, labelId, schemaorgObjarr)[pvdValue]; // investigate the value object of the topProp
                         }
                         else { // array items are a string, make a single one out of them
                             let pvalueConcat = "";
@@ -191,7 +197,7 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
 
                     if (typeof topProp === 'object' ){ // the value is an object
                         propType = structptype;
-                        propValue = getPropValueData(topProp, labelId)[pvdValue]; // investigate the value object of the topProp
+                        propValue = getPropValueData(topProp, labelId, schemaorgObjarr)[pvdValue]; // investigate the value object of the topProp
                     }
                     else { // the value is a string
                         propType = plainptype;
@@ -201,6 +207,11 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
 
                 addPropObject(targetObjStd, propType, propLabel, propSortorder, topPropSpecidx, propValue);
                 addPropObject(targetObjTopics, propType, propLabel, propSortorder, topPropSpecidx, propValue);
+                addPropObject(targetObjSpecIsearch1, propType, propLabel, propSortorder, topPropSpecidx, propValue);
+
+                if (pmdinvguide.data.topwithprefix[topPmdPropName4ref].schemaorgpropname){
+                    addSchemaorgProp(schemaorgObjarr, pmdinvguide.data.topwithprefix[topPmdPropName4ref].schemaorgpropname, propValue);
+                }
 
             } // eo: iterate across all top level property names found in the pmd result
 
@@ -217,14 +228,20 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
             licOutObjarr.sort(compareBySortorder);
             adminOutObjarr.sort(compareBySortorder);
             anyOutObjarrTopic.sort(compareBySortorder);
+            isearch1SpecOutObjarr.sort(compareBySortorder);
 
             let techMd = tools1.getTechMd(pmdresult.data[0]);
+
             switch(outputdesign) {
                 case designStds:
                     res.render('pmdresult_stds', { imageTitle: imgtitle, imgurl, imgwsfpath, imglfn, labeltype, techMd, iimOutObj: iimOutObjarr, xmpOutObj: xmpOutObjarr, exifOutObj: exifOutObjarr, anyOutObjStd: anyOutObjStdarr });
                     break;
                 case designTopics:
                     res.render('pmdresult_topics', { imageTitle: imgtitle, imgurl, imgwsfpath, imglfn, labeltype, techMd, gimgcontOutObj: gimgcontOutObjarr, personOutObj: personOutObjarr, locationOutObj: locationOutObjarr, othingsOutObj: othingsOutObjarr, rightsOutObj: rightsOutObjarr, licOutObj: licOutObjarr, adminOutObj: adminOutObjarr, imgregOutObj: imgregOutObjarr, anyOutObjTopic: anyOutObjarrTopic });
+                    break;
+                case designIsearch1:
+                    let codeStr = transfromSchemaorgObj2Code1(schemaorgObjarr, imgurl);
+                    res.render('pmdresult_isearch1', {imageTitle: imgtitle, imgurl, imgwsfpath, imglfn, labeltype, techMd, isearch1OutObj: isearch1SpecOutObjarr, schemaorgCode: codeStr});
                     break;
                 case designCompStds:
                     break;
@@ -293,12 +310,13 @@ function addPropObject (modObjArr, proptype, propname, propsortorder, propspecid
  * @param labelId
  * @returns {{}}
  */
-function getPropValueData (propValueObj, labelId){
+function getPropValueData (propValueObj, labelId, schemaorgObjArr){
     let propValueData = {};
     let propArr = []; // this array collects all sub-properties of propValueObj, if they exist
     let propType = undefined;
     let propValue = undefined;
     let propValueObjIsArray = Array.isArray(propValueObj);
+    let schemaorgPname = undefined;
     if (propValueObjIsArray){ // propValueObj is an array of plain values or objects
         if (propValueObj.length > 0){
             if (typeof propValueObj[0] === 'object' ){ // array items are objects, investigate each one
@@ -323,6 +341,13 @@ function getPropValueData (propValueObj, labelId){
                                     if (pmdinvguide.data.topwithprefix[childPropName4ref].specidx){
                                         childPropSpecidx = pmdinvguide.data.topwithprefix[childPropName4ref].specidx;
                                     }
+                                    if (pmdinvguide.data.topwithprefix[childPropName4ref].schemaorgpropname){
+                                        schemaorgPname = pmdinvguide.data.topwithprefix[childPropName4ref].schemaorgpropname;
+                                    }
+                                    else{
+                                        schemaorgPname = undefined;
+                                    }
+
                                 }
                             }
                             else {
@@ -330,16 +355,31 @@ function getPropValueData (propValueObj, labelId){
                                 if (pmdinvguide.data.topnoprefix[childPropName4ref].specidx){
                                     childPropSpecidx = pmdinvguide.data.topnoprefix[childPropName4ref].specidx;
                                 }
+                                if (pmdinvguide.data.topnoprefix[childPropName4ref].schemaorgpropname){
+                                    schemaorgPname = pmdinvguide.data.topwithprefix[childPropName4ref].schemaorgpropname;
+                                }
+                                else{
+                                    schemaorgPname = undefined;
+                                }
                             }
                         }
                         else {
                             childPropLabel = tools1.getLabelPart(childPropName + "|" + pmdinvguide.data.instructure[childPropName4ref].label, labelId);
+                            if (pmdinvguide.data.instructure[childPropName4ref].schemaorgpropname){
+                                schemaorgPname = pmdinvguide.data.instructure[childPropName4ref].schemaorgpropname;
+                            }
+                            else{
+                                schemaorgPname = undefined;
+                            }
                         }
                         // childPropName found in reference list
-                        let childPropValueData = getPropValueData(propValueObj[arrIdx][childPropName], labelId);
+                        let childPropValueData = getPropValueData(propValueObj[arrIdx][childPropName], labelId, schemaorgObjArr);
                         let displayChildPropLabel = '[' + (arrIdx + 1).toString() + '] ' + childPropLabel;
                         addPropObject(propArr, childPropValueData[pvdType], displayChildPropLabel, '', childPropSpecidx,
                           childPropValueData[pvdValue]);
+                        if (schemaorgPname !== undefined){
+                            addSchemaorgProp(schemaorgObjArr, schemaorgPname, childPropValueData[pvdValue]);
+                        }
                     }
                 }
             }
@@ -370,17 +410,32 @@ function getPropValueData (propValueObj, labelId){
                     }
                     else {
                         childPropLabel = tools1.getLabelPart(childPropName + "|" + pmdinvguide.data.topnoprefix[childPropName4ref].label, labelId);
-                        if (pmdinvguide.data.topwithprefix[childPropName4ref].specidx){
+                        if (pmdinvguide.data.topnoprefix[childPropName4ref].specidx){
                             childPropSpecidx = pmdinvguide.data.topnoprefix[childPropName4ref].specidx;
+                        }
+                        if (pmdinvguide.data.topnoprefix[childPropName4ref].schemaorgpropname){
+                            schemaorgPname = pmdinvguide.data.topnoprefix[childPropName4ref].schemaorgpropname;
+                        }
+                        else{
+                            schemaorgPname = undefined;
                         }
                     }
                 }
                 else {
                     childPropLabel = tools1.getLabelPart(childPropName + "|" + pmdinvguide.data.instructure[childPropName4ref].label, labelId);
+                    if (pmdinvguide.data.instructure[childPropName4ref].schemaorgpropname){
+                        schemaorgPname = pmdinvguide.data.instructure[childPropName4ref].schemaorgpropname;
+                    }
+                    else{
+                        schemaorgPname = undefined;
+                    }
                 }
                 // childPropName found in reference list
-                let childPropValueData = getPropValueData(propValueObj[childPropName], labelId);
+                let childPropValueData = getPropValueData(propValueObj[childPropName], labelId, schemaorgObjArr);
                 addPropObject(propArr, childPropValueData[pvdType], childPropLabel, '', childPropSpecidx, childPropValueData[pvdValue]);
+                if (schemaorgPname !== undefined){
+                    addSchemaorgProp(schemaorgObjArr, schemaorgPname, childPropValueData[pvdValue]);
+                }
             }
         }
         else { // the value is a plain value = a string
@@ -405,6 +460,92 @@ function getPropValueData (propValueObj, labelId){
     propValueData[pvdType] = propType;
     propValueData[pvdValue] = propValue;
     return propValueData;
+}
+
+/**
+ * Adds a schema.org pmd property object to an array
+ * @param modSchemaorgObjArr
+ * @param propname
+ * @param propvalue
+ */
+function addSchemaorgProp (modSchemaorgObjArr, propname, propvalue){
+    if (propname === undefined){ return; }
+    if (propvalue === undefined){ return; }
+    let schemaorgProp = {
+        pname: propname,
+        pvalue: propvalue
+    }
+    modSchemaorgObjArr.push(schemaorgProp);
+}
+
+
+/**
+ * Transforms an array of schema.org property objects to a string for the HTML code element
+ * @param schemaorgObjArr - the array of schema.org property objects
+ * @param imgUrl - the URL of the image being the subject of the metadata
+ * @returns {string}
+ */
+function transfromSchemaorgObj2Code1(schemaorgObjArr, imgUrl){
+    if (imgUrl === undefined){ return '';}
+    if (imgUrl === ''){ return '';}
+    let codeStr = '{\n  "@context": "https://schema.org",\n  "@type": "ImageObject",\n';
+    codeStr += '  "url": "' + imgUrl + '"';
+    let usedschemaorgProps = [];
+    for(let idx = 0; idx < schemaorgObjArr.length; idx++){
+        if (schemaorgObjArr[idx].pname){
+            let schemaorgPname = schemaorgObjArr[idx].pname;
+            if (usedschemaorgProps.includes(schemaorgPname)){
+                continue;
+            }
+            else {
+                usedschemaorgProps.push(schemaorgPname);
+            }
+            if (schemaorgObjArr[idx].pvalue) {
+                codeStr += ',\n  "' + schemaorgPname + '": "' + schemaorgObjArr[idx].pvalue + '"';
+            }
+        }
+    }
+    codeStr += '\n}'
+    return codeStr;
+}
+
+/**
+ * Transforms an array of schema.org property objects to an array of strings for HTML code elements
+ * @param schemaorgObjArr - the array of schema.org property objects
+ * @param imgUrl - the URL of the image being the subject of the metadata
+ * @returns {string[]}
+ */
+function transfromSchemaorgObj2Code2(schemaorgObjArr, imgUrl){
+    if (imgUrl === undefined){ return '';}
+    if (imgUrl === ''){ return '';}
+    let tempStr = '';
+    let codeArr = [];
+    codeArr.push('{');
+    codeArr.push('"@context": "https://schema.org",');
+    codeArr.push('"@type": "ImageObject",');
+    tempStr = '"url": "' + imgUrl + '",'
+    codeArr.push(tempStr);
+    let usedschemaorgProps = [];
+    for(let idx = 0; idx < schemaorgObjArr.length; idx++){
+        if (schemaorgObjArr[idx].pname){
+            let schemaorgPname = schemaorgObjArr[idx].pname;
+            if (usedschemaorgProps.includes(schemaorgPname)){
+                continue;
+            }
+            else {
+                usedschemaorgProps.push(schemaorgPname);
+            }
+            if (schemaorgObjArr[idx].pvalue) {
+                tempStr = '"' + schemaorgPname + '": "' + schemaorgObjArr[idx].pvalue + '"';
+                if (idx < (schemaorgObjArr.length - 1)){
+                    tempStr += ','
+                }
+                codeArr.push(tempStr);
+            }
+        }
+    }
+    codeArr.push('}');
+    return codeArr;
 }
 
 /**

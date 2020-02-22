@@ -1,0 +1,94 @@
+extends layout
+
+mixin tablerows(rowL1)
+    tr
+        - var singlevalueL1 = rowL1.ptype === "plain";
+        - var rowL1specurl = "https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata" + rowL1.pspecidx
+        td <a href="#{rowL1specurl}">#{rowL1.pname}</a>
+        if singlevalueL1
+            td=rowL1.pvalue
+        else
+            - var rowsL2 = rowL1.pvalue
+            td: table(class='pmd1 table-bordered table-striped')
+                tbody
+                    each rowL2 in rowsL2
+                        - var singlevalueL2 = rowL2.ptype === "plain";
+                        tr
+                            td=rowL2.pname
+                            if singlevalueL2
+                                td=rowL2.pvalue
+                            else
+                                - var rowsL3 = rowL2.pvalue;
+                                td: table(class='pmd1 table-bordered table-striped')
+                                    tbody
+                                        each rowL3 in rowsL3
+                                            - var singlevalueL3 = rowL3.ptype === "plain";
+                                            tr
+                                                td=rowL3.pname
+                                                if singlevalueL3
+                                                    td=rowL3.pvalue
+                                                else
+                                                    - var rowsL4 = rowL3.pvalue;
+                                                    td: table(class='pmd1 table-bordered table-striped')
+                                                        tbody
+                                                            each rowL4 in rowsL4
+                                                                tr
+                                                                    td=rowL4.pname
+                                                                    td=rowL4.pvalue
+
+
+block content
+    div(class='container')
+        div(class="col-md-1")
+            <img src="/images/logo.jpg"/>
+        h1 Get IPTC Photo Metadata
+        div(class="row")
+            div(class="col-md-6") ... as retrieved from the image file: <strong>#{imageTitle}</strong>
+        div(class="row")
+            if imgurl === 'local'
+                div(class="col-md-6") Uploaded local files are not displayed
+            else
+                div(class="col-md-6") <img src="#{imgurl}" width="300">
+        div(class="row")
+            div(class="col-md-6 techmdbox") original size:#{techMd.width}x#{techMd.height}, colorspace:#{techMd.colorspace}, compression:#{techMd.compression}
+        div(class="row topspace2")
+            div(class="col-md-8") The tables below show the IPTC Field Names in alphabetical order, they are linked to the specification in the IPTC Photo Metadata Standard.<br>Fields with multiple occurrences show an index in []-brackets as prefix.<br>The grouping of fields is the same as in the <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_how_to_edit_metadata_for' target='_blank'>IPTC Photo Metadata User Guide</a> - click on the headings of the sections.
+        div(class="row topspace1")
+            - var ilfnstds = '/getpmd/html/stds/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
+            - var ilfncompare = '/getpmd/html/compare/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
+            div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfnstds}">Grouped by technical standards</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">Grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">Compared fields</a></span>
+
+        div(class="resultdata1")
+            h2 Fields relevant for photos shown as result by search engines
+            table(class='pmd1 table-bordered table-striped table-curved')
+                thead
+                    tr
+                        th Field Name
+                        th Field Value
+                tbody
+                    each rowL1a in isearch1OutObj
+                        +tablerows(rowL1a)
+
+            h3 Use by Google Image search
+
+            h4 Shown in the <a href="https://iptc.org/standards/photo-metadata/quick-guide-to-iptc-photo-metadata-and-google-images/">Image Credit</a> (since autumn 2018)
+            ul
+                li Copyright Notice (IIM and/or XMP)
+                li Creator (IIM and/or XMP)
+                li Credit line (IIM and/or XMP)
+
+            h4 Shown with the <a href="https://developers.google.com/search/docs/data-types/image-license-metadata" targer="_blank">Licensable badge</a> (NOT yet, later in 2020)
+            ul
+                li Web Statement of Rights (XMP): if it exists the <strong>Licensable</strong> badge is set
+                li Web Statement of Rights (XMP): if it holds a valid URL it is used as link of <strong>License details</strong>
+                li Licensor - Web URL (XMP): if it holds a valid URL it is used as link of the <strong>supplier's/licensor's name</strong>
+
+            p See below the structured HTML metadata corresponding to the existing IPTC photo metadata (using the JSON-LD format):
+            pre
+                code #{schemaorgCode}
+
+            div(class="row topspace2")
+                div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfnstds}">Grouped by technical standards</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">Grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">Compared fields</a></span>
+
+

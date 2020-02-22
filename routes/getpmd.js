@@ -27,6 +27,7 @@ let defaultImgLabel = appconfig.data.app.defaultimageLabel;
 const designStds = 'perstandards';
 const designTopics = 'pertopics';
 const designCompStds = 'comparestandards';
+const designIsearch1 = 'isearch1';
 
 const imageFragmentSize = appconfig.data.app.minMetadataHeaderSize;
 
@@ -82,6 +83,9 @@ function processRequest(req, res) {
         case 'compare':
             outputdesign = designCompStds;
             break;
+        case 'isearch1':
+            outputdesign = designIsearch1;
+            break;
         default:
             outputdesign = designStds;
             break;
@@ -134,6 +138,7 @@ function processRequest(req, res) {
                             switch (outputdesign) {
                                 case designStds:
                                 case designTopics:
+                                case designIsearch1:
                                     imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputdesign, outputlabeltype);
                                     break;
                                 case designCompStds:
@@ -174,6 +179,7 @@ function processRequest(req, res) {
             switch (outputdesign) {
                 case designStds:
                 case designTopics:
+                case designIsearch1:
                     imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imgurl3, imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
@@ -189,6 +195,7 @@ function processRequest(req, res) {
             switch (outputdesign) {
                 case designStds:
                 case designTopics:
+                case designIsearch1:
                     imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, defaultImgLabel, 'local', imglfn, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:

@@ -53,12 +53,12 @@ topwithprefix:
     label: "Copyright Notice (XMP)|XMP dc:rights"
     sortorder: so120x
     specidx: "#copyright-notice"
-    output: xmp,rights
+    output: xmp,rights,isearch1
   IPTC_CopyrightNotice:
     label: "Copyright Notice (IIM)|IIM 2:116 Copyright Notice"
     sortorder: so120i
     specidx: "#copyright-notice"
-    output: iim,rights
+    output: iim,rights,isearch1
   IFD0_Copyright:
     label: "Copyright Notice (Exif)|Exif Copyright"
     sortorder: so120z
@@ -87,12 +87,12 @@ topwithprefix:
     label: "Creator (XMP)|XMP dc:creator"
     sortorder: so150x
     specidx: "#creator"
-    output: xmp,rights
+    output: xmp,rights,isearch1
   IPTC_By-line:
     label: "Creator (IIM)|IIM 2:80 By-line"
     sortorder: so150i
     specidx: "#creator"
-    output: iim,rights
+    output: iim,rights,isearch1
   IFD0_Artist:
     label: "Creator (Exif)|Exif Artist"
     sortorder: so150z
@@ -121,12 +121,12 @@ topwithprefix:
     label: "Credit Line (XMP)|XMP photoshop:Credit"
     sortorder: so180x
     specidx: "#credit-line"
-    output: xmp,rights
+    output: xmp,rights,isearch1
   IPTC_Credit:
     label: "Credit Line (IIM)|IIM 2:110 Credit"
     sortorder: so180i
     specidx: "#credit-line"
-    output: iim,rights
+    output: iim,rights,isearch1
   XMP-photoshop_DateCreated:
     label: "Date Created (XMP)|XMP photoshop:DateCreated"
     sortorder: so190x
@@ -356,7 +356,7 @@ topwithprefix:
     label: "Licensor (XMP)|XMP plus:Licensor"
     sortorder: so500x
     specidx: "#licensor"
-    output: xmp,licensing
+    output: xmp,licensing,isearch1
   XMP-iptcExt_LinkedEncRightsExpr:
     label: "Linked  Encoded Rights Expression (XMP)|XMP Iptc4xmpExt:LinkedEncRightsExpr"
     sortorder: so510x
@@ -435,8 +435,9 @@ topwithprefix:
   XMP-xmpRights_WebStatement:
     label: "Web Statement of Rights (XMP)|XMP xmpRights:WebStatement"
     sortorder: so670x
+    schemaorgpropname: "license"
     specidx: "#web-statement-of-rights"
-    output: xmp,rights
+    output: xmp,rights,isearch1
 topnoprefix:
   City:
     label: "City (legacy) (XMP)|XMP photoshop:City"
@@ -734,6 +735,7 @@ topnoprefix:
     specidx: "#property-release-status"
   WebStatement:
     label: "Web Statement of Rights (XMP)|XMP xmpRights:WebStatement"
+    schemaorgpropname: "license"
     sortorder: so670x
     specidx: "#web-statement-of-rights"
 instructure:
@@ -774,6 +776,7 @@ instructure:
     label: "Telephone 2 (XMP) |XMP plus:LicensorTelephone2"
   LicensorURL:
     label: "Web URL (XMP) |XMP plus:LicensorURL"
+    schemaorgpropname: "acquireLicensePage"
   xCommentInstr02: "END of PLUS properties presets - INSERT instructure.yml below"
   CiAdrExtadr:
     label: "Address (XMP)|XMP Iptc4xmpCore:CiAdrExtadr"

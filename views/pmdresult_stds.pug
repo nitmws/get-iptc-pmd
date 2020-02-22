@@ -19,7 +19,8 @@ block content
         div(class="row topspace1")
             - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             - var ilfncompare = '/getpmd/html/compare/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
-            div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">See compared fields</a></span>
+            - var ilfnisearch1 = '/getpmd/html/isearch1/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
+            div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">Grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">Compared fields</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfnisearch1}">Search engine fields</a></span>
 
         div(class="resultdata1")
 
@@ -106,8 +107,6 @@ block content
 
 
             div(class="row topspace2")
-                - var ilfntopics = '/getpmd/html/topics/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
-                - var ilfncompare = '/getpmd/html/compare/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
-                div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">See grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">See compared fields</a></span>
+                div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">Grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">Compared fields</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfnisearch1}">Search engine fields</a></span>
 
 
