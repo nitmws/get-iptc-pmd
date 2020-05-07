@@ -33,9 +33,10 @@ let storage = uploadStorage({
     }
 });
 
-const designStds = 'perstandards';
-const designTopics = 'pertopics';
-const designCompStds = 'comparestandards';
+const designStds = 'perstandards'; // metadata fields grouped per standard
+const designTopics = 'pertopics'; // metadata fields grouped per topic
+const designCompStds = 'comparestandards'; // comparing IPTC properties used across formats
+const designIsearch1 = 'isearch1'; // IPTC metadata relevant for image search results (variant 1)
 
 
 router.post('/', multer({ storage : storage}).single('userPhoto'), function(req, res, next) {
@@ -89,6 +90,9 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
             case 'compare':
                 outputdesign = designCompStds;
                 break;
+            case 'isearch1':
+                outputdesign = designIsearch1;
+                break;
             default:
                 outputdesign = designStds;
                 break;
@@ -106,6 +110,7 @@ router.post('/', multer({ storage : storage}).single('userPhoto'), function(req,
             switch (outputdesign){
                 case designStds:
                 case designTopics:
+                case designIsearch1:
                     imgproc1.processImageFileAsHtml(res, ulFilepath, wsFilepath, imgTitle, 'local', ulFilename, outputdesign, outputlabeltype);
                     break;
                 case designCompStds:
