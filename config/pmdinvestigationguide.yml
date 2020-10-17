@@ -85,6 +85,8 @@ topwithprefix:
     output: iim,location
   XMP-dc_Creator:
     label: "Creator (XMP)|XMP dc:creator"
+    labellocal:
+      de: "Ersteller (XMP)|XMP dc:creator"
     sortorder: so150x
     specidx: "#creator"
     output: xmp,rights,isearch1
