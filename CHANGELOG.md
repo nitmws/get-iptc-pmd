@@ -2,6 +2,10 @@
 
 (Latest changes at the top)
 
+### Version 0.6.0
+
+Feature of showing metadata property labels in different languages added.
+
 ### Version 0.5.0
 
 Design isearch1 added. It uses PMD properties with the "isearch1" tag in the output sub-property in  pmdinvestigationguide.yml. Further it uses a retrieved metadata property if the sub-property "schemaorgpropname" exists for a PMD property in the pmdinvestigationguide.yml and creates a set of schema.org metadata properties.

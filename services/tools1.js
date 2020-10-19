@@ -25,6 +25,29 @@ function write2Log(logline, req) {
 exports.write2Log = write2Log;
 
 /**
+ * Gets the preferred language from the config file or from the browser
+ *  by checking the accept-language header
+ * @param req
+ */
+function getPreferredLang(req){
+    let prefLang = 'en' // set default preferred lang
+    if (appconfig.data.app.defaultlang){
+        prefLang = appconfig.data.app.defaultlang}
+    else {
+        let rawAcceptLanguageHdr = req.headers['accept-language'];
+        if (rawAcceptLanguageHdr !== ''){
+            let acceptedLangs = rawAcceptLanguageHdr.split(',')
+            prefLang = acceptedLangs[0]
+            if (prefLang.includes('-')){
+                prefLang = prefLang.split('.')[0]
+            }
+        }
+    }
+    return prefLang;
+}
+exports.getPreferredLang = getPreferredLang;
+
+/**
  * Checks the image URL for a file name extension
  * @param imgUrl
  * @returns {*}

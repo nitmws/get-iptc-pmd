@@ -91,15 +91,7 @@ function processRequest(req, res) {
             break;
     }
 
-    let topAcceptedLang = 'en' // set default lang
-    let rawAcceptLanguage = req.headers['accept-language'];
-    if (rawAcceptLanguage !== ''){
-        let acceptedLangs = rawAcceptLanguage.split(',')
-        topAcceptedLang = acceptedLangs[0]
-        if (topAcceptedLang.includes('-')){
-            topAcceptedLang = topAcceptedLang.split('.')[0]
-        }
-    }
+    let prefLang = tools1.getPreferredLang(req);
 
     // * Parameter for label type: set it to a default value
     if (outputlabeltype === undefined)
@@ -145,15 +137,17 @@ function processRequest(req, res) {
                     downloadImageFile2(imgurl, dlFilepath, function (data) {
                         if (data !== null) {
                             console.log('Result of downloading a file: ' + data);
-                            switch (outputdesign) {
-                                case designStds:
-                                case designTopics:
-                                case designIsearch1:
-                                    imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputdesign, outputlabeltype, topAcceptedLang);
-                                    break;
-                                case designCompStds:
-                                    pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputlabeltype);
-                                    break;
+                            if (outputformat === 'html') {
+                                switch (outputdesign) {
+                                    case designStds:
+                                    case designTopics:
+                                    case designIsearch1:
+                                        imgproc1.processImageFileAsHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputdesign, outputlabeltype, prefLang);
+                                        break;
+                                    case designCompStds:
+                                        pmdmatcher.matchPmdShowHtml(res, dlFilepath, wsFilepath, imgurl, imgurl, imglfn, outputlabeltype);
+                                        break;
+                                }
                             }
                             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [' + imgurl + '] -> ' + downloadFilename, req)
                         } else {
@@ -186,15 +180,17 @@ function processRequest(req, res) {
             }
             let processFilepath = downloadDir + imglfn;
             let wsFilepath = webserverDir + imglfn;
-            switch (outputdesign) {
-                case designStds:
-                case designTopics:
-                case designIsearch1:
-                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imgurl3, imglfn, outputdesign, outputlabeltype, topAcceptedLang);
-                    break;
-                case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imgurl3, imglfn, outputlabeltype);
-                    break;
+            if (outputformat === 'html') {
+                switch (outputdesign) {
+                    case designStds:
+                    case designTopics:
+                    case designIsearch1:
+                        imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, imgurl2, imgurl3, imglfn, outputdesign, outputlabeltype, prefLang);
+                        break;
+                    case designCompStds:
+                        pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, imgurl2, imgurl3, imglfn, outputlabeltype);
+                        break;
+                }
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> as local file:' + imglfnArr[1], req)
         }
@@ -202,15 +198,17 @@ function processRequest(req, res) {
             imglfn = defaultImgFn;
             let processFilepath = downloadDir + imglfn;
             let wsFilepath = webserverDir + imglfn;
-            switch (outputdesign) {
-                case designStds:
-                case designTopics:
-                case designIsearch1:
-                    imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, defaultImgLabel, 'local', imglfn, outputdesign, outputlabeltype, topAcceptedLang);
-                    break;
-                case designCompStds:
-                    pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, defaultImgLabel, 'local', imglfn );
-                    break;
+            if (outputformat === 'html') {
+                switch (outputdesign) {
+                    case designStds:
+                    case designTopics:
+                    case designIsearch1:
+                        imgproc1.processImageFileAsHtml(res, processFilepath, wsFilepath, defaultImgLabel, 'local', imglfn, outputdesign, outputlabeltype, prefLang);
+                        break;
+                    case designCompStds:
+                        pmdmatcher.matchPmdShowHtml(res, processFilepath, wsFilepath, defaultImgLabel, 'local', imglfn);
+                        break;
+                }
             }
             tools1.write2Log('GETPMD: ' + outputformat + '|' + outputdesign + '| [-] -> DEFAULTPHOTO', req)
         }

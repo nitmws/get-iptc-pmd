@@ -37,7 +37,7 @@ module.exports = { processImageFileAsHtml };
  * @param imgtitle - title of the HTML output
  * @param outputdesign - code of the output design
  */
-function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, imglfn, outputdesign, labeltype, uselangParam) {
+function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, imglfn, outputdesign, labeltype, uselang) {
     // Arrays of objects for output of the PMD in different sections of the HTML output
     // for the 'perstandard' design
     let iimOutObjarr = [];
@@ -86,9 +86,6 @@ function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, im
             tools1.write2Log('ERROR @default closing of exiftool: ' + err);
         });
     }
-    // set the language for the user interface
-    let uselang = uselangParam;
-    if (appconfig.data.app.defaultlang) {uselang = appconfig.data.app.defaultlang}
 
     // An ExifTool process is started to retrieve the metadata
     ep.open().then((pid) => {
