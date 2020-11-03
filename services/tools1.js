@@ -78,6 +78,9 @@ function checkForExtension(imgUrl){
         if (fnameext.startsWith('gif')){
             return "gif";
         }
+        if (fnameext.startsWith('webp')){
+            return "webp";
+        }
         return "NA";
     }
     else {

@@ -2,6 +2,10 @@
 
 (Latest changes at the top)
 
+### Version 0.6.1
+
+Files with the extension '.webp' can be processed.
+
 ### Version 0.6.0
 
 Feature of showing metadata property labels in different languages added.
