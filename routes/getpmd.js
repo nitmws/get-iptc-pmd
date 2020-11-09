@@ -256,6 +256,9 @@ function downloadImageFile2(imgUrl, destFn, callback) {
         port: portNr,
         path: path1
     };
+    let imgFnExt = tools1.checkForExtension(imgUrl);
+    let readFullImgfile = false;
+    if (imgFnExt === 'webp'){ readFullImgfile = true}
     // file_name = url.parse(imgUrl).pathname.split('/').pop(),
     //Creating the file
     let file = fs.createWriteStream(destFn, {flags: 'w', encoding: 'binary'});
@@ -270,17 +273,20 @@ function downloadImageFile2(imgUrl, destFn, callback) {
                 if (fileOpen) {
                     file.write(chunk);
                     fileLength += chunk.length;
-                    if (fileLength > imageFragmentSize) { // file size over limit
-                        file.end();
-                        fileOpen = false;
-                        console.log('Downloaded ' + destFn);
-                        callback(destFn);
+                    if (!readFullImgfile){
+                        if (fileLength > imageFragmentSize) { // file size over limit
+                            file.end();
+                            fileOpen = false;
+                            console.log('Downloaded ' + destFn);
+                            callback(destFn);
+                        }
                     }
                 }
             }).on('end', function () {
                 //Closing the file
                 if (fileOpen) {
                     file.end();
+                    fileOpen = false;
                     console.log('Downloaded ' + destFn);
                     callback(destFn);
                 }
@@ -293,17 +299,20 @@ function downloadImageFile2(imgUrl, destFn, callback) {
                 if (fileOpen) {
                     file.write(chunk);
                     fileLength += chunk.length;
-                    if (fileLength > imageFragmentSize) { // file size over limit
-                        file.end();
-                        fileOpen = false;
-                        console.log('Downloaded ' + destFn);
-                        callback(destFn);
+                    if (!readFullImgfile){
+                        if (fileLength > imageFragmentSize) { // file size over limit
+                            file.end();
+                            fileOpen = false;
+                            console.log('Downloaded ' + destFn);
+                            callback(destFn);
+                        }
                     }
                 }
             }).on('end', function () {
                 //Closing the file
                 if (fileOpen) {
                     file.end();
+                    fileOpen = false;
                     console.log('Downloaded ' + destFn);
                     callback(destFn);
                 }
