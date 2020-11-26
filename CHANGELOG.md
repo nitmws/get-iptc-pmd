@@ -2,6 +2,10 @@
 
 (Latest changes at the top)
 
+### Version 0.6.2
+
+schema.org properties copyrightNotice and creditText added to pmdinvestigationguide. Visible on pmdresult_isearch1.pug
+
 ### Version 0.6.1
 
 Files with the extension '.webp' can be processed.

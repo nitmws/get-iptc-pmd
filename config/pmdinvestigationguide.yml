@@ -54,6 +54,7 @@ topwithprefix:
     labellocal:
       de: "Copyright Vermerk (XMP)|XMP dc:rights"
       fr: "Mention de Copyright (XMP)|XMP dc:rights"
+    schemaorgpropname: "copyrightNotice"
     sortorder: so120x
     specidx: "#copyright-notice"
     output: xmp,rights,isearch1
@@ -97,6 +98,7 @@ topwithprefix:
     labellocal:
       de: "Ersteller (XMP)|XMP dc:creator"
       fr: "Créateur (XMP)|XMP dc:creator"
+    schemaorgpropname: "creator"
     sortorder: so150x
     specidx: "#creator"
     output: xmp,rights,isearch1
@@ -140,6 +142,7 @@ topwithprefix:
     labellocal:
       de: "Credit (XMP)|XMP photoshop:Credit"
       fr: "Crédit (XMP)|XMP photoshop:Credit"
+    schemaorgpropname: "creditText"
     sortorder: so180x
     specidx: "#credit-line"
     output: xmp,rights,isearch1
