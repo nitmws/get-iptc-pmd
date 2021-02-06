@@ -23,8 +23,9 @@ block content
             div(class="col-md-8") <span style="border: 1px black solid; background-color: #ccffe6; padding:3px;"><a href="/">Back to Request Form</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px;margin-left: 10px;"><a href="#{ilfntopics}">Grouped by metadata topics</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfncompare}">Compared fields</a></span> <span style="border: 1px black solid; background-color: #ffe6cc; padding:3px; margin-left: 5px;"><a href="#{ilfnisearch1}">Search engine fields</a></span>
 
         div(class="resultdata1")
+            h2 Metadata fields grouped by technical format standard
 
-            h2 IIM - IPTC Photo Metadata Fields
+            h3 IIM format: IPTC Photo Metadata fields only
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -37,7 +38,7 @@ block content
                             td <a href="#{propspecurl}">#{iimprop.pname}</a>
                             td=iimprop.pvalue
 
-            h2 XMP - IPTC Photo Metadata Fields
+            h3 XMP format: IPTC Photo Metadata fields only
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr
@@ -81,7 +82,7 @@ block content
                                                                                         td=rowL4.pvalue
 
 
-            h2 Exif - Fields related to IPTC Photo Metadata
+            h3 Exif format: Exit Tags related to IPTC Photo Metadata
             table(class='pmd1 table-bordered table-striped table-curved')
                 thead
                     tr

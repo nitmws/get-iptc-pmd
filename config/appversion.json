@@ -1,12 +1,7 @@
 {
-  "release" : "0.3.0",
-  "timestamp" : "2020-01-02",
+  "release" : "0.6.3",
+  "timestamp" : "2021-02-06",
   "history" : [
-    "2020-01-02 (0.3.0): major rewrite of the processimage service, rendered web pages show links to IPTC standard",
-    "2019-12-27 (0.2.3): minor edits prior to a major rewrite of the processing of metadata",
-    "2019-04-30: tools1/checkForExtension: improved testing of lastdot",
-    "2019-04-01: accessing config files got a path.join with __dir, appversion moved to config directory",
-    "2017-12-31: up/download of image files limited to about 70kBytes = faster",
-    "2017-01-12: first release of the project"
+
   ]
 }
