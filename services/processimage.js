@@ -33,9 +33,14 @@ module.exports = { processImageFileAsHtml };
 /**
  * Retrieves metadata from the image file and creates data for the output as HTML rendition
  * @param res - Express response
- * @param imgfpath - file path of the image
+ * @param imgfpath - file path of the image in the context of the hosting server
+ * @param imgwsfpath - file path of the image in the context of the web server
  * @param imgtitle - title of the HTML output
+ * @param imgurl - URL of an image posted in the web
+ * @param imglfn - local file name of the image
  * @param outputdesign - code of the output design
+ * @param labeltype - value of enumeration "IPTC PMD Std prop name", "Technical Format Field Id", "Exiftool Field Id"
+ * @param uselang - to be used language
  */
 function processImageFileAsHtml (res, imgfpath, imgwsfpath, imgtitle, imgurl, imglfn, outputdesign, labeltype, uselang) {
     // Arrays of objects for output of the PMD in different sections of the HTML output
@@ -286,7 +291,9 @@ function getPropnames (obj){
         return propnames;
     }
     for(var propname in obj){
-        propnames.push(propname);
+        if (obj.hasOwnProperty(propname)){
+            propnames.push(propname);
+        }
     }
     return propnames;
 }
@@ -297,6 +304,7 @@ function getPropnames (obj){
  * @param proptype
  * @param propname
  * @param propsortorder
+ * @param propspecidx
  * @param propvalue
  */
 function addPropObject (modObjArr, proptype, propname, propsortorder, propspecidx, propvalue){
@@ -321,6 +329,7 @@ function addPropObject (modObjArr, proptype, propname, propsortorder, propspecid
  * Reads the data of a the value of a metadata property and transforms it to an output object
  * @param propValueObj
  * @param labelId
+ * @param schemaorgObjArr
  * @returns {{}}
  */
 function getPropValueData (propValueObj, labelId, schemaorgObjArr){
@@ -528,10 +537,11 @@ function transfromSchemaorgObj2Code1(schemaorgObjArr, imgUrl){
  * @param imgUrl - the URL of the image being the subject of the metadata
  * @returns {string[]}
  */
+/*
 function transfromSchemaorgObj2Code2(schemaorgObjArr, imgUrl){
     if (imgUrl === undefined){ return '';}
     if (imgUrl === ''){ return '';}
-    let tempStr = '';
+    let tempStr;
     let codeArr = [];
     codeArr.push('{');
     codeArr.push('"@context": "https://schema.org",');
@@ -560,6 +570,7 @@ function transfromSchemaorgObj2Code2(schemaorgObjArr, imgUrl){
     codeArr.push('}');
     return codeArr;
 }
+*/
 
 /**
  * Function comparing two output properties by pname - used for sorting the investigation results

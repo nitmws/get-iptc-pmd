@@ -4,7 +4,24 @@ mixin tablerows(rowL1)
     tr
         - var singlevalueL1 = rowL1.ptype == "plain";
         - var rowL1specurl = "https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata" + rowL1.pspecidx
-        td <a href="#{rowL1specurl}">#{rowL1.pname}</a>
+        -
+            var undeflabel = true
+            var iimlabel = false
+            var xmplabel = false
+            var exiflabel = false
+            if (rowL1.pname.indexOf('IIM') > -1) {iimlabel = true; undeflabel = false}
+            if (rowL1.pname.indexOf('XMP') > -1) {xmplabel = true; undeflabel = false}
+            if (rowL1.pname.indexOf('Exif') > -1) {exiflabel = true; undeflabel = false}
+
+        if undeflabel
+            td <a href="#{rowL1specurl}">#{rowL1.pname}</a>
+        if iimlabel
+            td(class="iimlabel") <a href="#{rowL1specurl}">#{rowL1.pname}</a>
+        if xmplabel
+            td(class="xmplabel") <a href="#{rowL1specurl}">#{rowL1.pname}</a>
+        if exiflabel
+            td(class="exiflabel") <a href="#{rowL1specurl}">#{rowL1.pname}</a>
+
         if singlevalueL1
             td=rowL1.pvalue
         else
@@ -52,7 +69,7 @@ block content
         div(class="row")
             div(class="col-md-6 techmdbox") original size:#{techMd.width}x#{techMd.height}, colorspace:#{techMd.colorspace}, compression:#{techMd.compression}
         div(class="row topspace2")
-            div(class="col-md-8") The tables below show the IPTC Field Names in alphabetical order, they are linked to the specification in the IPTC Photo Metadata Standard.<br>Fields with multiple occurrences show an index in []-brackets as prefix.<br>The grouping of fields is the same as in the <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_how_to_edit_metadata_for' target='_blank'>IPTC Photo Metadata User Guide</a> - click on the headings of the sections.
+            div(class="col-md-8") The tables below show the IPTC Field Names in alphabetical order, they are linked to the specification in the IPTC Photo Metadata Standard. <br>The format of the field is reflected by the background colour and by a note appended to the name: IIM (lightblue) = IPTC IIM format, XMP (pink) = ISO XMP format, Exif (light green) = CIPA Exif format.<br>Fields with multiple occurrences show an index in []-brackets as prefix.<br>The grouping of fields is the same as in the <a href='https://www.iptc.org/std/photometadata/documentation/userguide/#_how_to_edit_metadata_for' target='_blank'>IPTC Photo Metadata User Guide</a> - click on the headings of the sections.
         div(class="row topspace1")
             - var ilfnstds = '/getpmd/html/stds/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;
             - var ilfncompare = '/getpmd/html/compare/'+ labeltype + '/?imglfn=' + imglfn + '||' + imageTitle;

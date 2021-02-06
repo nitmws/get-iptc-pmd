@@ -351,7 +351,7 @@ topwithprefix:
     output: xmp,gimgcont
   XMP-plus_ImageCreator:
     label: "Image Creator (XMP)|XMP plus:ImageCreator"
-    sortorder: so440x
+    sortorder: so150z
     specidx: "#image-creator"
     output: xmp,rights
   XMP-xmp_Rating:
@@ -461,8 +461,8 @@ topwithprefix:
     output: xmp,rights
   XMP-xmpRights_WebStatement:
     label: "Web Statement of Rights (XMP)|XMP xmpRights:WebStatement"
-    sortorder: so670x
     schemaorgpropname: "license"
+    sortorder: so670x
     specidx: "#web-statement-of-rights"
     output: xmp,rights,isearch1
 topnoprefix:
@@ -762,7 +762,6 @@ topnoprefix:
     specidx: "#property-release-status"
   WebStatement:
     label: "Web Statement of Rights (XMP)|XMP xmpRights:WebStatement"
-    schemaorgpropname: "license"
     sortorder: so670x
     specidx: "#web-statement-of-rights"
 instructure:

@@ -105,3 +105,12 @@ table.pmd1 th, td {
 .list1{
 	margin-top: 3px;
 }
+.iimlabel{
+	background-color: #e6f0ff;
+}
+.xmplabel{
+	background-color: #fff0f0;
+}
+.exiflabel{
+	background-color: #f0fff0;
+}
